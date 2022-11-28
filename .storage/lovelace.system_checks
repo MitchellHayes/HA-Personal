@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.system_checks",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "cards": [
+            {
+              "type": "gauge",
+              "entity": "sensor.living_room_blinds_1",
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.kitchen_blinds",
+              "needle": false,
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.living_room_blinds_2",
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              },
+              "needle": false
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.office_blinds",
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.ryan_s_room_blinds",
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.master_bedroom_1",
+              "needle": false,
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.master_bedroom_2",
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.tradfri_open_close_remote",
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.2nd_floor_blinds_remote",
+              "needle": false,
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.gym_filter_life",
+              "needle": false,
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 0
+              }
+            },
+            {
+              "type": "gauge",
+              "entity": "sensor.second_floor_filter_life",
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 3
+              },
+              "needle": false
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Network",
+          "path": "network",
+          "badges": [],
+          "cards": [
+            {
+              "show_name": true,
+              "show_icon": true,
+              "show_state": true,
+              "type": "glance",
+              "entities": [
+                {
+                  "entity": "sensor.eero_external_ip"
+                },
+                {
+                  "entity": "binary_sensor.eero_wan_status"
+                }
+              ],
+              "state_color": true
+            },
+            {
+              "type": "glance",
+              "entities": [
+                "sensor.speedtest_download",
+                "sensor.speedtest_ping",
+                "sensor.speedtest_upload"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1532 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace_mobile",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "theme": "Backend-selected",
+          "title": "Home",
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "alarm-control-panel",
+                      "entity": "alarm_control_panel.alarm_control_panel",
+                      "content_info": "state",
+                      "name": "Alarm"
+                    },
+                    {
+                      "type": "weather",
+                      "entity": "weather.home",
+                      "show_conditions": true,
+                      "show_temperature": true
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.u_s_air_pollution_level",
+                      "name": "Air Quality",
+                      "use_entity_picture": false,
+                      "icon_color": "grey",
+                      "icon": ""
+                    },
+                    {
+                      "type": "entity"
+                    }
+                  ],
+                  "alignment": "center"
+                },
+                {
+                  "type": "custom:mushroom-template-card",
+                  "primary": "{% set time = now().hour %}\n{% if (time >= 18) %}\n  Good Evening, {{user}}!\n{% elif (time >= 12) %}\n  Good Afternoon, {{user}}!\n{% elif (time >= 5) %}\n  Good Morning, {{user}}!\n{% else %}\n  Hello, {{user}}!\n{% endif %}",
+                  "secondary": "",
+                  "icon": ""
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "House",
+                      "secondary": "",
+                      "icon": "mdi:home",
+                      "layout": "vertical",
+                      "icon_color": "blue",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "house"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Lights",
+                      "secondary": "",
+                      "icon": "mdi:lightbulb",
+                      "layout": "vertical",
+                      "icon_color": "amber",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "lights"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Secure",
+                      "secondary": "",
+                      "icon": "mdi:shield",
+                      "layout": "vertical",
+                      "icon_color": "green",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "secure"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Lab",
+                      "secondary": "",
+                      "icon": "mdi:flask",
+                      "layout": "vertical",
+                      "icon_color": "purple",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "labs"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.mitchell",
+                      "layout": "vertical",
+                      "use_entity_picture": true,
+                      "hide_name": true
+                    },
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.michelle",
+                      "layout": "vertical",
+                      "use_entity_picture": true,
+                      "hide_name": true
+                    },
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.ryan",
+                      "layout": "vertical",
+                      "use_entity_picture": true,
+                      "hide_name": true
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-title-card",
+                  "title": "Rooms"
+                },
+                {
+                  "square": false,
+                  "columns": 2,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "light.first_floor_lights",
+                      "icon": "mdi:home-floor-1",
+                      "fill_container": false,
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/firstfloor"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "double_tap_action": {
+                        "action": "none"
+                      },
+                      "primary_info": "name",
+                      "name": "First Floor",
+                      "icon_color": "amber"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "light.kitchen_and_dining_room_lights",
+                      "name": "Kitchen and Dining",
+                      "icon": "mdi:silverware-variant",
+                      "icon_color": "amber",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/kitchendining"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "light.living_room_main_lights",
+                      "name": "Living Room",
+                      "icon": "mdi:sofa",
+                      "icon_color": "amber",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/livingroom"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "light.office_ceiling_fan",
+                      "name": "Craft Room",
+                      "icon": "",
+                      "icon_color": "amber",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/office"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "light.master_bedroom",
+                      "icon": "mdi:bed-king",
+                      "icon_color": "amber",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/masterbedroom"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "light.ryan_s_ceiling_fan_2",
+                      "icon": "mdi:bed-double",
+                      "icon_color": "amber",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/ryansroom"
+                      },
+                      "name": "Ryan's Room",
+                      "hold_action": {
+                        "action": "toggle"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "First Floor",
+          "path": "firstfloor",
+          "icon": "",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.gym_pm2_5"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.nest_protect_entryway_smoke_status",
+                      "name": "Smoke",
+                      "use_entity_picture": false,
+                      "icon": "mdi:smoke-detector-variant"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.entry_way_step_lights",
+                      "name": "Entry Way",
+                      "icon": "mdi:coat-rack",
+                      "show_brightness_control": true,
+                      "use_light_color": true,
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "collapsible_controls": false
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.family_room_main_lights",
+                      "name": "Gym",
+                      "icon": "mdi:dumbbell",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "collapsible_controls": false
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "name": "Gym TV",
+                  "icon": "mdi:television",
+                  "entity": "media_player.family_room_tv"
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.family_room",
+                  "volume_stateless": false,
+                  "toggle_power": true,
+                  "name": "Gym Speaker",
+                  "icon": "mdi:speaker"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Kitchen & Dining",
+          "path": "kitchendining",
+          "icon": "",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.thermostat_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.thermostat_humidity"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.second_floor_pm2_5",
+                      "use_entity_picture": false
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.nest_protect_living_room_smoke_status",
+                      "icon": "mdi:smoke-detector-variant"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.kitchen_main_lights_1",
+                      "name": "Kitchen",
+                      "icon": "mdi:knife",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "collapsible_controls": false,
+                      "tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.kitchen_sink",
+                      "name": "Sink Light",
+                      "icon": "mdi:countertop",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "collapsible_controls": false,
+                      "tap_action": {
+                        "action": "toggle"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.dining_room_chandelier",
+                  "name": "Dining Room",
+                  "icon": "mdi:silverware-fork-knife",
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:blind-card",
+                  "title": null,
+                  "entities": [
+                    {
+                      "entity": "cover.kitchen_blinds",
+                      "name": "Blinds",
+                      "buttons_position": "left",
+                      "title_position": "bottom",
+                      "blind_color": "#D3D3D3"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.kitchen_display",
+                  "name": "Kitchen Display"
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.kitchen_speaker",
+                  "name": "Kitchen Speaker"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Living Room",
+          "path": "livingroom",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.thermostat_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.thermostat_humidity"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.second_floor_pm2_5"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.nest_protect_living_room_smoke_status",
+                      "icon": "mdi:smoke-detector-variant"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.living_room_main_lights",
+                      "name": "Living Room",
+                      "icon": "mdi:sofa",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-fan-card",
+                      "entity": "fan.living_room_ceiling_fan",
+                      "icon_animation": true,
+                      "show_percentage_control": true,
+                      "tap_action": {
+                        "action": "toggle"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:blind-card",
+                  "title": null,
+                  "entities": [
+                    {
+                      "entity": "cover.living_room_blinds",
+                      "name": "Blinds",
+                      "buttons_position": "left",
+                      "title_position": "bottom",
+                      "blind_color": "#D3D3D3"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.living_room_tv",
+                  "name": "Living Room TV",
+                  "icon": "mdi:television",
+                  "source": "icon",
+                  "sound_mode": "icon",
+                  "artwork": "full-cover",
+                  "volume_stateless": false,
+                  "replace_mute": "play_pause"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Craft Room",
+          "path": "office",
+          "icon": "",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.office_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.office_occupancy",
+                      "icon": "mdi:account"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.nest_protect_office_smoke_status",
+                      "icon": "mdi:smoke-detector-variant"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.office_ceiling_fan",
+                      "icon": "",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "name": "Lights",
+                      "collapsible_controls": false
+                    },
+                    {
+                      "type": "custom:mushroom-fan-card",
+                      "entity": "fan.office_ceiling_fan",
+                      "icon_animation": true,
+                      "show_percentage_control": false,
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "name": "Ceiling Fan"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:blind-card",
+                  "title": null,
+                  "entities": [
+                    {
+                      "entity": "cover.office_blinds",
+                      "name": "Blinds",
+                      "buttons_position": "left",
+                      "title_position": "bottom",
+                      "blind_color": "#D3D3D3"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.office",
+                  "name": "Office Display",
+                  "source": "icon",
+                  "sound_mode": "icon",
+                  "artwork": "full-cover",
+                  "volume_stateless": false,
+                  "replace_mute": "play_pause"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Ryan's Room",
+          "path": "ryansroom",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.ryansroom_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.ryansroom_occupancy",
+                      "content_info": "state",
+                      "icon": "mdi:account",
+                      "use_entity_picture": false
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.nest_protect_ryan_s_room_smoke_status",
+                      "icon": "mdi:smoke-detector-variant"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.air_quality_ryan",
+                      "icon": "mdi:molecule"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "name": "Lights",
+                      "icon": "mdi:ceiling-fan-light",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.ryan_s_ceiling_fan_2"
+                    },
+                    {
+                      "type": "custom:mushroom-fan-card",
+                      "icon_animation": true,
+                      "name": "Ceiling Fan",
+                      "show_percentage_control": false,
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "fan.ryan_s_ceiling_fan_2"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:blind-card",
+                  "title": null,
+                  "entities": [
+                    {
+                      "entity": "cover.ryan_s_room_blinds",
+                      "name": "Blinds",
+                      "buttons_position": "left",
+                      "title_position": "bottom",
+                      "blind_color": "#D3D3D3"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.ryan_s_room",
+                  "name": "Ryan's Room Speaker",
+                  "icon": "mdi:speaker"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Master Suite",
+          "path": "masterbedroom",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.masterbedroom_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.masterbedroom_occupancy",
+                      "content_info": "state",
+                      "icon": "mdi:account",
+                      "use_entity_picture": false
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.nest_protect_master_bedroom_smoke_status",
+                      "icon": "mdi:smoke-detector-variant"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.master_bedroom_ceiling_fan",
+                      "name": "Ceiling Fan",
+                      "icon": "mdi:ceiling-light",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "show_color_temp_control": false,
+                      "show_color_control": false
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.master_bedroom_lamps",
+                      "fill_container": true,
+                      "name": "Lamps",
+                      "icon": "mdi:floor-lamp"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "name": "Bathroom",
+                      "icon": "mdi:vanity-light",
+                      "fill_container": true,
+                      "show_brightness_control": true,
+                      "entity": "light.master_bathroom_main_lights"
+                    },
+                    {
+                      "type": "custom:mushroom-fan-card",
+                      "entity": "fan.master_bedroom_ceiling_fan",
+                      "name": "Fan",
+                      "icon_animation": true,
+                      "fill_container": true
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:blind-card",
+                  "title": null,
+                  "entities": [
+                    {
+                      "entity": "cover.master_bedroom_blinds",
+                      "name": "Blinds",
+                      "buttons_position": "left",
+                      "title_position": "bottom",
+                      "blind_color": "#D3D3D3"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mini-media-player",
+                      "name": "Bedroom",
+                      "entity": "media_player.master_bedroom",
+                      "icon": "mdi:speaker",
+                      "group": false
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.master_bathroom",
+                      "name": "Bathroom",
+                      "icon": "mdi:speaker",
+                      "group": false,
+                      "source": "icon",
+                      "sound_mode": "icon",
+                      "info": "scroll"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.master_bed_bath",
+                  "icon": "mdi:speaker-multiple"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "House",
+          "path": "house",
+          "icon": "mdi:home",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-chips-card",
+                  "chips": [
+                    {
+                      "type": "entity",
+                      "entity": "cover.garage_door",
+                      "tap_action": {
+                        "action": "more-info"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "entity": "input_boolean.mobile_therm_charts",
+                          "state": "off"
+                        }
+                      ],
+                      "card": {
+                        "type": "custom:stack-in-card",
+                        "cards": [
+                          {
+                            "type": "thermostat",
+                            "entity": "climate.thermostat"
+                          },
+                          {
+                            "type": "button",
+                            "tap_action": {
+                              "action": "toggle"
+                            },
+                            "entity": "input_boolean.mobile_therm_charts",
+                            "show_state": false,
+                            "show_icon": true,
+                            "show_name": false,
+                            "icon": "mdi:arrow-down",
+                            "icon_height": "15px"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "entity": "input_boolean.mobile_therm_charts",
+                          "state": "on"
+                        }
+                      ],
+                      "card": {
+                        "type": "custom:stack-in-card",
+                        "cards": [
+                          {
+                            "type": "thermostat",
+                            "entity": "climate.thermostat"
+                          },
+                          {
+                            "type": "grid",
+                            "square": false,
+                            "columns": 2,
+                            "cards": [
+                              {
+                                "hours_to_show": 24,
+                                "graph": "line",
+                                "type": "sensor",
+                                "detail": 1,
+                                "name": "Thermostat",
+                                "entity": "sensor.thermostat_current_temperature"
+                              },
+                              {
+                                "hours_to_show": 24,
+                                "graph": "line",
+                                "type": "sensor",
+                                "entity": "sensor.thermostat_current_humidity",
+                                "detail": 1,
+                                "name": "Humidity"
+                              },
+                              {
+                                "hours_to_show": 24,
+                                "graph": "line",
+                                "type": "sensor",
+                                "entity": "sensor.office_temperature",
+                                "detail": 1,
+                                "name": "Craft Room"
+                              },
+                              {
+                                "hours_to_show": 24,
+                                "graph": "line",
+                                "type": "sensor",
+                                "entity": "sensor.ryansroom_temperature",
+                                "detail": 1,
+                                "name": "Ryan's Room"
+                              },
+                              {
+                                "hours_to_show": 24,
+                                "graph": "line",
+                                "type": "sensor",
+                                "entity": "sensor.masterbedroom_temperature",
+                                "detail": 1,
+                                "name": "Master Bedroom"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "button",
+                            "tap_action": {
+                              "action": "toggle"
+                            },
+                            "entity": "input_boolean.mobile_therm_charts",
+                            "show_state": false,
+                            "show_icon": true,
+                            "show_name": false,
+                            "icon": "mdi:arrow-up",
+                            "icon_height": "15px"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:vacuum-card",
+                  "entity": "vacuum.jesus",
+                  "image": "default",
+                  "compact_view": true,
+                  "show_name": true,
+                  "show_toolbar": true
+                },
+                {
+                  "type": "custom:vacuum-card",
+                  "entity": "vacuum.juan",
+                  "image": "default",
+                  "compact_view": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Lights",
+          "path": "lights",
+          "icon": "mdi:lightbulb",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.all_lights",
+                  "use_light_color": true,
+                  "show_brightness_control": false,
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:stack-in-card",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.entry_way_step_lights",
+                          "name": "Entry Way",
+                          "show_brightness_control": true,
+                          "use_light_color": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon": "mdi:coat-rack"
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.family_room_main_lights",
+                          "name": "Gym",
+                          "icon": "mdi:dumbbell",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.kitchen_main_lights_1",
+                          "name": "Kitchen",
+                          "icon": "mdi:knife",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.kitchen_sink",
+                          "name": "Kitchen Sink",
+                          "icon": "mdi:countertop",
+                          "hide_state": false,
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.dining_room_chandelier",
+                          "name": "Dining Room",
+                          "icon": "mdi:silverware-fork-knife",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.living_room_main_lights",
+                          "name": "Living Room",
+                          "icon": "mdi:sofa",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.stairs_step_lights",
+                          "name": "Stairs",
+                          "icon": "mdi:stairs",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.upstairs_hallway_main_lights",
+                          "name": "Hallway",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.office_ceiling_fan",
+                          "name": "Craft Room",
+                          "icon": "",
+                          "use_light_color": true,
+                          "show_brightness_control": false,
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "name": "Ryan's Room",
+                          "icon": "mdi:bed-single",
+                          "use_light_color": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "light.ryan_s_ceiling_fan_2"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "name": "Master Bedroom Ceiling Fan",
+                          "icon": "mdi:bed-king",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "light.master_bedroom_ceiling_fan"
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.master_bathroom_main_lights",
+                          "icon": "mdi:bathtub",
+                          "name": "Master Bathroom",
+                          "use_light_color": true,
+                          "show_brightness_control": true,
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.master_bedroom_lamps"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "switch.front_yard_1_socket_1",
+                          "icon": "mdi:string-lights",
+                          "icon_color": "orange",
+                          "name": "Bushes",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "hold_action": {
+                            "action": "more-info"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Secure",
+          "path": "secure",
+          "icon": "mdi:shield",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-alarm-control-panel-card",
+                  "entity": "alarm_control_panel.alarm_control_panel",
+                  "states": [
+                    "armed_home",
+                    "armed_away"
+                  ],
+                  "show_keypad": false
+                },
+                {
+                  "type": "grid",
+                  "square": false,
+                  "columns": 1,
+                  "cards": [
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "entity": "input_boolean.mobile_cam_dropdown",
+                          "state": "off"
+                        }
+                      ],
+                      "card": {
+                        "type": "custom:stack-in-card",
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-template-card",
+                            "primary": "Cameras",
+                            "secondary": "",
+                            "icon": "mdi:arrow-down",
+                            "tap_action": {
+                              "action": "toggle"
+                            },
+                            "entity": "input_boolean.mobile_cam_dropdown"
+                          },
+                          {
+                            "type": "horizontal-stack",
+                            "cards": [
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "entity": "camera.front_door",
+                                "aspect_ratio": "4:3",
+                                "camera_image": "camera.front_door"
+                              },
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "aspect_ratio": "16:9",
+                                "camera_image": "camera.patio",
+                                "entity": "camera.patio"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "horizontal-stack",
+                            "cards": [
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "aspect_ratio": "16:9",
+                                "camera_image": "camera.gym",
+                                "entity": "camera.gym"
+                              },
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "entity": "camera.kitchen",
+                                "aspect_ratio": "16:9",
+                                "camera_image": "camera.kitchen"
+                              },
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "entity": "camera.garage",
+                                "aspect_ratio": "16:9",
+                                "camera_image": "camera.garage"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "entity": "input_boolean.mobile_cam_dropdown",
+                          "state": "on"
+                        }
+                      ],
+                      "card": {
+                        "type": "custom:stack-in-card",
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-template-card",
+                            "primary": "Cameras",
+                            "secondary": "",
+                            "icon": "mdi:arrow-up",
+                            "tap_action": {
+                              "action": "toggle"
+                            },
+                            "entity": "input_boolean.mobile_cam_dropdown"
+                          },
+                          {
+                            "type": "vertical-stack",
+                            "cards": [
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "entity": "camera.front_door",
+                                "aspect_ratio": "4:3",
+                                "camera_image": "camera.front_door"
+                              },
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "aspect_ratio": "16:9",
+                                "camera_image": "camera.gym",
+                                "entity": "camera.gym"
+                              },
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "aspect_ratio": "16:9",
+                                "camera_image": "camera.patio",
+                                "entity": "camera.patio"
+                              },
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "entity": "camera.kitchen",
+                                "aspect_ratio": "16:9",
+                                "camera_image": "camera.kitchen"
+                              },
+                              {
+                                "show_state": false,
+                                "show_name": false,
+                                "camera_view": "live",
+                                "type": "picture-entity",
+                                "entity": "camera.garage",
+                                "aspect_ratio": "16:9",
+                                "camera_image": "camera.garage"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "Sensors"
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.front_door_entry"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.back_door_entry"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.garage_entry",
+                          "name": "Door to Garage"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.patio_window_entry"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.nest_protect_entryway_smoke_status",
+                          "icon": "mdi:smoke-detector-variant",
+                          "name": "Entry Way",
+                          "fill_container": false,
+                          "layout": "horizontal"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.nest_protect_living_room_smoke_status",
+                          "icon": "mdi:smoke-detector-variant",
+                          "name": "Living Room",
+                          "layout": "horizontal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "layout": "horizontal",
+                          "entity": "binary_sensor.nest_protect_hallway_smoke_status",
+                          "name": "Hallway",
+                          "icon": "mdi:smoke-detector-variant"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.nest_protect_office_smoke_status",
+                          "icon": "mdi:smoke-detector-variant",
+                          "name": "Craft Room"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.nest_protect_master_bedroom_smoke_status",
+                          "name": "Master Bedroom",
+                          "icon": "mdi:smoke-detector-variant"
+                        },
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.nest_protect_ryan_s_room_smoke_status",
+                          "name": "Ryan's Room",
+                          "icon": "mdi:smoke-detector-variant"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-entity-card",
+                          "entity": "binary_sensor.utility_room_leak",
+                          "icon": "mdi:water-circle",
+                          "name": "Utility Room"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Labs",
+          "path": "labs",
+          "icon": "mdi:flask",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:mushroom-entity-card",
+              "entity": "binary_sensor.eero_wan_status",
+              "name": "Wan Status",
+              "use_entity_picture": false,
+              "hide_icon": false,
+              "fill_container": false
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.speedtest_upload",
+                  "name": "Upload"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.speedtest_download",
+                  "name": "Download"
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.backups_stale",
+                  "name": "Backups"
+                },
+                {
+                  "type": "custom:mushroom-update-card",
+                  "entity": "update.home_assistant_core_update",
+                  "name": "Core"
+                },
+                {
+                  "type": "custom:mushroom-update-card",
+                  "entity": "update.home_assistant_supervisor_update",
+                  "name": "Supervisor"
+                },
+                {
+                  "type": "custom:mushroom-update-card",
+                  "entity": "update.home_assistant_operating_system_update",
+                  "name": "OS",
+                  "use_entity_picture": false
+                }
+              ]
+            },
+            {
+              "square": false,
+              "columns": 2,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.company_over_kill_switch",
+                  "name": "Company is Over",
+                  "fill_container": false,
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
