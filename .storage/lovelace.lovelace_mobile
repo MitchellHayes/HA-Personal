@@ -1361,7 +1361,8 @@
                           {
                             "type": "custom:mushroom-template-card",
                             "primary": "Sensors",
-                            "secondary": "",
+                            "multiline_secondary": true,
+                            "secondary": "{% if is_state('binary_sensor.windows_all_windows', 'on') %}Windows are open{% else %}Windows are closed{% endif %}\n{% if is_state('binary_sensor.doors_all_doors', 'on') %}Doors are open{% else %}Doors are closed{% endif %}\n{% if is_state('binary_sensor.smoke_all', 'on') %}Smoke is detected{% endif %}",
                             "icon": "mdi:arrow-down",
                             "tap_action": {
                               "action": "toggle"
