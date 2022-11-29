@@ -732,11 +732,11 @@
                   "cards": [
                     {
                       "type": "custom:mushroom-light-card",
+                      "entity": "light.master_bathroom_main_lights",
                       "name": "Bathroom",
                       "icon": "mdi:vanity-light",
                       "fill_container": true,
-                      "show_brightness_control": true,
-                      "entity": "light.master_bathroom_main_lights"
+                      "show_brightness_control": true
                     },
                     {
                       "type": "custom:mushroom-fan-card",
@@ -1343,104 +1343,150 @@
                   ]
                 },
                 {
-                  "type": "custom:stack-in-card",
+                  "type": "grid",
+                  "square": false,
+                  "columns": 1,
                   "cards": [
                     {
-                      "type": "custom:mushroom-title-card",
-                      "title": "Sensors"
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "entity": "input_boolean.mobile_sensors_dropdown",
+                          "state": "off"
+                        }
+                      ],
+                      "card": {
+                        "type": "custom:stack-in-card",
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-template-card",
+                            "primary": "Sensors",
+                            "secondary": "",
+                            "icon": "mdi:arrow-down",
+                            "tap_action": {
+                              "action": "toggle"
+                            },
+                            "entity": "input_boolean.mobile_sensors_dropdown"
+                          }
+                        ]
+                      }
                     },
                     {
-                      "type": "horizontal-stack",
-                      "cards": [
+                      "type": "conditional",
+                      "conditions": [
                         {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.front_door_entry"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.back_door_entry"
+                          "entity": "input_boolean.mobile_sensors_dropdown",
+                          "state": "on"
                         }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.garage_entry",
-                          "name": "Door to Garage"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.patio_window_entry"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.nest_protect_entryway_smoke_status",
-                          "icon": "mdi:smoke-detector-variant",
-                          "name": "Entry Way",
-                          "fill_container": false,
-                          "layout": "horizontal"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.nest_protect_living_room_smoke_status",
-                          "icon": "mdi:smoke-detector-variant",
-                          "name": "Living Room",
-                          "layout": "horizontal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "layout": "horizontal",
-                          "entity": "binary_sensor.nest_protect_hallway_smoke_status",
-                          "name": "Hallway",
-                          "icon": "mdi:smoke-detector-variant"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.nest_protect_office_smoke_status",
-                          "icon": "mdi:smoke-detector-variant",
-                          "name": "Craft Room"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.nest_protect_master_bedroom_smoke_status",
-                          "name": "Master Bedroom",
-                          "icon": "mdi:smoke-detector-variant"
-                        },
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.nest_protect_ryan_s_room_smoke_status",
-                          "name": "Ryan's Room",
-                          "icon": "mdi:smoke-detector-variant"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-entity-card",
-                          "entity": "binary_sensor.utility_room_leak",
-                          "icon": "mdi:water-circle",
-                          "name": "Utility Room"
-                        }
-                      ]
+                      ],
+                      "card": {
+                        "type": "custom:stack-in-card",
+                        "cards": [
+                          {
+                            "type": "custom:mushroom-template-card",
+                            "primary": "Sensors",
+                            "secondary": "",
+                            "icon": "mdi:arrow-up",
+                            "tap_action": {
+                              "action": "toggle"
+                            },
+                            "entity": "input_boolean.mobile_sensors_dropdown"
+                          },
+                          {
+                            "type": "horizontal-stack",
+                            "cards": [
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.front_door_entry"
+                              },
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.back_door_entry"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "horizontal-stack",
+                            "cards": [
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.garage_entry",
+                                "name": "Door to Garage"
+                              },
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.patio_window_entry"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "horizontal-stack",
+                            "cards": [
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.nest_protect_entryway_smoke_status",
+                                "icon": "mdi:smoke-detector-variant",
+                                "name": "Entry Way",
+                                "fill_container": false,
+                                "layout": "horizontal"
+                              },
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.nest_protect_living_room_smoke_status",
+                                "icon": "mdi:smoke-detector-variant",
+                                "name": "Living Room",
+                                "layout": "horizontal"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "horizontal-stack",
+                            "cards": [
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "layout": "horizontal",
+                                "entity": "binary_sensor.nest_protect_hallway_smoke_status",
+                                "name": "Hallway",
+                                "icon": "mdi:smoke-detector-variant"
+                              },
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.nest_protect_office_smoke_status",
+                                "icon": "mdi:smoke-detector-variant",
+                                "name": "Craft Room"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "horizontal-stack",
+                            "cards": [
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.nest_protect_master_bedroom_smoke_status",
+                                "name": "Master Bedroom",
+                                "icon": "mdi:smoke-detector-variant"
+                              },
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.nest_protect_ryan_s_room_smoke_status",
+                                "name": "Ryan's Room",
+                                "icon": "mdi:smoke-detector-variant"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "horizontal-stack",
+                            "cards": [
+                              {
+                                "type": "custom:mushroom-entity-card",
+                                "entity": "binary_sensor.utility_room_leak",
+                                "icon": "mdi:water-circle",
+                                "name": "Utility Room"
+                              }
+                            ]
+                          }
+                        ]
+                      }
                     }
                   ]
                 }
