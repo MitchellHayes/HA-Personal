@@ -715,7 +715,7 @@
                       "tap_action": {
                         "action": "toggle"
                       },
-                      "show_color_temp_control": false,
+                      "show_color_temp_control": true,
                       "show_color_control": false
                     },
                     {
@@ -731,19 +731,19 @@
                   "type": "horizontal-stack",
                   "cards": [
                     {
+                      "type": "custom:mushroom-fan-card",
+                      "entity": "fan.master_bedroom_ceiling_fan",
+                      "name": "Fan",
+                      "icon_animation": true,
+                      "fill_container": true
+                    },
+                    {
                       "type": "custom:mushroom-light-card",
                       "entity": "light.master_bathroom_main_lights",
                       "name": "Bathroom",
                       "icon": "mdi:vanity-light",
                       "fill_container": true,
                       "show_brightness_control": true
-                    },
-                    {
-                      "type": "custom:mushroom-fan-card",
-                      "entity": "fan.master_bedroom_ceiling_fan",
-                      "name": "Fan",
-                      "icon_animation": true,
-                      "fill_container": true
                     }
                   ]
                 },

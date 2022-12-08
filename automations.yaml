@@ -1,0 +1,860 @@
+- id: '1643669900483'
+  alias: 'Lights: Evening'
+  description: Turning on lights in evening
+  trigger:
+  - platform: time
+    at: '18:00:00'
+    id: Time is 4pm
+  condition:
+  - condition: or
+    conditions:
+    - condition: zone
+      entity_id: person.mitchell
+      zone: zone.home
+    - condition: zone
+      entity_id: person.michelle
+      zone: zone.home
+    - condition: zone
+      entity_id: person.ryan
+      zone: zone.home
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.company_over_kill_switch
+      state: 'off'
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.evening_lights_2
+    metadata: {}
+  mode: single
+- id: '1643670114591'
+  alias: 'Lights: Night'
+  description: ''
+  trigger:
+  - platform: time
+    at: '19:30:00'
+    id: Time is 7:30pm
+  condition:
+  - condition: or
+    conditions:
+    - condition: device
+      device_id: 708d892c80679f6f1657fca52b43164f
+      domain: device_tracker
+      entity_id: device_tracker.mitchell
+      type: is_home
+    - condition: device
+      device_id: 3bd471c66f4d52721ab27c4ecc35b1cd
+      domain: device_tracker
+      entity_id: device_tracker.ryan
+      type: is_home
+    - condition: device
+      device_id: daf91f96d14406ad72b6a170f2c5c454
+      domain: device_tracker
+      entity_id: device_tracker.michelle
+      type: is_home
+  - condition: and
+    conditions:
+    - condition: numeric_state
+      attribute: brightness
+      entity_id: light.second_floor_lights
+      above: '50'
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.company_over_kill_switch
+      state: 'off'
+  action:
+  - scene: scene.evening_lights
+  mode: single
+- id: '1643674563860'
+  alias: 'Windows: Turn off Thermostat'
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: fa735c35c19ee4664531f2757012c8f2
+    entity_id: binary_sensor.1260_colonnade_lane_patio_window_entry
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+  condition: []
+  action:
+  - device_id: 3c92411b77ca563694f9a70d896917f6
+    domain: climate
+    entity_id: climate.thermostat
+    type: set_hvac_mode
+    hvac_mode: 'off'
+  mode: single
+- id: '1644634889174'
+  alias: 'Blinds: Evening'
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '0'
+  condition: []
+  action:
+  - device_id: 5842219f78287cb18b25231f92452279
+    domain: cover
+    entity_id: cover.kitchen_blinds
+    type: set_position
+    position: 0
+  - device_id: 2aebd58c41cb947398868f1fdaf95525
+    domain: cover
+    entity_id: cover.living_room_blinds_1
+    type: set_position
+    position: 0
+  - device_id: 1b43c21a470ece7eeafe95f80f250f86
+    domain: cover
+    entity_id: cover.living_room_blinds_2
+    type: set_position
+    position: 100
+  - device_id: bacbe9810633979bb5f8318272e5e77e
+    domain: cover
+    entity_id: cover.office_blinds
+    type: set_position
+    position: 0
+  - device_id: f14534d326b7fb00fd3da43650617fd6
+    domain: cover
+    entity_id: cover.ryan_s_room_blinds
+    type: set_position
+    position: 0
+  - device_id: 3b559a5a8d32b36ce5c5908e3f113149
+    domain: cover
+    entity_id: cover.master_bedroom_1
+    type: set_position
+    position: 0
+  - device_id: 42795eac11d3bee733215b4b16cafb5d
+    domain: cover
+    entity_id: cover.master_bedroom_2
+    type: set_position
+    position: 0
+  mode: single
+- id: '1651761148757'
+  alias: 'Reminder: Charge Home Batteries'
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      time: '19:00:00'
+      actions:
+      - device_id: 708d892c80679f6f1657fca52b43164f
+        domain: mobile_app
+        type: notify
+        message: Check batter level on {{sensors}}
+        title: Low Battery
+      exclude:
+        entity_id:
+        - sensor.ryan_battery_level
+        - sensor.michelle_battery_level
+        - sensor.mitchell_battery_level
+- id: '1654011479692'
+  alias: 'Blinds: AM Sun-based'
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: 0
+  condition: []
+  action:
+  - device_id: e1128e29d037b94207f1b6e4a7c2af70
+    domain: cover
+    entity_id: cover.living_room_blinds_1
+    type: set_position
+    position: 50
+  - device_id: 1b43c21a470ece7eeafe95f80f250f86
+    domain: cover
+    entity_id: cover.living_room_blinds_2
+    type: set_position
+    position: 100
+  - device_id: 4a699228a9ada8252ee23a8ca2d8f1c3
+    domain: cover
+    entity_id: cover.ryan_s_room_blinds
+    type: set_position
+    position: 50
+  - device_id: bacbe9810633979bb5f8318272e5e77e
+    domain: cover
+    entity_id: cover.office_blinds
+    type: set_position
+    position: 50
+  - device_id: 3b559a5a8d32b36ce5c5908e3f113149
+    domain: cover
+    entity_id: cover.master_bedroom_1
+    type: set_position
+    position: 100
+  - device_id: 42795eac11d3bee733215b4b16cafb5d
+    domain: cover
+    entity_id: cover.master_bedroom_2
+    type: set_position
+    position: 100
+  - device_id: a251c8df7e8c5e3917cf81c6dcee054f
+    domain: cover
+    entity_id: cover.kitchen_blinds
+    type: set_position
+    position: 100
+  mode: single
+- id: '1654011954760'
+  alias: 'Blinds: PM Sun-based'
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sun.sun
+    value_template: '{{ state.attributes.azimuth }}'
+    above: '177.6'
+  condition: []
+  action:
+  - device_id: 3b559a5a8d32b36ce5c5908e3f113149
+    domain: cover
+    entity_id: cover.master_bedroom_1
+    type: set_position
+    position: 50
+  - device_id: 42795eac11d3bee733215b4b16cafb5d
+    domain: cover
+    entity_id: cover.master_bedroom_2
+    type: set_position
+    position: 50
+  - device_id: a251c8df7e8c5e3917cf81c6dcee054f
+    domain: cover
+    entity_id: cover.kitchen_blinds
+    type: set_position
+    position: 50
+  - device_id: bacbe9810633979bb5f8318272e5e77e
+    domain: cover
+    entity_id: cover.office_blinds
+    type: set_position
+    position: 100
+  - device_id: 4a699228a9ada8252ee23a8ca2d8f1c3
+    domain: cover
+    entity_id: cover.ryan_s_room_blinds
+    type: set_position
+    position: 100
+  - device_id: e1128e29d037b94207f1b6e4a7c2af70
+    domain: cover
+    entity_id: cover.living_room_blinds_1
+    type: set_position
+    position: 100
+  - device_id: 1b43c21a470ece7eeafe95f80f250f86
+    domain: cover
+    entity_id: cover.living_room_blinds_2
+    type: set_position
+    position: 100
+  mode: single
+- id: '1655482532951'
+  alias: 'Mode: Away'
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.michelle
+    zone: zone.home
+    event: leave
+  - platform: zone
+    entity_id: person.mitchell
+    zone: zone.home
+    event: leave
+  - platform: zone
+    entity_id: person.ryan
+    zone: zone.home
+    event: leave
+  condition:
+  - condition: not
+    conditions:
+    - condition: zone
+      entity_id: person.michelle
+      zone: zone.home
+    - condition: zone
+      entity_id: person.ryan
+      zone: zone.home
+    - condition: zone
+      entity_id: person.mitchell
+      zone: zone.home
+  action:
+  - device_id: 8bc77fe295c8a8875f0dba8bf31ad34a
+    domain: select
+    entity_id: select.thermostat_current_mode
+    type: select_option
+    option: away
+  - service: scene.turn_on
+    target:
+      entity_id: scene.aay
+    metadata: {}
+  - device_id: 552439faaaea4902b4b64fcc22ad996b
+    domain: alarm_control_panel
+    entity_id: alarm_control_panel.alarm_control_panel
+    type: arm_away
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.vacuum_ran
+        state: 'off'
+      sequence:
+      - device_id: 026f3aefba08ebd7406b4f2b8c958195
+        domain: vacuum
+        entity_id: vacuum.jesus
+        type: clean
+    default: []
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.vacuum_ran
+        state: 'off'
+      sequence:
+      - device_id: c1e2fd3bb944ed5ba54ce824b6c6ba73
+        domain: vacuum
+        entity_id: vacuum.juan
+        type: clean
+      - service: input_boolean.turn_on
+        data: {}
+        target:
+          entity_id: input_boolean.vacuum_ran
+    default: []
+  mode: single
+- id: '1656173861699'
+  alias: 'Mode: Home'
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.michelle
+    zone: zone.home
+    event: enter
+  - platform: zone
+    entity_id: person.mitchell
+    zone: zone.home
+    event: enter
+  - platform: zone
+    entity_id: person.ryan
+    zone: zone.home
+    event: enter
+  condition: []
+  action:
+  - device_id: 8bc77fe295c8a8875f0dba8bf31ad34a
+    domain: select
+    entity_id: select.thermostat_current_mode
+    type: select_option
+    option: home
+  - type: turn_on
+    device_id: e2a7a1ed1dfd8c9a4c12ece758aa3856
+    entity_id: light.entry_way_step_lights
+    domain: light
+  mode: single
+- id: '1657498537397'
+  alias: Reset Helpers at 2300
+  description: ''
+  trigger:
+  - platform: time
+    at: '23:00:00'
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.vacuum_ran
+      - input_boolean.company_over_kill_switch
+  mode: single
+- id: '1657749467969'
+  alias: Garage Door Close
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.michelle
+    zone: zone.home
+    event: leave
+  - platform: zone
+    entity_id: person.mitchell
+    zone: zone.home
+    event: leave
+  condition:
+  - condition: device
+    device_id: 20ef7f659c8d5a8544dedcf9ac489147
+    domain: cover
+    entity_id: cover.garage_door
+    type: is_open
+  action:
+  - service: notify.mitchell_and_michelle_phones
+    data:
+      message: Would you like to close the garage door?
+      title: Garage Door
+      data:
+        actions:
+        - action: CLOSE_GARAGE
+          title: Close Garage Door
+  - wait_for_trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: CLOSE_GARAGE
+    timeout:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+    continue_on_timeout: false
+  - device_id: 20ef7f659c8d5a8544dedcf9ac489147
+    domain: cover
+    entity_id: cover.garage_door
+    type: close
+  - service: notify.mitchell_and_michelle_phones
+    data:
+      message: The garage door was closed.
+      title: Garage Door
+  mode: single
+- id: '1657749566896'
+  alias: Garage Door Open
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.michelle
+    zone: zone.home
+    event: enter
+  - platform: zone
+    entity_id: person.mitchell
+    zone: zone.home
+    event: enter
+  condition:
+  - condition: device
+    device_id: 20ef7f659c8d5a8544dedcf9ac489147
+    domain: cover
+    entity_id: cover.garage_door
+    type: is_closed
+  action:
+  - service: notify.mitchell_and_michelle_phones
+    data:
+      message: Would you like to open the garage door?
+      title: Garage Door
+      data:
+        actions:
+        - action: OPEN_GARAGE
+          title: Open Garage Door
+  - wait_for_trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: OPEN_GARAGE
+    timeout:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+    continue_on_timeout: false
+  - device_id: 20ef7f659c8d5a8544dedcf9ac489147
+    domain: cover
+    entity_id: cover.garage_door
+    type: open
+  - service: notify.mitchell_and_michelle_phones
+    data:
+      message: The garage door was opened.
+      title: Garage Door
+  mode: single
+- id: '1661388546429'
+  alias: 'Reminder: Charge Michelle''s Tesla'
+  description: ''
+  trigger:
+  - platform: time
+    at: '20:00:00'
+  condition:
+  - condition: and
+    conditions:
+    - condition: zone
+      entity_id: device_tracker.freya_location_tracker
+      zone: zone.home
+    - type: is_battery_level
+      condition: device
+      device_id: ecea222fa0985e37d2b824e945d0ac90
+      entity_id: sensor.freya_battery
+      domain: sensor
+      below: 50
+    - type: is_not_charging
+      condition: device
+      device_id: ecea222fa0985e37d2b824e945d0ac90
+      entity_id: binary_sensor.freya_charging
+      domain: binary_sensor
+  action:
+  - service: notify.mitchell_and_michelle_phones
+    data:
+      message: Should you charge Freya?
+      title: Car Charging Reminder
+  mode: single
+- id: '1661605513250'
+  alias: 'Music: Master Bathroom On'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.master_bathroom_main_lights
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    before: '21:00:00'
+    after: 07:00:00
+    weekday:
+    - mon
+    - wed
+    - tue
+    - thu
+    - fri
+    - sat
+    - sun
+  action:
+  - service: mass.queue_command
+    data:
+      command: play_media
+      uri: spotify:playlist:37i9dQZF1DX63RoW298D1b
+    target:
+      entity_id: media_player.mass_master_bathroom
+  mode: single
+- id: '1661609190131'
+  alias: 'Reminder: Charge Mitchell''s Tesla'
+  description: ''
+  trigger:
+  - platform: time
+    at: '20:00:00'
+  condition:
+  - condition: and
+    conditions:
+    - condition: zone
+      entity_id: device_tracker.scarlett_location_tracker
+      zone: zone.home
+    - type: is_battery_level
+      condition: device
+      device_id: 67413852794146bda7453759331ee1a0
+      entity_id: sensor.scarlett_battery
+      domain: sensor
+      below: 50
+    - type: is_not_charging
+      condition: device
+      device_id: 67413852794146bda7453759331ee1a0
+      entity_id: binary_sensor.scarlett_charging
+      domain: binary_sensor
+  action:
+  - service: notify.mitchell_and_michelle_phones
+    data:
+      message: Should you charge Scarlett?
+      title: Car Charging Reminder
+  mode: single
+- id: '1661625581272'
+  alias: Auto-Off Stairs Light
+  description: Turn off the light on the stairs after a set amount of time.
+  trigger:
+  - platform: state
+    entity_id:
+    - light.stairs_step_lights
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition:
+  - condition: state
+    state: 'off'
+    entity_id: input_boolean.company_over_kill_switch
+  action:
+  - type: turn_off
+    device_id: cb23fc59122ca5a7b1a467cb477c0aae
+    entity_id: light.stairs_step_lights
+    domain: light
+  mode: single
+- id: '1661625996493'
+  alias: Auto-Off Entry Way Light
+  description: Turn off the light in the Entry Way after a set amount of time.
+  trigger:
+  - platform: state
+    entity_id:
+    - light.entry_way_step_lights
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  condition:
+  - condition: state
+    state: 'off'
+    entity_id: input_boolean.company_over_kill_switch
+  action:
+  - type: turn_off
+    device_id: e2a7a1ed1dfd8c9a4c12ece758aa3856
+    entity_id: light.entry_way_step_lights
+    domain: light
+  mode: single
+- id: '1663535298334'
+  alias: NFC Laundry Washer Timer
+  description: ''
+  trigger:
+  - platform: event
+    event_type: WashingMachine_Scanned
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: timer.washer_tag
+      state: active
+    then:
+    - service: timer.cancel
+      data: {}
+      target:
+        entity_id: timer.washer_tag
+    else:
+    - service: timer.start
+      data: {}
+      target:
+        entity_id: timer.washer_tag
+  mode: single
+- id: '1663537336336'
+  alias: 'Reminder: Laundry Timer Complete'
+  description: ''
+  trigger:
+  - platform: event
+    event_type: timer.finished
+  condition: []
+  action:
+  - service: notify.mobile_app_mitchell_s_iphone
+    data:
+      message: Laundry is ready.
+  - service: notify.mobile_app_michelle_s_iphone
+    data:
+      message: Laundry is ready.
+  mode: single
+- id: '1663537486931'
+  alias: NFC Laundry Dryer Timer
+  description: ''
+  trigger:
+  - platform: event
+    event_type: Dryer_Scanned
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: timer.dryer_tag
+      state: active
+    then:
+    - service: timer.cancel
+      data: {}
+      target:
+        entity_id: timer.dryer_tag
+    else:
+    - service: timer.start
+      data: {}
+      target:
+        entity_id: timer.dryer_tag
+  mode: single
+- id: '1663538728916'
+  alias: NFC Michelle's Office Lights
+  description: ''
+  trigger:
+  - platform: event
+    event_type: Office_Scanned
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.michelle_s_office_lights
+    metadata: {}
+  mode: single
+- id: '1663768612148'
+  alias: 'Reminder: Basement Check'
+  description: ''
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.mitchell
+      state: home
+    - condition: state
+      entity_id: person.michelle
+      state: home
+  - condition: state
+    entity_id: input_boolean.basement_check
+    state: 'off'
+  action:
+  - service: notify.mobile_app_michelle_s_iphone
+    data:
+      message: Check basement.
+  - service: notify.mobile_app_mitchell_s_iphone
+    data:
+      message: Check basement.
+  mode: single
+- id: '1663768831005'
+  alias: Vacuum Gym at Midnight
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition:
+  - condition: state
+    entity_id: input_boolean.basement_check
+    state: 'on'
+  action:
+  - device_id: c1e2fd3bb944ed5ba54ce824b6c6ba73
+    domain: vacuum
+    entity_id: vacuum.juan
+    type: clean
+  mode: single
+- id: '1663769309933'
+  alias: Auto-Off Upstairs Hallway Light
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.upstairs_hallway_main_lights
+    from: 'on'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  condition:
+  - condition: state
+    state: 'off'
+    entity_id: input_boolean.company_over_kill_switch
+  action:
+  - type: turn_off
+    device_id: 332440d14f4b2afdb9dfb7a60835fe1f
+    entity_id: light.upstairs_hallway_main_lights
+    domain: light
+  mode: single
+- id: '1663769727534'
+  alias: Reset Helpers at 0200
+  description: ''
+  trigger:
+  - platform: time
+    at: 02:00:00
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.basement_check
+  mode: single
+- id: '1663872498680'
+  alias: NFC Gym Vac Switch
+  description: ''
+  trigger:
+  - platform: event
+    event_type: Gym_Vac_Scanned
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.basement_check
+  mode: single
+- id: '1663873412632'
+  alias: Shortcut Company Kill Switch (Guests)
+  description: ''
+  trigger:
+  - platform: event
+    event_type: Guests
+  condition: []
+  action:
+  - service: input_boolean.toggle
+    data: {}
+    target:
+      entity_id: input_boolean.company_over_kill_switch
+  mode: single
+- id: '1664834813628'
+  alias: 'Music: Master Bathroom Off'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.master_bathroom_main_lights
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: mass.queue_command
+    data:
+      command: stop
+      uri: spotify:playlist:37i9dQZF1DX63RoW298D1b
+    target:
+      entity_id: media_player.mass_master_bathroom
+  mode: single
+- id: '1665425091815'
+  alias: 'Lights: Outdoor on'
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:30:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 8081109bb283b64d615c8b4843071e8c
+    entity_id: switch.front_yard_1_socket_1
+    domain: switch
+  - type: turn_on
+    device_id: 6974c7a5897bf490ea946974205107a3
+    entity_id: switch.outdoor_smart_plug_3_socket_1
+    domain: switch
+  mode: single
+- id: '1665425190448'
+  alias: 'Lights: Outdoor off'
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 8081109bb283b64d615c8b4843071e8c
+    entity_id: switch.front_yard_1_socket_1
+    domain: switch
+  - type: turn_off
+    device_id: 6974c7a5897bf490ea946974205107a3
+    entity_id: switch.outdoor_smart_plug_3_socket_1
+    domain: switch
+  mode: single
+- id: '1666900245347'
+  alias: 'Reminder: Doorbell notification'
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 73667d54823f91686f75fae95d3aa05d
+    domain: nest
+    type: doorbell_chime
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      filename: /config/www/doorbell.png
+    target:
+      entity_id: camera.front_door
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - service: notify.living_room_tv
+    data:
+      message: Someone is at the door
+      title: Front Door
+      data:
+        duration: 20
+        fontsize: small
+        position: bottom-right
+        transparency: 25%
+        color: grey
+        image:
+          path: /config/www/doorbell.png
+  - service: notify.mitchell_and_michelle_phones
+    data:
+      message: Someone is at the door.
+      title: Doorbell
+      data:
+        entity_id: camera.front_door
+        url: /lovelace-mobile/secure
+  mode: single
+- id: '1667162506460'
+  alias: 'Sync: Office Fan and Lamp'
+  description: ''
+  use_blueprint:
+    path: adchevrier/synchronize-the-on-off-state-of-2-entities.yaml
+    input:
+      entity_1: light.office_ceiling_fan
+      entity_2: switch.office_lamp
