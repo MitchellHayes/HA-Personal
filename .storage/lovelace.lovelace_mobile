@@ -100,6 +100,18 @@
                         "action": "navigate",
                         "navigation_path": "labs"
                       }
+                    },
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "primary": "Cars",
+                      "secondary": "",
+                      "icon": "mdi:car",
+                      "layout": "vertical",
+                      "icon_color": "red",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "cars"
+                      }
                     }
                   ]
                 },
@@ -1568,6 +1580,672 @@
                   "hold_action": {
                     "action": "more-info"
                   }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Cars",
+          "path": "cars",
+          "icon": "mdi:car",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "square": false,
+                  "columns": 1,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "vertical-stack",
+                      "cards": [
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "input_boolean.tesla_scarlett",
+                              "state": "off"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "picture-elements",
+                                "elements": [
+                                  {
+                                    "type": "state-label",
+                                    "entity": "sensor.scarlett_range",
+                                    "style": {
+                                      "top": "70%",
+                                      "left": "1%",
+                                      "transform": "none"
+                                    }
+                                  },
+                                  {
+                                    "type": "state-label",
+                                    "entity": "sensor.scarlett_battery",
+                                    "style": {
+                                      "top": "70%",
+                                      "left": "88%",
+                                      "transform": "none"
+                                    }
+                                  },
+                                  {
+                                    "type": "conditional",
+                                    "conditions": [
+                                      {
+                                        "entity": "binary_sensor.scarlett_online",
+                                        "state": "online"
+                                      }
+                                    ],
+                                    "elements": [
+                                      {
+                                        "type": "state-icon",
+                                        "entity": "binary_sensor.scarlett_online",
+                                        "icon": "mdi:car-connected",
+                                        "style": {
+                                          "top": "1%",
+                                          "left": "1%",
+                                          "transform": "none"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "conditional",
+                                    "conditions": [
+                                      {
+                                        "entity": "binary_sensor.scarlett_charger",
+                                        "state": "charging"
+                                      }
+                                    ],
+                                    "elements": [
+                                      {
+                                        "type": "state-icon",
+                                        "entity": "binary_sensor.scarlett_charger",
+                                        "icon": "mdi:battery-charging",
+                                        "style": {
+                                          "top": "1%",
+                                          "left": "1%",
+                                          "transform": "none"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "conditional",
+                                    "conditions": [
+                                      {
+                                        "entity": "binary_sensor.scarlett_update_available",
+                                        "state": "updating"
+                                      }
+                                    ],
+                                    "elements": [
+                                      {
+                                        "type": "state-icon",
+                                        "entity": "binary_sensor.scarlett_update_available",
+                                        "icon": "mdi:download",
+                                        "style": {
+                                          "top": "1%",
+                                          "left": "1%",
+                                          "transform": "none"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "image": "/local/Scarlett.png"
+                              },
+                              {
+                                "type": "custom:bar-card",
+                                "entities": [
+                                  {
+                                    "entity": "sensor.scarlett_battery"
+                                  }
+                                ],
+                                "columns": "0",
+                                "entity_row": true,
+                                "positions": {
+                                  "icon": "off",
+                                  "indicator": "off",
+                                  "name": "off",
+                                  "minmax": "off",
+                                  "value": "off"
+                                },
+                                "color": "#03fd73",
+                                "severity": [
+                                  {
+                                    "from": "0",
+                                    "to": "19",
+                                    "color": "#db1414"
+                                  },
+                                  {
+                                    "from": "20",
+                                    "to": "25",
+                                    "color": "#fcca03"
+                                  },
+                                  {
+                                    "from": "80",
+                                    "to": "100",
+                                    "color": "#54cfff"
+                                  }
+                                ],
+                                "height": "5px"
+                              },
+                              {
+                                "type": "button",
+                                "tap_action": {
+                                  "action": "toggle"
+                                },
+                                "entity": "input_boolean.tesla_scarlett",
+                                "show_state": false,
+                                "show_icon": true,
+                                "show_name": false,
+                                "icon": "mdi:arrow-down",
+                                "icon_height": "15px"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "input_boolean.tesla_scarlett",
+                              "state": "on"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "custom:mini-graph-card",
+                                "entities": [
+                                  {
+                                    "entity": "sensor.scarlett_battery",
+                                    "name": "Scarlett",
+                                    "show_line": true
+                                  }
+                                ],
+                                "hours_to_show": 72,
+                                "points_per_hour": 2,
+                                "line_width": 2,
+                                "animate": true,
+                                "color_thresholds": [
+                                  {
+                                    "value": 20,
+                                    "color": "#db1414"
+                                  },
+                                  {
+                                    "value": 30,
+                                    "color": "#fcca03"
+                                  },
+                                  {
+                                    "value": 40,
+                                    "color": "#03fd73"
+                                  },
+                                  {
+                                    "value": 80,
+                                    "color": "#03fd73"
+                                  },
+                                  {
+                                    "value": 90,
+                                    "color": "#2398f7"
+                                  }
+                                ],
+                                "show": {
+                                  "name": true,
+                                  "icon": false,
+                                  "state": true,
+                                  "legend": false,
+                                  "extrema": false,
+                                  "labels": true,
+                                  "labels_secondary": true
+                                }
+                              },
+                              {
+                                "type": "horizontal-stack",
+                                "cards": [
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.scarlett_battery",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Battery"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.scarlett_range",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Range Est."
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "binary_sensor.scarlett_online",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Online"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "horizontal-stack",
+                                "cards": [
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.scarlett_odometer",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Odometer"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "toggle"
+                                    },
+                                    "entity": "device_tracker.scarlett_location_tracker",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Location"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "horizontal-stack",
+                                "cards": [
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.scarlett_charging_rate",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Charge Power"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.scarlett_charging_rate",
+                                    "show_icon": false,
+                                    "show_state": true,
+                                    "name": "Charge Rate"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.scarlett_energy_added",
+                                    "name": "Energy Added",
+                                    "show_icon": false,
+                                    "show_state": true,
+                                    "show_name": true
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "tap_action": {
+                                  "action": "toggle"
+                                },
+                                "entity": "input_boolean.tesla_scarlett",
+                                "show_state": false,
+                                "show_icon": true,
+                                "show_name": false,
+                                "icon": "mdi:arrow-up",
+                                "icon_height": "20px"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "vertical-stack",
+                      "cards": [
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "input_boolean.tesla_freya",
+                              "state": "off"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "picture-elements",
+                                "elements": [
+                                  {
+                                    "type": "state-label",
+                                    "entity": "sensor.freya_range",
+                                    "style": {
+                                      "top": "70%",
+                                      "left": "1%",
+                                      "transform": "none"
+                                    }
+                                  },
+                                  {
+                                    "type": "state-label",
+                                    "entity": "sensor.freya_battery",
+                                    "style": {
+                                      "top": "70%",
+                                      "left": "88%",
+                                      "transform": "none"
+                                    }
+                                  },
+                                  {
+                                    "type": "conditional",
+                                    "conditions": [
+                                      {
+                                        "entity": "binary_sensor.freya_online",
+                                        "state": "online"
+                                      }
+                                    ],
+                                    "elements": [
+                                      {
+                                        "type": "state-icon",
+                                        "entity": "binary_sensor.freya_online",
+                                        "icon": "mdi:car-connected",
+                                        "style": {
+                                          "top": "1%",
+                                          "left": "1%",
+                                          "transform": "none"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "conditional",
+                                    "conditions": [
+                                      {
+                                        "entity": "binary_sensor.freya_charger",
+                                        "state": "charging"
+                                      }
+                                    ],
+                                    "elements": [
+                                      {
+                                        "type": "state-icon",
+                                        "entity": "binary_sensor.freya_charger",
+                                        "icon": "mdi:battery-charging",
+                                        "style": {
+                                          "top": "1%",
+                                          "left": "1%",
+                                          "transform": "none"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "conditional",
+                                    "conditions": [
+                                      {
+                                        "entity": "binary_sensor.freya_update_available",
+                                        "state": "updating"
+                                      }
+                                    ],
+                                    "elements": [
+                                      {
+                                        "type": "state-icon",
+                                        "entity": "binary_sensor.freya_update_available",
+                                        "icon": "mdi:download",
+                                        "style": {
+                                          "top": "1%",
+                                          "left": "1%",
+                                          "transform": "none"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "image": "/local/Freya.png"
+                              },
+                              {
+                                "type": "custom:bar-card",
+                                "entities": [
+                                  {
+                                    "entity": "sensor.freya_battery"
+                                  }
+                                ],
+                                "columns": "0",
+                                "entity_row": true,
+                                "positions": {
+                                  "icon": "off",
+                                  "indicator": "off",
+                                  "name": "off",
+                                  "minmax": "off",
+                                  "value": "off"
+                                },
+                                "color": "#03fd73",
+                                "severity": [
+                                  {
+                                    "from": "0",
+                                    "to": "19",
+                                    "color": "#db1414"
+                                  },
+                                  {
+                                    "from": "20",
+                                    "to": "25",
+                                    "color": "#fcca03"
+                                  },
+                                  {
+                                    "from": "80",
+                                    "to": "100",
+                                    "color": "#54cfff"
+                                  }
+                                ],
+                                "height": "5px"
+                              },
+                              {
+                                "type": "button",
+                                "tap_action": {
+                                  "action": "toggle"
+                                },
+                                "entity": "input_boolean.tesla_freya",
+                                "show_state": false,
+                                "show_icon": true,
+                                "show_name": false,
+                                "icon": "mdi:arrow-down",
+                                "icon_height": "15px"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "input_boolean.tesla_freya",
+                              "state": "on"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "custom:mini-graph-card",
+                                "entities": [
+                                  {
+                                    "entity": "sensor.freya_battery",
+                                    "name": "Freya",
+                                    "show_line": true
+                                  }
+                                ],
+                                "hours_to_show": 72,
+                                "points_per_hour": 2,
+                                "line_width": 2,
+                                "animate": true,
+                                "color_thresholds": [
+                                  {
+                                    "value": 20,
+                                    "color": "#db1414"
+                                  },
+                                  {
+                                    "value": 30,
+                                    "color": "#fcca03"
+                                  },
+                                  {
+                                    "value": 40,
+                                    "color": "#03fd73"
+                                  },
+                                  {
+                                    "value": 80,
+                                    "color": "#03fd73"
+                                  },
+                                  {
+                                    "value": 90,
+                                    "color": "#2398f7"
+                                  }
+                                ],
+                                "show": {
+                                  "name": true,
+                                  "icon": false,
+                                  "state": true,
+                                  "legend": false,
+                                  "extrema": false,
+                                  "labels": true,
+                                  "labels_secondary": true
+                                }
+                              },
+                              {
+                                "type": "horizontal-stack",
+                                "cards": [
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.freya_battery",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Battery"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.freya_range",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Range Est."
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "binary_sensor.freya_online",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Online"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "horizontal-stack",
+                                "cards": [
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.freya_odometer",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Odometer"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "toggle"
+                                    },
+                                    "entity": "device_tracker.freya_location_tracker",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Location"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "horizontal-stack",
+                                "cards": [
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.freya_charging_rate",
+                                    "show_state": true,
+                                    "show_icon": false,
+                                    "name": "Charge Power"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.freya_charging_rate",
+                                    "show_icon": false,
+                                    "show_state": true,
+                                    "name": "Charge Rate"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "tap_action": {
+                                      "action": "more-info"
+                                    },
+                                    "entity": "sensor.freya_energy_added",
+                                    "name": "Energy Added",
+                                    "show_icon": false,
+                                    "show_state": true,
+                                    "show_name": true
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "button",
+                                "tap_action": {
+                                  "action": "toggle"
+                                },
+                                "entity": "input_boolean.tesla_freya",
+                                "show_state": false,
+                                "show_icon": true,
+                                "show_name": false,
+                                "icon": "mdi:arrow-up",
+                                "icon_height": "20px"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }

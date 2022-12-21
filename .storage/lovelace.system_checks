@@ -48,7 +48,7 @@
             },
             {
               "type": "gauge",
-              "entity": "sensor.ryan_s_room_blinds",
+              "entity": "sensor.ryans_room_blinds",
               "severity": {
                 "green": 66,
                 "yellow": 33,

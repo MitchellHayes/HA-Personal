@@ -4,7 +4,7 @@
   trigger:
   - platform: time
     at: '18:00:00'
-    id: Time is 4pm
+    id: Time is 6pm
   condition:
   - condition: or
     conditions:
@@ -160,11 +160,11 @@
     offset: 0
   condition: []
   action:
-  - device_id: e1128e29d037b94207f1b6e4a7c2af70
+  - device_id: 2aebd58c41cb947398868f1fdaf95525
     domain: cover
     entity_id: cover.living_room_blinds_1
     type: set_position
-    position: 50
+    position: 100
   - device_id: 1b43c21a470ece7eeafe95f80f250f86
     domain: cover
     entity_id: cover.living_room_blinds_2
@@ -174,12 +174,12 @@
     domain: cover
     entity_id: cover.ryan_s_room_blinds
     type: set_position
-    position: 50
+    position: 100
   - device_id: bacbe9810633979bb5f8318272e5e77e
     domain: cover
     entity_id: cover.office_blinds
     type: set_position
-    position: 50
+    position: 100
   - device_id: 3b559a5a8d32b36ce5c5908e3f113149
     domain: cover
     entity_id: cover.master_bedroom_1
@@ -293,7 +293,7 @@
       sequence:
       - device_id: 026f3aefba08ebd7406b4f2b8c958195
         domain: vacuum
-        entity_id: vacuum.jesus
+        entity_id: vacuum.second_floor_vacuum
         type: clean
     default: []
   - choose:
@@ -304,7 +304,7 @@
       sequence:
       - device_id: c1e2fd3bb944ed5ba54ce824b6c6ba73
         domain: vacuum
-        entity_id: vacuum.juan
+        entity_id: vacuum.first_floor_vacuum
         type: clean
       - service: input_boolean.turn_on
         data: {}
@@ -693,7 +693,7 @@
   action:
   - device_id: c1e2fd3bb944ed5ba54ce824b6c6ba73
     domain: vacuum
-    entity_id: vacuum.juan
+    entity_id: vacuum.first_floor_vacuum
     type: clean
   mode: single
 - id: '1663769309933'
@@ -858,3 +858,16 @@
     input:
       entity_1: light.office_ceiling_fan
       entity_2: switch.office_lamp
+- id: '1671619842808'
+  alias: 'Vacuum: Second Floor'
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - device_id: 026f3aefba08ebd7406b4f2b8c958195
+    domain: vacuum
+    entity_id: vacuum.second_floor_vacuum
+    type: clean
+  mode: single

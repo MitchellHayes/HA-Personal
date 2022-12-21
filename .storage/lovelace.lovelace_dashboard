@@ -14,7 +14,7 @@
           "cards": [
             {
               "square": false,
-              "columns": 3,
+              "columns": 4,
               "type": "grid",
               "cards": [
                 {
@@ -88,153 +88,6 @@
                               }
                             ]
                           }
-                        }
-                      ]
-                    },
-                    {
-                      "square": false,
-                      "columns": 2,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "vertical-stack",
-                          "cards": [
-                            {
-                              "type": "conditional",
-                              "conditions": [
-                                {
-                                  "entity": "input_boolean.vacuum_second_floor",
-                                  "state": "off"
-                                }
-                              ],
-                              "card": {
-                                "type": "custom:stack-in-card",
-                                "cards": [
-                                  {
-                                    "type": "custom:vacuum-card",
-                                    "entity": "vacuum.jesus",
-                                    "image": "default",
-                                    "compact_view": true
-                                  },
-                                  {
-                                    "type": "button",
-                                    "tap_action": {
-                                      "action": "toggle"
-                                    },
-                                    "entity": "input_boolean.vacuum_second_floor",
-                                    "show_state": false,
-                                    "show_icon": true,
-                                    "show_name": false,
-                                    "icon": "mdi:map",
-                                    "icon_height": "20px"
-                                  }
-                                ]
-                              }
-                            },
-                            {
-                              "type": "conditional",
-                              "conditions": [
-                                {
-                                  "entity": "input_boolean.vacuum_second_floor",
-                                  "state": "on"
-                                }
-                              ],
-                              "card": {
-                                "type": "custom:stack-in-card",
-                                "cards": [
-                                  {
-                                    "type": "picture-entity",
-                                    "entity": "camera.jesus_live_map",
-                                    "show_state": true,
-                                    "show_name": false,
-                                    "camera_view": "live"
-                                  },
-                                  {
-                                    "type": "button",
-                                    "tap_action": {
-                                      "action": "toggle"
-                                    },
-                                    "entity": "input_boolean.vacuum_second_floor",
-                                    "show_state": false,
-                                    "show_icon": true,
-                                    "show_name": false,
-                                    "icon": "mdi:robot-vacuum",
-                                    "icon_height": "20px"
-                                  }
-                                ]
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "type": "vertical-stack",
-                          "cards": [
-                            {
-                              "type": "conditional",
-                              "conditions": [
-                                {
-                                  "entity": "input_boolean.vacuum_first_floor",
-                                  "state": "off"
-                                }
-                              ],
-                              "card": {
-                                "type": "custom:stack-in-card",
-                                "cards": [
-                                  {
-                                    "type": "custom:vacuum-card",
-                                    "entity": "vacuum.juan",
-                                    "image": "default",
-                                    "compact_view": true
-                                  },
-                                  {
-                                    "type": "button",
-                                    "tap_action": {
-                                      "action": "toggle"
-                                    },
-                                    "entity": "input_boolean.vacuum_first_floor",
-                                    "show_state": false,
-                                    "show_icon": true,
-                                    "show_name": false,
-                                    "icon": "mdi:map",
-                                    "icon_height": "20px"
-                                  }
-                                ]
-                              }
-                            },
-                            {
-                              "type": "conditional",
-                              "conditions": [
-                                {
-                                  "entity": "input_boolean.vacuum_first_floor",
-                                  "state": "on"
-                                }
-                              ],
-                              "card": {
-                                "type": "custom:stack-in-card",
-                                "cards": [
-                                  {
-                                    "type": "picture-entity",
-                                    "entity": "camera.juan_live_map",
-                                    "show_state": true,
-                                    "show_name": false,
-                                    "camera_view": "live"
-                                  },
-                                  {
-                                    "type": "button",
-                                    "tap_action": {
-                                      "action": "toggle"
-                                    },
-                                    "entity": "input_boolean.vacuum_first_floor",
-                                    "show_state": false,
-                                    "show_icon": true,
-                                    "show_name": false,
-                                    "icon": "mdi:robot-vacuum",
-                                    "icon_height": "20px"
-                                  }
-                                ]
-                              }
-                            }
-                          ]
                         }
                       ]
                     }
@@ -408,6 +261,153 @@
                           }
                         ]
                       }
+                    }
+                  ]
+                },
+                {
+                  "square": false,
+                  "columns": 1,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "vertical-stack",
+                      "cards": [
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "input_boolean.vacuum_first_floor",
+                              "state": "off"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "custom:vacuum-card",
+                                "entity": "vacuum.first_floor_vacuum",
+                                "image": "default",
+                                "compact_view": true
+                              },
+                              {
+                                "type": "button",
+                                "tap_action": {
+                                  "action": "toggle"
+                                },
+                                "entity": "input_boolean.vacuum_first_floor",
+                                "show_state": false,
+                                "show_icon": true,
+                                "show_name": false,
+                                "icon": "mdi:map",
+                                "icon_height": "20px"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "input_boolean.vacuum_first_floor",
+                              "state": "on"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "picture-entity",
+                                "entity": "camera.first_floor_vacuum_live_map",
+                                "show_state": true,
+                                "show_name": false,
+                                "camera_view": "live"
+                              },
+                              {
+                                "type": "button",
+                                "tap_action": {
+                                  "action": "toggle"
+                                },
+                                "entity": "input_boolean.vacuum_first_floor",
+                                "show_state": false,
+                                "show_icon": true,
+                                "show_name": false,
+                                "icon": "mdi:robot-vacuum",
+                                "icon_height": "20px"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "vertical-stack",
+                      "cards": [
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "input_boolean.vacuum_second_floor",
+                              "state": "off"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "custom:vacuum-card",
+                                "entity": "vacuum.second_floor_vacuum",
+                                "image": "default",
+                                "compact_view": true
+                              },
+                              {
+                                "type": "button",
+                                "tap_action": {
+                                  "action": "toggle"
+                                },
+                                "entity": "input_boolean.vacuum_second_floor",
+                                "show_state": false,
+                                "show_icon": true,
+                                "show_name": false,
+                                "icon": "mdi:map",
+                                "icon_height": "20px"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "input_boolean.vacuum_second_floor",
+                              "state": "on"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "picture-entity",
+                                "entity": "camera.second_floor_vacuum_live_map",
+                                "show_state": true,
+                                "show_name": false,
+                                "camera_view": "live"
+                              },
+                              {
+                                "type": "button",
+                                "tap_action": {
+                                  "action": "toggle"
+                                },
+                                "entity": "input_boolean.vacuum_second_floor",
+                                "show_state": false,
+                                "show_icon": true,
+                                "show_name": false,
+                                "icon": "mdi:robot-vacuum",
+                                "icon_height": "20px"
+                              }
+                            ]
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1504,25 +1504,30 @@
                       "entity": "media_player.second_floor",
                       "name": "All Speakers",
                       "toggle_power": true,
-                      "icon": "mdi:speaker-multiple"
+                      "icon": "mdi:speaker-multiple",
+                      "group": false
                     },
                     {
                       "type": "custom:mini-media-player",
                       "entity": "media_player.kitchen_speaker",
                       "name": "Kitchen Speakers",
-                      "icon": "mdi:speaker"
+                      "icon": "mdi:speaker",
+                      "group": false
                     },
                     {
                       "type": "custom:mini-media-player",
                       "entity": "media_player.kitchen_display",
                       "name": "Kitchen Display",
-                      "icon": "mdi:cast-variant"
+                      "icon": "mdi:cast-variant",
+                      "group": false,
+                      "volume_stateless": false
                     },
                     {
                       "type": "custom:mini-media-player",
                       "entity": "media_player.living_room_tv",
                       "name": "Living Room TV",
-                      "icon": "mdi:television"
+                      "icon": "mdi:television",
+                      "group": false
                     }
                   ]
                 }
