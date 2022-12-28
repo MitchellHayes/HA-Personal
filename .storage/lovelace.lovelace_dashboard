@@ -132,7 +132,7 @@
                       "type": "grid",
                       "cards": [
                         {
-                          "hours_to_show": 72,
+                          "hours_to_show": 48,
                           "graph": "line",
                           "type": "sensor",
                           "detail": 1,
@@ -140,7 +140,7 @@
                           "entity": "sensor.scarlett_battery"
                         },
                         {
-                          "hours_to_show": 85,
+                          "hours_to_show": 48,
                           "graph": "line",
                           "type": "sensor",
                           "detail": 1,
@@ -1381,6 +1381,12 @@
                       "entity": "media_player.family_room_tv",
                       "name": "Gym TV",
                       "icon": "mdi:television"
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.entry_way",
+                      "source": "full",
+                      "artwork": "cover"
                     }
                   ]
                 }

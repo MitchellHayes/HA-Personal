@@ -942,7 +942,7 @@
                 },
                 {
                   "type": "custom:vacuum-card",
-                  "entity": "vacuum.jesus",
+                  "entity": "vacuum.first_floor_vacuum",
                   "image": "default",
                   "compact_view": true,
                   "show_name": true,
@@ -950,7 +950,7 @@
                 },
                 {
                   "type": "custom:vacuum-card",
-                  "entity": "vacuum.juan",
+                  "entity": "vacuum.second_floor_vacuum",
                   "image": "default",
                   "compact_view": true
                 }

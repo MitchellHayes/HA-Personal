@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace_test",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "theme": "Backend-selected",
+          "title": "1",
+          "icon": "mdi:home-floor-1",
+          "path": "first-floor",
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "type": "picture-elements",
+              "elements": [
+                {
+                  "type": "state-badge",
+                  "entity": "person.mitchell",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "15%",
+                    "left": "5%",
+                    "color": "transparent"
+                  }
+                },
+                {
+                  "type": "state-badge",
+                  "entity": "person.michelle",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "15%",
+                    "left": "10%",
+                    "color": "transparent"
+                  }
+                },
+                {
+                  "type": "state-badge",
+                  "entity": "person.ryan",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "25%",
+                    "left": "5%",
+                    "color": "transparent"
+                  }
+                },
+                {
+                  "type": "state-badge",
+                  "entity": "weather.home",
+                  "style": {
+                    "top": "35%",
+                    "left": "5%",
+                    "color": "transparent"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "light.entry_way_step_lights",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "style": {
+                    "top": "75%",
+                    "left": "36%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "light.family_room_main_lights",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "style": {
+                    "top": "60%",
+                    "left": "82%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "sensor.litter_robot_waste_drawer",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "94%",
+                    "left": "70%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "alarm_control_panel.alarm_control_panel",
+                  "style": {
+                    "top": "62%",
+                    "left": "25%"
+                  }
+                },
+                {
+                  "type": "icon",
+                  "entity": "camera.front_door",
+                  "icon": "mdi:doorbell",
+                  "style": {
+                    "top": "75%",
+                    "left": "15%",
+                    "color": "#44739E"
+                  }
+                },
+                {
+                  "type": "icon",
+                  "entity": "camera.gym",
+                  "icon": "mdi:cctv",
+                  "style": {
+                    "top": "92%",
+                    "left": "95%",
+                    "color": "#44739E"
+                  }
+                },
+                {
+                  "type": "icon",
+                  "entity": "camera.garage",
+                  "icon": "mdi:cctv",
+                  "style": {
+                    "top": "45%",
+                    "left": "57%",
+                    "color": "#44739E"
+                  }
+                },
+                {
+                  "type": "icon",
+                  "entity": "camera.patio",
+                  "icon": "mdi:cctv",
+                  "style": {
+                    "top": "50%",
+                    "left": "97%",
+                    "color": "#44739E",
+                    "transform": "rotateY(180deg)"
+                  }
+                }
+              ],
+              "image": "/local/FirstFloorv2.png"
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "2",
+          "path": "2",
+          "icon": "mdi:home-floor-2",
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "type": "picture-elements",
+              "elements": [
+                {
+                  "type": "state-badge",
+                  "entity": "person.mitchell",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "15%",
+                    "left": "5%",
+                    "color": "transparent"
+                  }
+                },
+                {
+                  "type": "state-badge",
+                  "entity": "person.michelle",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "15%",
+                    "left": "10%",
+                    "color": "transparent"
+                  }
+                },
+                {
+                  "type": "state-badge",
+                  "entity": "person.ryan",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "25%",
+                    "left": "5%",
+                    "color": "transparent"
+                  }
+                },
+                {
+                  "type": "state-badge",
+                  "entity": "weather.home",
+                  "style": {
+                    "top": "35%",
+                    "left": "5%",
+                    "color": "transparent"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "light.second_floor_bathroom",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "style": {
+                    "top": "92%",
+                    "left": "22%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "light.living_room_main_lights",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "style": {
+                    "top": "57%",
+                    "left": "35%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "light.kitchen_sink",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "style": {
+                    "top": "37%",
+                    "left": "63%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "light.kitchen_main_lights_1",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "style": {
+                    "top": "44%",
+                    "left": "74%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "light.dining_room_chandelier",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "style": {
+                    "top": "80%",
+                    "left": "75%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "light.stairs_step_lights",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "style": {
+                    "top": "92%",
+                    "left": "43%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "cover.living_room_blinds_1",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "74%",
+                    "left": "17%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "cover.living_room_blinds_2",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "38%",
+                    "left": "19%"
+                  }
+                },
+                {
+                  "type": "state-icon",
+                  "entity": "cover.kitchen_blinds",
+                  "tap-action": {
+                    "action": "more-info"
+                  },
+                  "style": {
+                    "top": "51%",
+                    "left": "91%"
+                  }
+                },
+                {
+                  "type": "icon",
+                  "entity": "camera.kitchen",
+                  "icon": "mdi:cctv",
+                  "style": {
+                    "top": "23%",
+                    "left": "58%",
+                    "color": "#44739E",
+                    "transform": "rotateY(180deg)"
+                  }
+                }
+              ],
+              "image": "/local/SecondFloor.png"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
