@@ -38,21 +38,15 @@
   condition:
   - condition: or
     conditions:
-    - condition: device
-      device_id: 708d892c80679f6f1657fca52b43164f
-      domain: device_tracker
-      entity_id: device_tracker.mitchell
-      type: is_home
-    - condition: device
-      device_id: 3bd471c66f4d52721ab27c4ecc35b1cd
-      domain: device_tracker
-      entity_id: device_tracker.ryan
-      type: is_home
-    - condition: device
-      device_id: daf91f96d14406ad72b6a170f2c5c454
-      domain: device_tracker
-      entity_id: device_tracker.michelle
-      type: is_home
+    - condition: zone
+      entity_id: person.mitchell
+      zone: zone.home
+    - condition: zone
+      entity_id: person.michelle
+      zone: zone.home
+    - condition: zone
+      entity_id: person.ryan
+      zone: zone.home
   - condition: and
     conditions:
     - condition: numeric_state
@@ -111,7 +105,7 @@
     domain: cover
     entity_id: cover.living_room_blinds_2
     type: set_position
-    position: 100
+    position: 0
   - device_id: bacbe9810633979bb5f8318272e5e77e
     domain: cover
     entity_id: cover.office_blinds
@@ -141,16 +135,16 @@
     input:
       time: '19:00:00'
       actions:
-      - device_id: 708d892c80679f6f1657fca52b43164f
+      - device_id: 6e4e58134b1f17ed9bbbc01d2c47ccbc
         domain: mobile_app
         type: notify
         message: Check batter level on {{sensors}}
         title: Low Battery
       exclude:
         entity_id:
-        - sensor.ryan_battery_level
-        - sensor.michelle_battery_level
-        - sensor.mitchell_battery_level
+        - sensor.mitchell_s_iphone_battery_level
+        - sensor.ryans_iphone_battery_level
+        - sensor.michelle_s_iphone_battery_level
 - id: '1654011479692'
   alias: 'Blinds: AM Sun-based'
   description: ''
