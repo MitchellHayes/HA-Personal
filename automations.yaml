@@ -865,3 +865,43 @@
     entity_id: vacuum.second_floor_vacuum
     type: clean
   mode: single
+- id: '1672427999221'
+  alias: 'Lights: Sync on Master Bedroom 0900-1800'
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 271ea8d8df0061cde3f8ad901a1514c9
+    entity_id: light.master_bedroom_lamps
+    domain: light
+  condition:
+  - condition: time
+    before: '18:00:00'
+    after: 09:00:00
+  action:
+  - type: toggle
+    device_id: 7a98b8d8280126ce01cd8a8de54a3f37
+    entity_id: light.master_bedroom_ceiling_fan
+    domain: light
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+    target:
+      device_id: 7a98b8d8280126ce01cd8a8de54a3f37
+  mode: single
+- id: '1672429044943'
+  alias: 'Lights: Sync Master Bedroom lights off'
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 271ea8d8df0061cde3f8ad901a1514c9
+    entity_id: light.master_bedroom_lamps
+    domain: light
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.master_bedroom_ceiling_fan
+  mode: single
