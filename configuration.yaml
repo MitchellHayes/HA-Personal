@@ -4,6 +4,10 @@ default_config:
 # Bluetooth Adapter
 bluetooth:
 
+# Themes
+frontend:
+  themes: !include_dir_merge_named themes
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -21,7 +25,7 @@ notify:
       - service: mobile_app_michelle_s_iphone
       - service: mobile_app_mitchell_s_iphone
 
-#templates
+# templates for weather info
 sensor:
   - platform: template
     sensors:
@@ -29,46 +33,46 @@ sensor:
         friendly_name: "Ragweed Levels"
         icon_template: "mdi:sprout"
         value_template: >-
-            {% set ragweed = states('sensor.home_ragweed_pollen_0d') | float %}
-            {% if 0 <= ragweed <= 9 %}
-              Low
-            {% elif 9 < ragweed <= 49 %}
-              Moderate
-            {% elif 49 < ragweed <= 499 %}
-              High
-            {% elif 499 < ragweed %}
-              Very High
-            {% endif %}
+          {% set ragweed = states('sensor.home_ragweed_pollen_0d') | float %}
+          {% if 0 <= ragweed <= 9 %}
+            Low
+          {% elif 9 < ragweed <= 49 %}
+            Moderate
+          {% elif 49 < ragweed <= 499 %}
+            High
+          {% elif 499 < ragweed %}
+            Very High
+          {% endif %}
 
       tree_simple:
         friendly_name: "Tree Levels"
         icon_template: "mdi:tree"
         value_template: >-
-            {% set tree = states('sensor.home_tree_pollen_0d') | float %}
-            {% if 0 <= tree <= 14 %}
-              Low
-            {% elif 14 < tree <= 89 %}
-              Moderate
-            {% elif 89 < tree <= 1499 %}
-              High
-            {% elif 1499 < tree %}
-              Very High
-            {% endif %}
+          {% set tree = states('sensor.home_tree_pollen_0d') | float %}
+          {% if 0 <= tree <= 14 %}
+            Low
+          {% elif 14 < tree <= 89 %}
+            Moderate
+          {% elif 89 < tree <= 1499 %}
+            High
+          {% elif 1499 < tree %}
+            Very High
+          {% endif %}
 
       grass_simple:
         friendly_name: "Grass Levels"
         icon_template: "mdi:grass"
         value_template: >-
-            {% set grass = states('sensor.home_grass_pollen_0d') | float %}
-            {% if 0 <= grass <= 4 %}
-              Low
-            {% elif 4 < grass <= 19 %}
-              Moderate
-            {% elif 19 < grass <= 199 %}
-              High
-            {% elif 199 < grass %}
-              Very High
-            {% endif %}
+          {% set grass = states('sensor.home_grass_pollen_0d') | float %}
+          {% if 0 <= grass <= 4 %}
+            Low
+          {% elif 4 < grass <= 19 %}
+            Moderate
+          {% elif 19 < grass <= 199 %}
+            High
+          {% elif 199 < grass %}
+            Very High
+          {% endif %}
 
 #Color temp for ceiling fan in Master Bedroom
 light:

@@ -244,6 +244,14 @@
                                 "entity": "sensor.masterbedroom_temperature",
                                 "detail": 1,
                                 "name": "Master Bedroom"
+                              },
+                              {
+                                "hours_to_show": 24,
+                                "graph": "line",
+                                "type": "sensor",
+                                "entity": "sensor.gym_temperature",
+                                "detail": 1,
+                                "name": "Gym"
                               }
                             ]
                           },

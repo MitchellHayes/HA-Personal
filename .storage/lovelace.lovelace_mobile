@@ -262,6 +262,15 @@
                   "chips": [
                     {
                       "type": "entity",
+                      "entity": "sensor.gym_temperature"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "binary_sensor.gym_occupancy",
+                      "icon": "mdi:account"
+                    },
+                    {
+                      "type": "entity",
                       "entity": "sensor.gym_pm2_5"
                     },
                     {
@@ -472,11 +481,26 @@
                       }
                     },
                     {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.second_floor_bathroom",
+                      "fill_container": false,
+                      "show_brightness_control": true,
+                      "name": "Bathroom"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
                       "type": "custom:mushroom-fan-card",
                       "entity": "fan.living_room_ceiling_fan",
                       "icon_animation": true,
-                      "show_percentage_control": true,
+                      "show_percentage_control": false,
                       "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
                         "action": "toggle"
                       }
                     }
@@ -1149,14 +1173,12 @@
                       "cards": [
                         {
                           "type": "custom:mushroom-light-card",
-                          "entity": "light.master_bedroom_lamps"
+                          "entity": "light.master_bedroom_lamps",
+                          "name": "Master Bedroom Lamps"
                         },
                         {
                           "type": "custom:mushroom-entity-card",
-                          "entity": "switch.front_yard_1_socket_1",
-                          "icon": "mdi:string-lights",
-                          "icon_color": "orange",
-                          "name": "Bushes",
+                          "entity": null,
                           "tap_action": {
                             "action": "toggle"
                           },

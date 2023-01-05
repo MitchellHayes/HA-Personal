@@ -779,12 +779,8 @@
   condition: []
   action:
   - type: turn_on
-    device_id: 8081109bb283b64d615c8b4843071e8c
-    entity_id: switch.front_yard_1_socket_1
-    domain: switch
-  - type: turn_on
-    device_id: 6974c7a5897bf490ea946974205107a3
-    entity_id: switch.outdoor_smart_plug_3_socket_1
+    device_id: fb16e6cacfb7530e35190a4c6b20e88b
+    entity_id: switch.patio_lights
     domain: switch
   mode: single
 - id: '1665425190448'
@@ -796,12 +792,8 @@
   condition: []
   action:
   - type: turn_off
-    device_id: 8081109bb283b64d615c8b4843071e8c
-    entity_id: switch.front_yard_1_socket_1
-    domain: switch
-  - type: turn_off
-    device_id: 6974c7a5897bf490ea946974205107a3
-    entity_id: switch.outdoor_smart_plug_3_socket_1
+    device_id: fb16e6cacfb7530e35190a4c6b20e88b
+    entity_id: switch.patio_lights
     domain: switch
   mode: single
 - id: '1666900245347'
@@ -879,15 +871,12 @@
     before: '18:00:00'
     after: 09:00:00
   action:
-  - type: toggle
-    device_id: 7a98b8d8280126ce01cd8a8de54a3f37
-    entity_id: light.master_bedroom_ceiling_fan
-    domain: light
   - service: light.turn_on
     data:
+      kelvin: 5000
       brightness_pct: 100
     target:
-      device_id: 7a98b8d8280126ce01cd8a8de54a3f37
+      entity_id: light.master_bedroom_ceiling_fan
   mode: single
 - id: '1672429044943'
   alias: 'Lights: Sync Master Bedroom lights off'
