@@ -14,7 +14,7 @@
 !.storage/lovelace.lovelace_mobile
 !.storage/lovelace.system_checks
 !.storage/lovelace.lovelace_test
-!/blueprints/script/homeassistantconfirmable_notification.yaml
-!/blueprints/automation/SmartLiving.Rocks/window-open-climate-off.yaml
-!/blueprints/automation/sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
-!/blueprints/automation/adchevrier/synchronize-the-on-off-state-of-2-entities.yaml
+!.storage/lovelace.new_dashboard_test
+!/blueprints/*
+!/www/community/*
+!/www/ui/*

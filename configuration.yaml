@@ -17,7 +17,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-#notify group
+# notify group
 notify:
   - platform: group
     name: "Mitchell and Michelle Phones"
@@ -25,8 +25,50 @@ notify:
       - service: mobile_app_michelle_s_iphone
       - service: mobile_app_mitchell_s_iphone
 
-# templates for weather info
+# Spotcast
+spotcast:
+  sp_dc: !secret sp_dc
+  sp_key: !secret sp_key
+
+# sensor templates
 sensor:
+  # Time and Date
+  - platform: time_date
+    display_options:
+      - "time"
+      - "date"
+
+  # Home/Away for Dashboard
+  - platform: template
+    sensors:
+      mitchell_away:
+        icon_template: "mdi:account-search"
+        value_template: >-
+          {% if is_state('person.mitchell', 'home') %}
+            home
+          {% else %}
+            not_home
+          {% endif %}
+
+      michelle_away:
+        icon_template: "mdi:account-search"
+        value_template: >-
+          {% if is_state('person.michelle', 'home') %}
+            home
+          {% else %}
+            not_home
+          {% endif %}
+
+      ryan_away:
+        icon_template: "mdi:account-search"
+        value_template: >-
+          {% if is_state('person.ryan', 'home') %}
+            home
+          {% else %}
+            not_home
+          {% endif %}
+
+  # Templates for Weather Info
   - platform: template
     sensors:
       ragweed_simple:
@@ -74,7 +116,7 @@ sensor:
             Very High
           {% endif %}
 
-#Color temp for ceiling fan in Master Bedroom
+# Color temp for ceiling fan in Master Bedroom
 light:
   - platform: template
     lights:

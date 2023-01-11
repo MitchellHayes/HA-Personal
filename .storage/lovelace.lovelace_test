@@ -315,9 +315,16 @@
                   }
                 }
               ],
-              "image": "/local/SecondFloor.png"
+              "image": "/local/SecondFloorV2.png"
             }
           ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "test",
+          "path": "test",
+          "badges": [],
+          "cards": []
         }
       ]
     }

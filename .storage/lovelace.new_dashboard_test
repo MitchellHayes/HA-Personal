@@ -1,0 +1,1711 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.new_dashboard_test",
+  "data": {
+    "config": {
+      "title": "Home Dashboard",
+      "views": [
+        {
+          "theme": "Backend-selected",
+          "icon": "mdi:home-floor-1",
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:config-template-card",
+              "entities": [
+                "light.family_room_main_lights",
+                "light.entry_way_step_lights",
+                "cover.garage_door"
+              ],
+              "card": {
+                "type": "picture-elements",
+                "image": "/local/floorOne.png",
+                "style": "ha-card:first-child {\n  background: rgba(42, 46, 48, 1)\n}\n",
+                "elements": [
+                  {
+                    "entity": "light.entry_way_step_lights",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "82%",
+                      "top": "74%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.family_room_main_lights",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "76%",
+                      "top": "25%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "cover.garage_door",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "68.5%",
+                      "top": "88%"
+                    },
+                    "template": [
+                      "entity_button"
+                    ]
+                  },
+                  {
+                    "action": "none",
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "image": "/local/ui/sidebar/sidebarBG2.png",
+                    "style": {
+                      "height": "100%",
+                      "left": "11.73828125%",
+                      "top": "50%",
+                      "width": "23.4765625%"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "image": "/local/ui/sidebar/sidebarBG2.png",
+                    "style": {
+                      "height": "100%",
+                      "left": "11.73828125%",
+                      "top": "50%",
+                      "width": "23.4765625%"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "entity": "sensor.time",
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "style": {
+                      "color": "rgba(255, 255, 255, 0.7)",
+                      "font-size": "5.41vw",
+                      "font-weight": 200,
+                      "left": "2.7%",
+                      "letter-spacing": "-0.05vw",
+                      "max-width": "1px",
+                      "top": "10%"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "type": "state-label"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/firstFloor_on.png",
+                    "style": {
+                      "border-radius": "5vw",
+                      "box-shadow": "0px 0.2vw 0.8vw 0px rgba(0,0,0,0.1)",
+                      "left": "11.7%",
+                      "top": "26%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/0"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/secondFloor_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "34%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/1"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/thirdFloor_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "42%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/2"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/vacuums_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "50%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/3"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/media_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "58%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/4"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "style": {
+                      "color": "white",
+                      "font-size": "1vw",
+                      "font-weight": 300,
+                      "left": "8.8%",
+                      "opacity": 0,
+                      "top": "66%",
+                      "width": "10%"
+                    },
+                    "text": "People at home:",
+                    "type": "custom:text-element"
+                  },
+                  {
+                    "action": "none",
+                    "entity": "sensor.mitchell_away",
+                    "state_image": {
+                      "home": "/local/mitchellHome.png",
+                      "not_home": "/local/mitchellGone.png"
+                    },
+                    "style": {
+                      "background-color": "rgba(255, 255, 255, 0.0)",
+                      "border-radius": "10vw",
+                      "height": "4.5vw",
+                      "left": "5.8%",
+                      "top": "72%",
+                      "width": "4.5vw"
+                    },
+                    "tap_action": "none",
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "entity": "sensor.michelle_away",
+                    "state_image": {
+                      "home": "/local/michelleHome.png",
+                      "not_home": "/local/michelleGone.png"
+                    },
+                    "style": {
+                      "background-color": "rgba(255, 255, 255, 0.0)",
+                      "border-radius": "10vw",
+                      "height": "4.5vw",
+                      "left": "10.8%",
+                      "top": "72%",
+                      "width": "4.5vw"
+                    },
+                    "tap_action": "none",
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "entity": "sensor.ryan_away",
+                    "state_image": {
+                      "home": "/local/ryanHome.png",
+                      "not_home": "/local/ryanGone.png"
+                    },
+                    "style": {
+                      "background-color": "rgba(255, 255, 255, 0.0)",
+                      "border-radius": "10vw",
+                      "height": "4.5vw",
+                      "left": "15.8%",
+                      "top": "72%",
+                      "width": "4.5vw"
+                    },
+                    "tap_action": "none",
+                    "type": "image"
+                  },
+                  {
+                    "entity": "climate.thermostat",
+                    "type": "custom:button-card",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "thermostat",
+                            "entity": "climate.thermostat"
+                          }
+                        }
+                      }
+                    },
+                    "style": {
+                      "left": "5.8%",
+                      "top": "82%"
+                    },
+                    "template": [
+                      "entity_button"
+                    ]
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/sidebar/sideShadow.png",
+                    "style": {
+                      "height": "60%",
+                      "left": "18.45%",
+                      "pointer-events": "none",
+                      "top": "83%",
+                      "width": "10%"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/sidebar/sidebarInnerShadow.png",
+                    "style": {
+                      "left": "22.83%",
+                      "opacity": 0.7,
+                      "pointer-events": "none",
+                      "top": "50%",
+                      "width": "1.2109375%"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "entity": "media_player.spotify_mitchell_lane_hayes",
+                    "hide": {
+                      "controls": true,
+                      "name": true,
+                      "power": true,
+                      "source": true,
+                      "volume": true,
+                      "progress": false
+                    },
+                    "idle_view": {
+                      "after": 0.1,
+                      "when_idle": true,
+                      "when_paused": true,
+                      "when_standby": true
+                    },
+                    "style": {
+                      "left": "11%",
+                      "top": "93%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/2"
+                    },
+                    "type": "custom:mini-media-player"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Control Rooms",
+          "icon": "mdi:home-floor-2",
+          "panel": true,
+          "type": "panel",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:config-template-card",
+              "entities": [
+                "light.kitchen_main_lights_1",
+                "light.living_room_main_lights",
+                "light.dining_room_chandelier",
+                "light.kitchen_sink",
+                "light.second_floor_bathroom",
+                "light.stairs_step_lights",
+                "light.entry_way_step_lights"
+              ],
+              "card": {
+                "type": "picture-elements",
+                "image": "/local/floorTwo.png",
+                "style": "ha-card:first-child {\n  background: rgba(42, 46, 48, 1)\n}\n",
+                "elements": [
+                  {
+                    "entity": "light.entry_way_step_lights",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "85%",
+                      "top": "51.5%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.living_room_main_lights",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "70.4%",
+                      "top": "75%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.dining_room_chandelier",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "83%",
+                      "top": "28%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.kitchen_main_lights_1",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "69.75%",
+                      "top": "26.5%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.kitchen_sink",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "67%",
+                      "top": "40%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.second_floor_bathroom",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "88%",
+                      "top": "87%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "action": "none",
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "image": "/local/ui/sidebar/sidebarBG2.png",
+                    "style": {
+                      "height": "100%",
+                      "left": "11.73828125%",
+                      "top": "50%",
+                      "width": "23.4765625%"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "image": "/local/ui/sidebar/sidebarBG2.png",
+                    "style": {
+                      "height": "100%",
+                      "left": "11.73828125%",
+                      "top": "50%",
+                      "width": "23.4765625%"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "entity": "sensor.time",
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "style": {
+                      "color": "rgba(255, 255, 255, 0.7)",
+                      "font-size": "5.41vw",
+                      "font-weight": 200,
+                      "left": "2.7%",
+                      "letter-spacing": "-0.05vw",
+                      "max-width": "1px",
+                      "top": "10%"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "type": "state-label"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/firstFloor_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "26%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/0"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/secondFloor_on.png",
+                    "style": {
+                      "border-radius": "5vw",
+                      "box-shadow": "0px 0.2vw 0.8vw 0px rgba(0,0,0,0.1)",
+                      "left": "11.7%",
+                      "top": "34%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/1"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/thirdFloor_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "42%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/2"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/vacuums_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "50%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/3"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/media_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "58%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/4"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "style": {
+                      "color": "white",
+                      "font-size": "1vw",
+                      "font-weight": 300,
+                      "left": "8.8%",
+                      "opacity": 0,
+                      "top": "66%",
+                      "width": "10%"
+                    },
+                    "text": "People at home:",
+                    "type": "custom:text-element"
+                  },
+                  {
+                    "action": "none",
+                    "entity": "sensor.mitchell_away",
+                    "state_image": {
+                      "home": "/local/mitchellHome.png",
+                      "not_home": "/local/mitchellGone.png"
+                    },
+                    "style": {
+                      "background-color": "rgba(255, 255, 255, 0.0)",
+                      "border-radius": "10vw",
+                      "height": "4.5vw",
+                      "left": "5.8%",
+                      "top": "72%",
+                      "width": "4.5vw"
+                    },
+                    "tap_action": "none",
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "entity": "sensor.michelle_away",
+                    "state_image": {
+                      "home": "/local/michelleHome.png",
+                      "not_home": "/local/michelleGone.png"
+                    },
+                    "style": {
+                      "background-color": "rgba(255, 255, 255, 0.0)",
+                      "border-radius": "10vw",
+                      "height": "4.5vw",
+                      "left": "10.8%",
+                      "top": "72%",
+                      "width": "4.5vw"
+                    },
+                    "tap_action": "none",
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "entity": "sensor.ryan_away",
+                    "state_image": {
+                      "home": "/local/ryanHome.png",
+                      "not_home": "/local/ryanGone.png"
+                    },
+                    "style": {
+                      "background-color": "rgba(255, 255, 255, 0.0)",
+                      "border-radius": "10vw",
+                      "height": "4.5vw",
+                      "left": "15.8%",
+                      "top": "72%",
+                      "width": "4.5vw"
+                    },
+                    "tap_action": "none",
+                    "type": "image"
+                  },
+                  {
+                    "entity": "climate.thermostat",
+                    "type": "custom:button-card",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "thermostat",
+                            "entity": "climate.thermostat"
+                          }
+                        }
+                      }
+                    },
+                    "style": {
+                      "left": "5.8%",
+                      "top": "82%"
+                    },
+                    "template": [
+                      "entity_button"
+                    ]
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/sidebar/sideShadow.png",
+                    "style": {
+                      "height": "60%",
+                      "left": "18.45%",
+                      "pointer-events": "none",
+                      "top": "83%",
+                      "width": "10%"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/sidebar/sidebarInnerShadow.png",
+                    "style": {
+                      "left": "22.83%",
+                      "opacity": 0.7,
+                      "pointer-events": "none",
+                      "top": "50%",
+                      "width": "1.2109375%"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "entity": "media_player.spotify_mitchell_lane_hayes",
+                    "hide": {
+                      "controls": true,
+                      "name": true,
+                      "power": true,
+                      "source": true,
+                      "volume": true,
+                      "progress": false
+                    },
+                    "idle_view": {
+                      "after": 0.1,
+                      "when_idle": true,
+                      "when_paused": true,
+                      "when_standby": true
+                    },
+                    "style": {
+                      "left": "11%",
+                      "top": "93%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/2"
+                    },
+                    "type": "custom:mini-media-player"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "icon": "mdi:home-floor-3",
+          "type": "panel",
+          "badges": [],
+          "cards": []
+        },
+        {
+          "title": "Clean Up",
+          "icon": "mdi:robot-vacuum",
+          "panel": true,
+          "cards": [
+            {
+              "type": "picture-elements",
+              "image": "/local/floorTwo.png",
+              "style": "ha-card {\n  background: rgba(42, 46, 48, 1)\n}\n",
+              "elements": [
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/cleanUp/robotControlsBG.png",
+                  "style": {
+                    "left": "38.5%",
+                    "top": "50%",
+                    "width": "19.296875%"
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/cleanUp/btns/ring.png",
+                  "style": {
+                    "left": "34.3%",
+                    "top": "72.5%",
+                    "width": "8.203125%"
+                  },
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.locate",
+                    "service_data": {
+                      "entity_id": "vacuum.second_floor_vacuum"
+                    }
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/cleanUp/btns/gohome.png",
+                  "style": {
+                    "left": "42.8%",
+                    "top": "72.5%",
+                    "width": "8.203125%"
+                  },
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.return_to_base",
+                    "service_data": {
+                      "entity_id": "vacuum.second_floor_vacuum"
+                    }
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/cleanUp/btns/start.png",
+                  "style": {
+                    "left": "34.3%",
+                    "top": "86.5%",
+                    "width": "8.203125%"
+                  },
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.start",
+                    "service_data": {
+                      "entity_id": "vacuum.second_floor_vacuum"
+                    }
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/cleanUp/btns/pause.png",
+                  "style": {
+                    "left": "42.8%",
+                    "top": "86.5%",
+                    "width": "8.203125%"
+                  },
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.pause",
+                    "service_data": {
+                      "entity_id": "vacuum.second_floor_vacuum"
+                    }
+                  },
+                  "type": "image"
+                },
+                {
+                  "entity": "vacuum.second_floor_vacuum",
+                  "style": {
+                    "color": "rgba(255,255,255,0.6)",
+                    "font-size": "1.1vw",
+                    "font-weight": 300,
+                    "left": "38.4%",
+                    "text-align": "center",
+                    "top": "32.5%",
+                    "width": "15%"
+                  },
+                  "type": "state-label"
+                },
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/sidebar/sidebarBG2.png",
+                  "style": {
+                    "height": "100%",
+                    "left": "11.73828125%",
+                    "top": "50%",
+                    "width": "23.4765625%"
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "type": "image"
+                },
+                {
+                  "entity": "sensor.time",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "style": {
+                    "color": "rgba(255, 255, 255, 0.7)",
+                    "font-size": "5.41vw",
+                    "font-weight": 200,
+                    "left": "2.7%",
+                    "letter-spacing": "-0.05vw",
+                    "max-width": "1px",
+                    "top": "10%"
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "type": "state-label"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/firstFloor_off.png",
+                  "style": {
+                    "left": "11.7%",
+                    "top": "26%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/0"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/secondFloor_off.png",
+                  "style": {
+                    "left": "11.7%",
+                    "top": "34%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/1"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/thirdFloor_off.png",
+                  "style": {
+                    "left": "11.7%",
+                    "top": "42%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/2"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/vacuums_on.png",
+                  "style": {
+                    "border-radius": "5vw",
+                    "box-shadow": "0px 0.2vw 0.8vw 0px rgba(0,0,0,0.1)",
+                    "left": "11.7%",
+                    "top": "50%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/3"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/media_off.png",
+                  "style": {
+                    "left": "11.7%",
+                    "top": "58%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/4"
+                  },
+                  "type": "image"
+                },
+                {
+                  "style": {
+                    "color": "white",
+                    "font-size": "1vw",
+                    "font-weight": 300,
+                    "left": "8.8%",
+                    "opacity": 0,
+                    "top": "66%",
+                    "width": "10%"
+                  },
+                  "text": "People at home:",
+                  "type": "custom:text-element"
+                },
+                {
+                  "action": "none",
+                  "entity": "sensor.mitchell_away",
+                  "state_image": {
+                    "home": "/local/mitchellHome.png",
+                    "not_home": "/local/mitchellGone.png"
+                  },
+                  "style": {
+                    "background-color": "rgba(255, 255, 255, 0.0)",
+                    "border-radius": "10vw",
+                    "height": "4.5vw",
+                    "left": "5.8%",
+                    "top": "72%",
+                    "width": "4.5vw"
+                  },
+                  "tap_action": "none",
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "entity": "sensor.michelle_away",
+                  "state_image": {
+                    "home": "/local/michelleHome.png",
+                    "not_home": "/local/michelleGone.png"
+                  },
+                  "style": {
+                    "background-color": "rgba(255, 255, 255, 0.0)",
+                    "border-radius": "10vw",
+                    "height": "4.5vw",
+                    "left": "10.8%",
+                    "top": "72%",
+                    "width": "4.5vw"
+                  },
+                  "tap_action": "none",
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "entity": "sensor.ryan_away",
+                  "state_image": {
+                    "home": "/local/ryanHome.png",
+                    "not_home": "/local/ryanGone.png"
+                  },
+                  "style": {
+                    "background-color": "rgba(255, 255, 255, 0.0)",
+                    "border-radius": "10vw",
+                    "height": "4.5vw",
+                    "left": "15.8%",
+                    "top": "72%",
+                    "width": "4.5vw"
+                  },
+                  "tap_action": "none",
+                  "type": "image"
+                },
+                {
+                  "entity": "climate.thermostat",
+                  "type": "custom:button-card",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "thermostat",
+                          "entity": "climate.thermostat"
+                        }
+                      }
+                    }
+                  },
+                  "style": {
+                    "left": "5.8%",
+                    "top": "82%"
+                  },
+                  "template": [
+                    "entity_button"
+                  ]
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/sidebar/sideShadow.png",
+                  "style": {
+                    "height": "35%",
+                    "left": "18.45%",
+                    "pointer-events": "none",
+                    "top": "83%",
+                    "width": "10%"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/sidebar/sidebarInnerShadow.png",
+                  "style": {
+                    "left": "22.83%",
+                    "opacity": 0.7,
+                    "pointer-events": "none",
+                    "top": "50%",
+                    "width": "1.2109375%"
+                  },
+                  "type": "image"
+                },
+                {
+                  "entity": "media_player.spotify_mitchell_lane_hayes",
+                  "hide": {
+                    "controls": true,
+                    "name": true,
+                    "power": true,
+                    "source": true,
+                    "volume": true,
+                    "progress": false
+                  },
+                  "idle_view": {
+                    "after": 0.1,
+                    "when_idle": true,
+                    "when_paused": true,
+                    "when_standby": true
+                  },
+                  "style": {
+                    "left": "11%",
+                    "top": "93%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/3"
+                  },
+                  "type": "custom:mini-media-player"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Media",
+          "icon": "mdi:play-circle",
+          "panel": true,
+          "badges": [],
+          "cards": [
+            {
+              "elements": [
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/sidebar/sidebarBG2.png",
+                  "style": {
+                    "height": "100%",
+                    "left": "11.73828125%",
+                    "top": "50%",
+                    "width": "23.4765625%"
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "type": "image"
+                },
+                {
+                  "entity": "sensor.time",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "style": {
+                    "color": "rgba(255, 255, 255, 0.7)",
+                    "font-size": "5.41vw",
+                    "font-weight": 200,
+                    "left": "2.7%",
+                    "letter-spacing": "-0.05vw",
+                    "max-width": "1px",
+                    "top": "10%"
+                  },
+                  "tap_action": {
+                    "action": "none"
+                  },
+                  "type": "state-label"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/firstFloor_off.png",
+                  "style": {
+                    "left": "11.7%",
+                    "top": "26%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/0"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/secondFloor_off.png",
+                  "style": {
+                    "left": "11.7%",
+                    "top": "34%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/1"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/thirdFloor_off.png",
+                  "style": {
+                    "left": "11.7%",
+                    "top": "42%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/2"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/vacuums_off.png",
+                  "style": {
+                    "left": "11.7%",
+                    "top": "50%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/3"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/btns/media_on.png",
+                  "style": {
+                    "border-radius": "5vw",
+                    "box-shadow": "0px 0.2vw 0.8vw 0px rgba(0,0,0,0.1)",
+                    "left": "11.7%",
+                    "top": "58%",
+                    "width": "20.5078125%"
+                  },
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/new-dashboard-test/4"
+                  },
+                  "type": "image"
+                },
+                {
+                  "style": {
+                    "color": "white",
+                    "font-size": "1vw",
+                    "font-weight": 300,
+                    "left": "8.8%",
+                    "opacity": 0,
+                    "top": "66%",
+                    "width": "10%"
+                  },
+                  "text": "People at home:",
+                  "type": "custom:text-element"
+                },
+                {
+                  "action": "none",
+                  "entity": "sensor.mitchell_away",
+                  "state_image": {
+                    "home": "/local/mitchellHome.png",
+                    "not_home": "/local/mitchellGone.png"
+                  },
+                  "style": {
+                    "background-color": "rgba(255, 255, 255, 0.0)",
+                    "border-radius": "10vw",
+                    "height": "4.5vw",
+                    "left": "5.8%",
+                    "top": "72%",
+                    "width": "4.5vw"
+                  },
+                  "tap_action": "none",
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "entity": "sensor.michelle_away",
+                  "state_image": {
+                    "home": "/local/michelleHome.png",
+                    "not_home": "/local/michelleGone.png"
+                  },
+                  "style": {
+                    "background-color": "rgba(255, 255, 255, 0.0)",
+                    "border-radius": "10vw",
+                    "height": "4.5vw",
+                    "left": "10.8%",
+                    "top": "72%",
+                    "width": "4.5vw"
+                  },
+                  "tap_action": "none",
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "entity": "sensor.ryan_away",
+                  "state_image": {
+                    "home": "/local/ryanHome.png",
+                    "not_home": "/local/ryanGone.png"
+                  },
+                  "style": {
+                    "background-color": "rgba(255, 255, 255, 0.0)",
+                    "border-radius": "10vw",
+                    "height": "4.5vw",
+                    "left": "15.8%",
+                    "top": "72%",
+                    "width": "4.5vw"
+                  },
+                  "tap_action": "none",
+                  "type": "image"
+                },
+                {
+                  "entity": "climate.thermostat",
+                  "type": "custom:button-card",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "thermostat",
+                          "entity": "climate.thermostat"
+                        }
+                      }
+                    }
+                  },
+                  "style": {
+                    "left": "5.8%",
+                    "top": "82%"
+                  },
+                  "template": [
+                    "entity_button"
+                  ]
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/sidebar/sideShadow.png",
+                  "style": {
+                    "height": "35%",
+                    "left": "18.45%",
+                    "pointer-events": "none",
+                    "top": "83%",
+                    "width": "10%"
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "image": "/local/ui/sidebar/sidebarInnerShadow.png",
+                  "style": {
+                    "left": "22.83%",
+                    "opacity": 0.7,
+                    "pointer-events": "none",
+                    "top": "50%",
+                    "width": "1.2109375%"
+                  },
+                  "type": "image"
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.spotify_mitchell_lane_hayes",
+                  "toggle_power": false,
+                  "sound_mode": "icon",
+                  "source": "icon",
+                  "artwork": "full-cover",
+                  "group": false,
+                  "info": "short",
+                  "replace_mute": "next",
+                  "volume_stateless": false,
+                  "style": {
+                    "left": "70%",
+                    "top": "24%"
+                  }
+                }
+              ],
+              "image": "/local/ui/floorplan/background.png",
+              "type": "picture-elements"
+            }
+          ]
+        }
+      ],
+      "button_card_templates": {
+        "icon_main": {
+          "styles": {
+            "icon": [
+              {
+                "display": "flex"
+              }
+            ]
+          },
+          "extra_styles": ".ha-card.button-card-main{\n   padding: 0 !important;\n}\n@media\nonly screen and (-webkit-min-device-pixel-ratio: 2),\nonly screen and (   min--moz-device-pixel-ratio: 2),\nonly screen and (     -o-min-device-pixel-ratio: 2/1),\nonly screen and (        min-device-pixel-ratio: 2),\nonly screen and (                min-resolution: 192dpi),\nonly screen and (                min-resolution: 2dppx) {\n\n  /* Retina-specific screens */\n  .ha-card.button-card-main{\n      padding: 0 !important;\n   }\n\n}\n"
+        },
+        "circle": {
+          "custom_fields": {
+            "circle": "[[[\n  if (entity.state === 'on') {\n    const input = variables.circle_input;\n    const radius = 23;\n    const circumference = radius * 2 * Math.PI;\n    return `\n      <svg width=\"100%\" viewBox=\"0 0 50 50\">\n        <style>\n          circle {\n            transform: rotate(-90deg);\n            transform-origin: 50% 50%;\n            stroke-dasharray: ${circumference};\n            stroke-dashoffset: ${circumference - input / 100 * circumference};\n          }\n          tspan {\n            font-size: 10px;\n          }\n        </style>\n        <circle cx=\"25\" cy=\"25\" r=\"${radius}\" stroke=\"${variables.circle_color}\" stroke-width=\"2\" fill=\"none\" />\n      </svg>\n    `;\n  }\n]]]\n"
+          },
+          "styles": {
+            "custom_fields": {
+              "circle": [
+                {
+                  "top": "0%"
+                },
+                {
+                  "left": "0%"
+                },
+                {
+                  "width": "4vw"
+                },
+                {
+                  "position": "absolute"
+                },
+                {
+                  "letter-spacing": "0.03vw"
+                }
+              ]
+            }
+          }
+        },
+        "color_light": {
+          "styles": {
+            "card": [
+              {
+                "border-radius": "50%"
+              },
+              {
+                "height": "4em"
+              },
+              {
+                "width": "4em"
+              },
+              {
+                "margin": "4px"
+              }
+            ]
+          }
+        },
+        "light": {
+          "template": [
+            "icon_main",
+            "circle"
+          ],
+          "show_state": false,
+          "show_icon": true,
+          "show_name": false,
+          "show_label": false,
+          "size": "55%",
+          "color": "auto",
+          "color_type": "icon",
+          "tap_action": {
+            "action": "toggle",
+            "haptic": "light"
+          },
+          "styles": {
+            "card": [
+              {
+                "width": "4vw"
+              },
+              {
+                "height": "4vw"
+              },
+              {
+                "borderRadius": "10vw"
+              },
+              {
+                "background-color": "[[[ return (entity.state === 'on' || entity.state === 'home') ? 'rgba(255, 255, 255, 1.0)' : 'rgba(115, 115, 115, 0.6)'; ]]]\n"
+              }
+            ]
+          },
+          "variables": {
+            "circle_input": "[[[ return Math.round(entity.attributes.brightness / 2.54); ]]]\n",
+            "circle_color": "var(--button-card-light-color)"
+          },
+          "hold_action": {
+            "action": "fire-dom-event",
+            "browser_mod": {
+              "service": "browser_mod.popup",
+              "style": {
+                "$": ".popup-inner{\n  padding: 15px 0 30px 0;\n}\n\n.mdc-dialog .mdc-dialog__container {\n}\n.mdc-dialog .mdc-dialog__container .mdc-dialog__surface {\n  border-radius: 2vw;\n}\n.mdc-dialog .mdc-dialog__scrim {\n    backdrop-filter: blur(10px);\n}\nha-svg-icon {\n    margin-top:-7px;\n}\n",
+                ".": ":host {\n  --mdc-dialog-scrim-color: rgba(0,0,0,0.5);\n}\nmwc-icon-button {\n  color: #FFF;\n}\n"
+              },
+              "data": {
+                "title": "[[[ return entity.attributes.friendly_name ]]]\n",
+                "content": {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:light-popup-card",
+                      "entity": "[[[ return entity.entity_id ]]]\n",
+                      "icon": "none",
+                      "hideIcon": true,
+                      "fullscreen": false,
+                      "brightnessWidth": "130px",
+                      "brightnessHeight": "360px",
+                      "borderRadius": "1.7em",
+                      "sliderColor": "#c7c7c7",
+                      "sliderTrackColor": "rgba(25, 25, 25, 0.9)"
+                    },
+                    {
+                      "type": "custom:hui-element",
+                      "card_type": "horizontal-stack",
+                      "card_mod": {
+                        "style": "#root {\n  justify-content: center;\n  margin-top: 2em;\n}\n"
+                      },
+                      "cards": [
+                        {
+                          "type": "custom:button-card",
+                          "styles": {
+                            "card": [
+                              {
+                                "background": "#d8d9e1"
+                              }
+                            ]
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "light.turn_on",
+                            "service_data": {
+                              "entity_id": "[[[ return entity.entity_id ]]]\n",
+                              "color_temp": 153
+                            }
+                          },
+                          "template": "color_light"
+                        },
+                        {
+                          "type": "custom:button-card",
+                          "styles": {
+                            "card": [
+                              {
+                                "background": "#d5b08d"
+                              }
+                            ]
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "light.turn_on",
+                            "service_data": {
+                              "entity_id": "[[[ return entity.entity_id ]]]\n",
+                              "color_temp": 326
+                            }
+                          },
+                          "template": "color_light"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:hui-element",
+                      "card_type": "horizontal-stack",
+                      "card_mod": {
+                        "style": "#root {\n  justify-content: center;\n  margin-bottom: 1em;\n}\n"
+                      },
+                      "cards": [
+                        {
+                          "type": "custom:button-card",
+                          "styles": {
+                            "card": [
+                              {
+                                "background": "#ce944b"
+                              }
+                            ]
+                          },
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "light.turn_on",
+                            "service_data": {
+                              "entity_id": "[[[ return entity.entity_id ]]]\n",
+                              "color_temp": 500
+                            }
+                          },
+                          "template": "color_light"
+                        },
+                        {
+                          "type": "custom:button-card",
+                          "styles": {
+                            "card": [
+                              {
+                                "background": "radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 80%), conic-gradient(rgb(120, 39, 230), rgb(230, 34, 231), rgb(228, 5, 136), rgb(228, 25, 25), rgb(229, 105, 30), rgb(232, 226, 46), rgb(125, 230, 41), rgb(52, 232, 40), rgb(51, 231, 92), rgb(52, 232, 224), rgb(32, 125, 229), rgb(18, 39, 229), rgb(120, 39, 230))"
+                              }
+                            ]
+                          },
+                          "tap_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "[[[ return entity.attributes.friendly_name ]]]\n",
+                                "content": {
+                                  "type": "custom:light-entity-card",
+                                  "entity": "[[[ return entity.entity_id ]]]\n",
+                                  "brightness": true,
+                                  "color_temp": true,
+                                  "full_width_sliders": false,
+                                  "hide_header": true,
+                                  "show_slider_percent": true,
+                                  "smooth_color_wheel": true,
+                                  "persist_features": true,
+                                  "consolidate_entities": true
+                                }
+                              }
+                            },
+                            "template": "color_light"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "light_group": {
+          "icon": "mdi:google-circles-communities",
+          "template": [
+            "icon_main",
+            "circle"
+          ],
+          "show_state": false,
+          "show_icon": true,
+          "show_name": false,
+          "show_label": false,
+          "color_type": "icon",
+          "color": "rgb(255, 159, 0)",
+          "color_off": "rgb(255, 255, 255)",
+          "size": "55%",
+          "tap_action": {
+            "action": "toggle",
+            "haptic": "light"
+          },
+          "styles": {
+            "card": [
+              {
+                "width": "4vw"
+              },
+              {
+                "height": "4vw"
+              },
+              {
+                "borderRadius": "10vw"
+              },
+              {
+                "background-color": "[[[ return (entity.state === 'on' ) ? 'rgba(255, 255, 255, 1.0)' : 'rgba(115, 115, 115, 0.6)'; ]]]\n"
+              }
+            ]
+          },
+          "variables": {
+            "circle_input": "[[[ return Math.round(entity.attributes.brightness / 2.54); ]]]\n"
+          },
+          "hold_action": {
+            "action": "fire-dom-event",
+            "browser_mod": {
+              "service": "browser_mod.popup",
+              "style": {
+                "$": "s.popup-inner{\n  padding: 15px 0 30px 0;\n}\n.mdc-dialog .mdc-dialog__container {\n}\n.mdc-dialog .mdc-dialog__container .mdc-dialog__surface {\n  border-radius: 2vw;\n}\n.mdc-dialog .mdc-dialog__scrim {\n    backdrop-filter: blur(10px);\n}\nha-svg-icon {\n    margin-top:-7px;\n}\n",
+                ".": ":host {\n  --mdc-dialog-scrim-color: rgba(0,0,0,0.5);\n}\nmwc-icon-button {\n  color: #FFF;\n}\n"
+              },
+              "data": {
+                "title": "[[[ return entity.attributes.friendly_name ]]]\n",
+                "content": {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:light-popup-card",
+                      "entity": "[[[ return entity.entity_id ]]]\n",
+                      "icon": "none",
+                      "hideIcon": true,
+                      "fullscreen": false,
+                      "brightnessWidth": "130px",
+                      "brightnessHeight": "360px",
+                      "borderRadius": "1.7em",
+                      "sliderColor": "#c7c7c7",
+                      "sliderTrackColor": "rgba(25, 25, 25, 0.9)"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "light_white": {
+          "template": [
+            "icon_main",
+            "circle"
+          ],
+          "show_state": false,
+          "show_icon": true,
+          "show_name": false,
+          "show_label": false,
+          "size": "55%",
+          "color_type": "icon",
+          "color": "rgb(255, 159, 0)",
+          "color_off": "rgb(255, 255, 255)",
+          "tap_action": {
+            "action": "toggle",
+            "haptic": "light"
+          },
+          "styles": {
+            "card": [
+              {
+                "width": "4vw"
+              },
+              {
+                "height": "4vw"
+              },
+              {
+                "borderRadius": "10vw"
+              },
+              {
+                "background-color": "[[[ return (entity.state === 'on' || entity.state === 'home') ? 'rgba(255, 255, 255, 1.0)' : 'rgba(115, 115, 115, 0.6)'; ]]]\n"
+              }
+            ]
+          },
+          "variables": {
+            "circle_input": "[[[ return Math.round(entity.attributes.brightness / 2.54); ]]]\n"
+          },
+          "hold_action": {
+            "action": "fire-dom-event",
+            "browser_mod": {
+              "service": "browser_mod.popup",
+              "style": {
+                "$": "s.popup-inner{\n  padding: 15px 0 30px 0;\n}\n.mdc-dialog .mdc-dialog__container {\n}\n.mdc-dialog .mdc-dialog__container .mdc-dialog__surface {\n  border-radius: 2vw;\n}\n.mdc-dialog .mdc-dialog__scrim {\n    backdrop-filter: blur(10px);\n}\nha-svg-icon {\n    margin-top:-7px;\n}\n",
+                ".": ":host {\n  --mdc-dialog-scrim-color: rgba(0,0,0,0.5);\n}\nmwc-icon-button {\n  color: #FFF;\n}\n"
+              },
+              "data": {
+                "title": "[[[ return entity.attributes.friendly_name ]]]\n",
+                "content": {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:light-popup-card",
+                      "entity": "[[[ return entity.entity_id ]]]\n",
+                      "icon": "none",
+                      "hideIcon": true,
+                      "fullscreen": false,
+                      "brightnessWidth": "130px",
+                      "brightnessHeight": "360px",
+                      "borderRadius": "1.7em",
+                      "sliderColor": "#c7c7c7",
+                      "sliderTrackColor": "rgba(25, 25, 25, 0.9)"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "entity_button": {
+          "template": [
+            "icon_main",
+            "circle"
+          ],
+          "show_state": false,
+          "show_icon": true,
+          "show_name": false,
+          "show_label": false,
+          "styles": {
+            "card": [
+              {
+                "width": "4vw"
+              },
+              {
+                "height": "4vw"
+              },
+              {
+                "borderRadius": "10vw"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
