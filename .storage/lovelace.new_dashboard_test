@@ -210,7 +210,42 @@
                       "top": "72%",
                       "width": "4.5vw"
                     },
-                    "tap_action": "none",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "map",
+                                "entities": [
+                                  {
+                                    "entity": "person.mitchell"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "custom:mushroom-person-card",
+                                "entity": "person.mitchell",
+                                "primary_info": "none",
+                                "icon_type": "entity-picture",
+                                "tap_action": {
+                                  "action": "none"
+                                },
+                                "hold_action": {
+                                  "action": "none"
+                                },
+                                "double_tap_action": {
+                                  "action": "none"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
                     "type": "image"
                   },
                   {
@@ -228,7 +263,42 @@
                       "top": "72%",
                       "width": "4.5vw"
                     },
-                    "tap_action": "none",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "map",
+                                "entities": [
+                                  {
+                                    "entity": "person.michelle"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "custom:mushroom-person-card",
+                                "entity": "person.michelle",
+                                "primary_info": "none",
+                                "icon_type": "entity-picture",
+                                "tap_action": {
+                                  "action": "none"
+                                },
+                                "hold_action": {
+                                  "action": "none"
+                                },
+                                "double_tap_action": {
+                                  "action": "none"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
                     "type": "image"
                   },
                   {
@@ -246,7 +316,42 @@
                       "top": "72%",
                       "width": "4.5vw"
                     },
-                    "tap_action": "none",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "map",
+                                "entities": [
+                                  {
+                                    "entity": "person.ryan"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "custom:mushroom-person-card",
+                                "entity": "person.ryan",
+                                "primary_info": "none",
+                                "icon_type": "entity-picture",
+                                "tap_action": {
+                                  "action": "none"
+                                },
+                                "hold_action": {
+                                  "action": "none"
+                                },
+                                "double_tap_action": {
+                                  "action": "none"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
                     "type": "image"
                   },
                   {
@@ -270,6 +375,33 @@
                     },
                     "template": [
                       "entity_button"
+                    ]
+                  },
+                  {
+                    "entity": "alarm_control_panel.alarm_control_panel",
+                    "type": "custom:button-card",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "alarm-panel",
+                            "states": [
+                              "arm_home",
+                              "arm_away"
+                            ],
+                            "entity": "alarm_control_panel.alarm_control_panel"
+                          }
+                        }
+                      }
+                    },
+                    "style": {
+                      "left": "10.8%",
+                      "top": "82%"
+                    },
+                    "template": [
+                      "alarm_button"
                     ]
                   },
                   {
@@ -318,7 +450,7 @@
                     },
                     "tap_action": {
                       "action": "navigate",
-                      "navigation_path": "/new-dashboard-test/2"
+                      "navigation_path": "/new-dashboard-test/4"
                     },
                     "type": "custom:mini-media-player"
                   }
@@ -344,7 +476,10 @@
                 "light.kitchen_sink",
                 "light.second_floor_bathroom",
                 "light.stairs_step_lights",
-                "light.entry_way_step_lights"
+                "light.entry_way_step_lights",
+                "cover.kitchen_blinds",
+                "cover.living_room_blinds_1",
+                "cover.living_room_blinds_2"
               ],
               "card": {
                 "type": "picture-elements",
@@ -415,6 +550,39 @@
                     },
                     "template": [
                       "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "cover.kitchen_blinds",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "71.175%",
+                      "top": "8%"
+                    },
+                    "template": [
+                      "blinds"
+                    ]
+                  },
+                  {
+                    "entity": "cover.living_room_blinds_1",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "80%",
+                      "top": "91%"
+                    },
+                    "template": [
+                      "blinds"
+                    ]
+                  },
+                  {
+                    "entity": "cover.living_room_blinds_2",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "66.625%",
+                      "top": "91%"
+                    },
+                    "template": [
+                      "blinds"
                     ]
                   },
                   {
@@ -570,7 +738,42 @@
                       "top": "72%",
                       "width": "4.5vw"
                     },
-                    "tap_action": "none",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "map",
+                                "entities": [
+                                  {
+                                    "entity": "person.mitchell"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "custom:mushroom-person-card",
+                                "entity": "person.mitchell",
+                                "primary_info": "none",
+                                "icon_type": "entity-picture",
+                                "tap_action": {
+                                  "action": "none"
+                                },
+                                "hold_action": {
+                                  "action": "none"
+                                },
+                                "double_tap_action": {
+                                  "action": "none"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
                     "type": "image"
                   },
                   {
@@ -588,7 +791,42 @@
                       "top": "72%",
                       "width": "4.5vw"
                     },
-                    "tap_action": "none",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "map",
+                                "entities": [
+                                  {
+                                    "entity": "person.michelle"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "custom:mushroom-person-card",
+                                "entity": "person.michelle",
+                                "primary_info": "none",
+                                "icon_type": "entity-picture",
+                                "tap_action": {
+                                  "action": "none"
+                                },
+                                "hold_action": {
+                                  "action": "none"
+                                },
+                                "double_tap_action": {
+                                  "action": "none"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
                     "type": "image"
                   },
                   {
@@ -606,7 +844,42 @@
                       "top": "72%",
                       "width": "4.5vw"
                     },
-                    "tap_action": "none",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "map",
+                                "entities": [
+                                  {
+                                    "entity": "person.ryan"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "custom:mushroom-person-card",
+                                "entity": "person.ryan",
+                                "primary_info": "none",
+                                "icon_type": "entity-picture",
+                                "tap_action": {
+                                  "action": "none"
+                                },
+                                "hold_action": {
+                                  "action": "none"
+                                },
+                                "double_tap_action": {
+                                  "action": "none"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
                     "type": "image"
                   },
                   {
@@ -630,6 +903,33 @@
                     },
                     "template": [
                       "entity_button"
+                    ]
+                  },
+                  {
+                    "entity": "alarm_control_panel.alarm_control_panel",
+                    "type": "custom:button-card",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "alarm-panel",
+                            "states": [
+                              "arm_home",
+                              "arm_away"
+                            ],
+                            "entity": "alarm_control_panel.alarm_control_panel"
+                          }
+                        }
+                      }
+                    },
+                    "style": {
+                      "left": "10.8%",
+                      "top": "82%"
+                    },
+                    "template": [
+                      "alarm_button"
                     ]
                   },
                   {
@@ -678,7 +978,7 @@
                     },
                     "tap_action": {
                       "action": "navigate",
-                      "navigation_path": "/new-dashboard-test/2"
+                      "navigation_path": "/new-dashboard-test/4"
                     },
                     "type": "custom:mini-media-player"
                   }
@@ -692,7 +992,561 @@
           "icon": "mdi:home-floor-3",
           "type": "panel",
           "badges": [],
-          "cards": []
+          "cards": [
+            {
+              "type": "custom:config-template-card",
+              "entities": [
+                "light.master_bedroom_lamps",
+                "light.master_bedroom_ceiling_fan",
+                "light.master_bathroom_main_lights",
+                "light.ryan_s_ceiling_fan_2",
+                "light.upstairs_hallway_main_lights",
+                "light.stairs_step_lights",
+                "light.office_ceiling_fan",
+                "switch.office_lamp",
+                "cover.master_bedroom_blinds",
+                "cover.ryan_s_room_blinds",
+                "cover.office_blinds"
+              ],
+              "card": {
+                "type": "picture-elements",
+                "image": "/local/floorThree.png",
+                "style": "ha-card:first-child {\n  background: rgba(42, 46, 48, 1)\n}\n",
+                "elements": [
+                  {
+                    "entity": "light.stairs_step_lights",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "87%",
+                      "top": "53%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.master_bedroom_ceiling_fan",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "76%",
+                      "top": "25%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.master_bedroom_lamps",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "88%",
+                      "top": "16%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.master_bedroom_lamps",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "88%",
+                      "top": "37%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.master_bathroom_main_lights",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "66%",
+                      "top": "16%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.ryan_s_ceiling_fan_2",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "70%",
+                      "top": "81%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.upstairs_hallway_main_lights",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "76.25%",
+                      "top": "60%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "light.office_ceiling_fan",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "83%",
+                      "top": "81%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "switch.office_lamp",
+                    "type": "custom:button-card",
+                    "icon": "mdi:lightbulb",
+                    "style": {
+                      "left": "78%",
+                      "top": "92%"
+                    },
+                    "template": [
+                      "light_white"
+                    ]
+                  },
+                  {
+                    "entity": "cover.master_bedroom_blinds",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "80%",
+                      "top": "9%"
+                    },
+                    "template": [
+                      "blinds"
+                    ]
+                  },
+                  {
+                    "entity": "cover.ryan_s_room_blinds",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "69.625%",
+                      "top": "92%"
+                    },
+                    "template": [
+                      "blinds"
+                    ]
+                  },
+                  {
+                    "entity": "cover.office_blinds",
+                    "type": "custom:button-card",
+                    "style": {
+                      "left": "82.25%",
+                      "top": "92%"
+                    },
+                    "template": [
+                      "blinds"
+                    ]
+                  },
+                  {
+                    "action": "none",
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "image": "/local/ui/sidebar/sidebarBG2.png",
+                    "style": {
+                      "height": "100%",
+                      "left": "11.73828125%",
+                      "top": "50%",
+                      "width": "23.4765625%"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "image": "/local/ui/sidebar/sidebarBG2.png",
+                    "style": {
+                      "height": "100%",
+                      "left": "11.73828125%",
+                      "top": "50%",
+                      "width": "23.4765625%"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "entity": "sensor.time",
+                    "hold_action": {
+                      "action": "none"
+                    },
+                    "style": {
+                      "color": "rgba(255, 255, 255, 0.7)",
+                      "font-size": "5.41vw",
+                      "font-weight": 200,
+                      "left": "2.7%",
+                      "letter-spacing": "-0.05vw",
+                      "max-width": "1px",
+                      "top": "10%"
+                    },
+                    "tap_action": {
+                      "action": "none"
+                    },
+                    "type": "state-label"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/firstFloor_off.png",
+                    "style": {
+                      "border-radius": "5vw",
+                      "box-shadow": "0px 0.2vw 0.8vw 0px rgba(0,0,0,0.1)",
+                      "left": "11.7%",
+                      "top": "26%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/0"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/secondFloor_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "34%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/1"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/thirdFloor_on.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "42%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/2"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/vacuums_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "50%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/3"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/btns/media_off.png",
+                    "style": {
+                      "left": "11.7%",
+                      "top": "58%",
+                      "width": "20.5078125%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/4"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "style": {
+                      "color": "white",
+                      "font-size": "1vw",
+                      "font-weight": 300,
+                      "left": "8.8%",
+                      "opacity": 0,
+                      "top": "66%",
+                      "width": "10%"
+                    },
+                    "text": "People at home:",
+                    "type": "custom:text-element"
+                  },
+                  {
+                    "action": "none",
+                    "entity": "sensor.mitchell_away",
+                    "state_image": {
+                      "home": "/local/mitchellHome.png",
+                      "not_home": "/local/mitchellGone.png"
+                    },
+                    "style": {
+                      "background-color": "rgba(255, 255, 255, 0.0)",
+                      "border-radius": "10vw",
+                      "height": "4.5vw",
+                      "left": "5.8%",
+                      "top": "72%",
+                      "width": "4.5vw"
+                    },
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "map",
+                                "entities": [
+                                  {
+                                    "entity": "person.mitchell"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "custom:mushroom-person-card",
+                                "entity": "person.mitchell",
+                                "primary_info": "none",
+                                "icon_type": "entity-picture",
+                                "tap_action": {
+                                  "action": "none"
+                                },
+                                "hold_action": {
+                                  "action": "none"
+                                },
+                                "double_tap_action": {
+                                  "action": "none"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "entity": "sensor.michelle_away",
+                    "state_image": {
+                      "home": "/local/michelleHome.png",
+                      "not_home": "/local/michelleGone.png"
+                    },
+                    "style": {
+                      "background-color": "rgba(255, 255, 255, 0.0)",
+                      "border-radius": "10vw",
+                      "height": "4.5vw",
+                      "left": "10.8%",
+                      "top": "72%",
+                      "width": "4.5vw"
+                    },
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "map",
+                                "entities": [
+                                  {
+                                    "entity": "person.michelle"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "custom:mushroom-person-card",
+                                "entity": "person.michelle",
+                                "primary_info": "none",
+                                "icon_type": "entity-picture",
+                                "tap_action": {
+                                  "action": "none"
+                                },
+                                "hold_action": {
+                                  "action": "none"
+                                },
+                                "double_tap_action": {
+                                  "action": "none"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "entity": "sensor.ryan_away",
+                    "state_image": {
+                      "home": "/local/ryanHome.png",
+                      "not_home": "/local/ryanGone.png"
+                    },
+                    "style": {
+                      "background-color": "rgba(255, 255, 255, 0.0)",
+                      "border-radius": "10vw",
+                      "height": "4.5vw",
+                      "left": "15.8%",
+                      "top": "72%",
+                      "width": "4.5vw"
+                    },
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "custom:stack-in-card",
+                            "cards": [
+                              {
+                                "type": "map",
+                                "entities": [
+                                  {
+                                    "entity": "person.ryan"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "custom:mushroom-person-card",
+                                "entity": "person.ryan",
+                                "primary_info": "none",
+                                "icon_type": "entity-picture",
+                                "tap_action": {
+                                  "action": "none"
+                                },
+                                "hold_action": {
+                                  "action": "none"
+                                },
+                                "double_tap_action": {
+                                  "action": "none"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "entity": "climate.thermostat",
+                    "type": "custom:button-card",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "thermostat",
+                            "entity": "climate.thermostat"
+                          }
+                        }
+                      }
+                    },
+                    "style": {
+                      "left": "5.8%",
+                      "top": "82%"
+                    },
+                    "template": [
+                      "entity_button"
+                    ]
+                  },
+                  {
+                    "entity": "alarm_control_panel.alarm_control_panel",
+                    "type": "custom:button-card",
+                    "tap_action": {
+                      "action": "fire-dom-event",
+                      "browser_mod": {
+                        "service": "browser_mod.popup",
+                        "data": {
+                          "content": {
+                            "type": "alarm-panel",
+                            "states": [
+                              "arm_home",
+                              "arm_away"
+                            ],
+                            "entity": "alarm_control_panel.alarm_control_panel"
+                          }
+                        }
+                      }
+                    },
+                    "style": {
+                      "left": "10.8%",
+                      "top": "82%"
+                    },
+                    "template": [
+                      "alarm_button"
+                    ]
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/sidebar/sideShadow.png",
+                    "style": {
+                      "height": "60%",
+                      "left": "18.45%",
+                      "pointer-events": "none",
+                      "top": "83%",
+                      "width": "10%"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "action": "none",
+                    "image": "/local/ui/sidebar/sidebarInnerShadow.png",
+                    "style": {
+                      "left": "22.83%",
+                      "opacity": 0.7,
+                      "pointer-events": "none",
+                      "top": "50%",
+                      "width": "1.2109375%"
+                    },
+                    "type": "image"
+                  },
+                  {
+                    "entity": "media_player.spotify_mitchell_lane_hayes",
+                    "hide": {
+                      "controls": true,
+                      "name": true,
+                      "power": true,
+                      "source": true,
+                      "volume": true,
+                      "progress": false
+                    },
+                    "idle_view": {
+                      "after": 0.1,
+                      "when_idle": true,
+                      "when_paused": true,
+                      "when_standby": true
+                    },
+                    "style": {
+                      "left": "11%",
+                      "top": "93%"
+                    },
+                    "tap_action": {
+                      "action": "navigate",
+                      "navigation_path": "/new-dashboard-test/4"
+                    },
+                    "type": "custom:mini-media-player"
+                  }
+                ]
+              }
+            }
+          ]
         },
         {
           "title": "Clean Up",
@@ -701,7 +1555,7 @@
           "cards": [
             {
               "type": "picture-elements",
-              "image": "/local/floorTwo.png",
+              "image": "/local/ui/floorplan/background.png",
               "style": "ha-card {\n  background: rgba(42, 46, 48, 1)\n}\n",
               "elements": [
                 {
@@ -728,7 +1582,87 @@
                   "image": "/local/ui/cleanUp/btns/ring.png",
                   "style": {
                     "left": "34.3%",
-                    "top": "72.5%",
+                    "top": "37.5%",
+                    "width": "8.203125%"
+                  },
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.locate",
+                    "service_data": {
+                      "entity_id": "vacuum.first_floor_vacuum"
+                    }
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/cleanUp/btns/gohome.png",
+                  "style": {
+                    "left": "42.8%",
+                    "top": "37.5%",
+                    "width": "8.203125%"
+                  },
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.return_to_base",
+                    "service_data": {
+                      "entity_id": "vacuum.first_floor_vacuum"
+                    }
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/cleanUp/btns/start.png",
+                  "style": {
+                    "left": "34.3%",
+                    "top": "53%",
+                    "width": "8.203125%"
+                  },
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.start",
+                    "service_data": {
+                      "entity_id": "vacuum.first_floor_vacuum"
+                    }
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/cleanUp/btns/pause.png",
+                  "style": {
+                    "left": "42.8%",
+                    "top": "53%",
+                    "width": "8.203125%"
+                  },
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "vacuum.pause",
+                    "service_data": {
+                      "entity_id": "vacuum.first_floor_vacuum"
+                    }
+                  },
+                  "type": "image"
+                },
+                {
+                  "action": "none",
+                  "hold_action": {
+                    "action": "none"
+                  },
+                  "image": "/local/ui/cleanUp/btns/ring.png",
+                  "style": {
+                    "left": "34.3%",
+                    "top": "71.5%",
                     "width": "8.203125%"
                   },
                   "tap_action": {
@@ -748,7 +1682,7 @@
                   "image": "/local/ui/cleanUp/btns/gohome.png",
                   "style": {
                     "left": "42.8%",
-                    "top": "72.5%",
+                    "top": "71.5%",
                     "width": "8.203125%"
                   },
                   "tap_action": {
@@ -768,7 +1702,7 @@
                   "image": "/local/ui/cleanUp/btns/start.png",
                   "style": {
                     "left": "34.3%",
-                    "top": "86.5%",
+                    "top": "87%",
                     "width": "8.203125%"
                   },
                   "tap_action": {
@@ -788,7 +1722,7 @@
                   "image": "/local/ui/cleanUp/btns/pause.png",
                   "style": {
                     "left": "42.8%",
-                    "top": "86.5%",
+                    "top": "87%",
                     "width": "8.203125%"
                   },
                   "tap_action": {
@@ -799,19 +1733,6 @@
                     }
                   },
                   "type": "image"
-                },
-                {
-                  "entity": "vacuum.second_floor_vacuum",
-                  "style": {
-                    "color": "rgba(255,255,255,0.6)",
-                    "font-size": "1.1vw",
-                    "font-weight": 300,
-                    "left": "38.4%",
-                    "text-align": "center",
-                    "top": "32.5%",
-                    "width": "15%"
-                  },
-                  "type": "state-label"
                 },
                 {
                   "action": "none",
@@ -949,7 +1870,42 @@
                     "top": "72%",
                     "width": "4.5vw"
                   },
-                  "tap_action": "none",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "custom:stack-in-card",
+                          "cards": [
+                            {
+                              "type": "map",
+                              "entities": [
+                                {
+                                  "entity": "person.mitchell"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "custom:mushroom-person-card",
+                              "entity": "person.mitchell",
+                              "primary_info": "none",
+                              "icon_type": "entity-picture",
+                              "tap_action": {
+                                "action": "none"
+                              },
+                              "hold_action": {
+                                "action": "none"
+                              },
+                              "double_tap_action": {
+                                "action": "none"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
                   "type": "image"
                 },
                 {
@@ -967,7 +1923,42 @@
                     "top": "72%",
                     "width": "4.5vw"
                   },
-                  "tap_action": "none",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "custom:stack-in-card",
+                          "cards": [
+                            {
+                              "type": "map",
+                              "entities": [
+                                {
+                                  "entity": "person.michelle"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "custom:mushroom-person-card",
+                              "entity": "person.michelle",
+                              "primary_info": "none",
+                              "icon_type": "entity-picture",
+                              "tap_action": {
+                                "action": "none"
+                              },
+                              "hold_action": {
+                                "action": "none"
+                              },
+                              "double_tap_action": {
+                                "action": "none"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
                   "type": "image"
                 },
                 {
@@ -985,7 +1976,42 @@
                     "top": "72%",
                     "width": "4.5vw"
                   },
-                  "tap_action": "none",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "custom:stack-in-card",
+                          "cards": [
+                            {
+                              "type": "map",
+                              "entities": [
+                                {
+                                  "entity": "person.ryan"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "custom:mushroom-person-card",
+                              "entity": "person.ryan",
+                              "primary_info": "none",
+                              "icon_type": "entity-picture",
+                              "tap_action": {
+                                "action": "none"
+                              },
+                              "hold_action": {
+                                "action": "none"
+                              },
+                              "double_tap_action": {
+                                "action": "none"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
                   "type": "image"
                 },
                 {
@@ -1009,6 +2035,33 @@
                   },
                   "template": [
                     "entity_button"
+                  ]
+                },
+                {
+                  "entity": "alarm_control_panel.alarm_control_panel",
+                  "type": "custom:button-card",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "alarm-panel",
+                          "states": [
+                            "arm_home",
+                            "arm_away"
+                          ],
+                          "entity": "alarm_control_panel.alarm_control_panel"
+                        }
+                      }
+                    }
+                  },
+                  "style": {
+                    "left": "10.8%",
+                    "top": "82%"
+                  },
+                  "template": [
+                    "alarm_button"
                   ]
                 },
                 {
@@ -1057,7 +2110,7 @@
                   },
                   "tap_action": {
                     "action": "navigate",
-                    "navigation_path": "/new-dashboard-test/3"
+                    "navigation_path": "/new-dashboard-test/4"
                   },
                   "type": "custom:mini-media-player"
                 }
@@ -1209,7 +2262,42 @@
                     "top": "72%",
                     "width": "4.5vw"
                   },
-                  "tap_action": "none",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "custom:stack-in-card",
+                          "cards": [
+                            {
+                              "type": "map",
+                              "entities": [
+                                {
+                                  "entity": "person.mitchell"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "custom:mushroom-person-card",
+                              "entity": "person.mitchell",
+                              "primary_info": "none",
+                              "icon_type": "entity-picture",
+                              "tap_action": {
+                                "action": "none"
+                              },
+                              "hold_action": {
+                                "action": "none"
+                              },
+                              "double_tap_action": {
+                                "action": "none"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
                   "type": "image"
                 },
                 {
@@ -1227,7 +2315,42 @@
                     "top": "72%",
                     "width": "4.5vw"
                   },
-                  "tap_action": "none",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "custom:stack-in-card",
+                          "cards": [
+                            {
+                              "type": "map",
+                              "entities": [
+                                {
+                                  "entity": "person.michelle"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "custom:mushroom-person-card",
+                              "entity": "person.michelle",
+                              "primary_info": "none",
+                              "icon_type": "entity-picture",
+                              "tap_action": {
+                                "action": "none"
+                              },
+                              "hold_action": {
+                                "action": "none"
+                              },
+                              "double_tap_action": {
+                                "action": "none"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
                   "type": "image"
                 },
                 {
@@ -1245,7 +2368,42 @@
                     "top": "72%",
                     "width": "4.5vw"
                   },
-                  "tap_action": "none",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "custom:stack-in-card",
+                          "cards": [
+                            {
+                              "type": "map",
+                              "entities": [
+                                {
+                                  "entity": "person.ryan"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "custom:mushroom-person-card",
+                              "entity": "person.ryan",
+                              "primary_info": "none",
+                              "icon_type": "entity-picture",
+                              "tap_action": {
+                                "action": "none"
+                              },
+                              "hold_action": {
+                                "action": "none"
+                              },
+                              "double_tap_action": {
+                                "action": "none"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
                   "type": "image"
                 },
                 {
@@ -1269,6 +2427,33 @@
                   },
                   "template": [
                     "entity_button"
+                  ]
+                },
+                {
+                  "entity": "alarm_control_panel.alarm_control_panel",
+                  "type": "custom:button-card",
+                  "tap_action": {
+                    "action": "fire-dom-event",
+                    "browser_mod": {
+                      "service": "browser_mod.popup",
+                      "data": {
+                        "content": {
+                          "type": "alarm-panel",
+                          "states": [
+                            "arm_home",
+                            "arm_away"
+                          ],
+                          "entity": "alarm_control_panel.alarm_control_panel"
+                        }
+                      }
+                    }
+                  },
+                  "style": {
+                    "left": "10.8%",
+                    "top": "82%"
+                  },
+                  "template": [
+                    "alarm_button"
                   ]
                 },
                 {
@@ -1665,21 +2850,47 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "type": "custom:light-popup-card",
+                      "type": "custom:mushroom-light-card",
                       "entity": "[[[ return entity.entity_id ]]]\n",
-                      "icon": "none",
-                      "hideIcon": true,
-                      "fullscreen": false,
-                      "brightnessWidth": "130px",
-                      "brightnessHeight": "360px",
-                      "borderRadius": "1.7em",
-                      "sliderColor": "#c7c7c7",
-                      "sliderTrackColor": "rgba(25, 25, 25, 0.9)"
+                      "show_brightness_control": true,
+                      "show_color_control": false,
+                      "show_color_temp_control": false,
+                      "collapsible_controls": false,
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "primary_info": "name",
+                      "secondary_info": "none",
+                      "icon_type": "icon"
                     }
                   ]
                 }
               }
             }
+          }
+        },
+        "alarm_button": {
+          "template": [
+            "icon_main",
+            "circle"
+          ],
+          "show_state": false,
+          "show_icon": true,
+          "show_name": false,
+          "show_label": false,
+          "color_type": "icon",
+          "color": "rgb(255, 255, 255)",
+          "styles": {
+            "card": [
+              {
+                "width": "4vw"
+              },
+              {
+                "height": "4vw"
+              },
+              {
+                "borderRadius": "10vw"
+              }
+            ]
           }
         },
         "entity_button": {
@@ -1703,6 +2914,57 @@
                 "borderRadius": "10vw"
               }
             ]
+          }
+        },
+        "blinds": {
+          "template": [
+            "icon_main"
+          ],
+          "show_state": false,
+          "show_icon": true,
+          "show_name": false,
+          "show_label": false,
+          "styles": {
+            "card": [
+              {
+                "width": "4vw"
+              },
+              {
+                "height": "4vw"
+              },
+              {
+                "background-color": "rgba(115, 115, 115, 0.6)"
+              }
+            ]
+          },
+          "tap_action": {
+            "action": "toggle"
+          },
+          "hold_action": {
+            "action": "fire-dom-event",
+            "browser_mod": {
+              "service": "browser_mod.popup",
+              "data": {
+                "title": "[[[ return entity.attributes.friendly_name ]]]\n",
+                "content": {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:blind-card",
+                      "entities": [
+                        {
+                          "entity": "[[[ return entity.entity_id ]]]\n",
+                          "name": "Blinds",
+                          "buttons_position": "left",
+                          "title_position": "bottom",
+                          "blind_color": "#D3D3D3"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
           }
         }
       }

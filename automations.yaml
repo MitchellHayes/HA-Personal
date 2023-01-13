@@ -894,3 +894,36 @@
     target:
       entity_id: light.master_bedroom_ceiling_fan
   mode: single
+- id: '1673485276522'
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 73667d54823f91686f75fae95d3aa05d
+    domain: nest
+    type: doorbell_chime
+  condition: []
+  action:
+  - service: browser_mod.popup
+    data:
+      title: Someone is at the door
+      size: normal
+      content:
+        show_state: true
+        show_name: true
+        camera_view: auto
+        type: picture-entity
+        entity: camera.front_door
+        camera_image: camera.front_door
+        aspect_ratio: '4:3'
+    target:
+      device_id: a175930fdf508e3c45e3d5f273d369da
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - service: browser_mod.close_popup
+    data: {}
+    target:
+      device_id: a175930fdf508e3c45e3d5f273d369da
+  mode: single
