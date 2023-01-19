@@ -1327,6 +1327,10 @@
                         {
                           "type": "entity",
                           "entity": "sensor.gym_pm2_5"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.gym_temperature"
                         }
                       ]
                     },

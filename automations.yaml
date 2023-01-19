@@ -473,33 +473,24 @@
       title: Car Charging Reminder
   mode: single
 - id: '1661605513250'
-  alias: 'Music: Master Bathroom On'
+  alias: 'Music: Second Floor Bathroom On'
   description: ''
   trigger:
   - platform: state
     entity_id:
-    - light.master_bathroom_main_lights
+    - light.second_floor_bathroom
     from: 'off'
     to: 'on'
-  condition:
-  - condition: time
-    before: '21:00:00'
-    after: 07:00:00
-    weekday:
-    - mon
-    - wed
-    - tue
-    - thu
-    - fri
-    - sat
-    - sun
+  condition: []
   action:
   - service: mass.queue_command
     data:
       command: play_media
       uri: spotify:playlist:37i9dQZF1DX63RoW298D1b
+      enqueue_mode: play
+      radio_mode: true
     target:
-      entity_id: media_player.mass_master_bathroom
+      entity_id: media_player.mass_second_floor_bathroom
   mode: single
 - id: '1661609190131'
   alias: 'Reminder: Charge Mitchell''s Tesla'
@@ -752,12 +743,12 @@
       entity_id: input_boolean.company_over_kill_switch
   mode: single
 - id: '1664834813628'
-  alias: 'Music: Master Bathroom Off'
+  alias: 'Music: Second Floor Bathroom Off'
   description: ''
   trigger:
   - platform: state
     entity_id:
-    - light.master_bathroom_main_lights
+    - light.second_floor_bathroom
     from: 'on'
     to: 'off'
   condition: []
@@ -767,7 +758,7 @@
       command: stop
       uri: spotify:playlist:37i9dQZF1DX63RoW298D1b
     target:
-      entity_id: media_player.mass_master_bathroom
+      entity_id: media_player.mass_second_floor_bathroom
   mode: single
 - id: '1665425091815'
   alias: 'Lights: Outdoor on'
