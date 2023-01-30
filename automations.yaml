@@ -266,11 +266,6 @@
       entity_id: person.mitchell
       zone: zone.home
   action:
-  - device_id: 8bc77fe295c8a8875f0dba8bf31ad34a
-    domain: select
-    entity_id: select.thermostat_current_mode
-    type: select_option
-    option: away
   - service: scene.turn_on
     target:
       entity_id: scene.aay
@@ -305,6 +300,11 @@
         target:
           entity_id: input_boolean.vacuum_ran
     default: []
+  - device_id: fc8b00114fd2a54abe764a82c0d72381
+    domain: climate
+    entity_id: climate.thermostat
+    type: set_preset_mode
+    preset_mode: Away
   mode: single
 - id: '1656173861699'
   alias: 'Mode: Home'
@@ -324,15 +324,15 @@
     event: enter
   condition: []
   action:
-  - device_id: 8bc77fe295c8a8875f0dba8bf31ad34a
-    domain: select
-    entity_id: select.thermostat_current_mode
-    type: select_option
-    option: home
   - type: turn_on
     device_id: e2a7a1ed1dfd8c9a4c12ece758aa3856
     entity_id: light.entry_way_step_lights
     domain: light
+  - device_id: fc8b00114fd2a54abe764a82c0d72381
+    domain: climate
+    entity_id: climate.thermostat
+    type: set_preset_mode
+    preset_mode: Home
   mode: single
 - id: '1657498537397'
   alias: Reset Helpers at 2300

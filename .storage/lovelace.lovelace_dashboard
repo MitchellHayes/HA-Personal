@@ -80,10 +80,6 @@
                               },
                               {
                                 "type": "plant-status",
-                                "entity": "plant.money_tree"
-                              },
-                              {
-                                "type": "plant-status",
                                 "entity": "plant.spider_plant"
                               }
                             ]

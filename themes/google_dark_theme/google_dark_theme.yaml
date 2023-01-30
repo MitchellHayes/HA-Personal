@@ -51,8 +51,8 @@ Google Dark Theme:
   label-badge-gray: rgb(95, 98, 103)
   # Cards
   card-background-color: rgb(32, 33, 36)
-  ha-card-border-width: '0px'
-  ha-card-border-radius: '7px'
+  ha-card-border-width: "0px"
+  ha-card-border-radius: "7px"
   paper-dialog-background-color: var(--card-background-color)
   paper-listbox-background-color: var(--card-background-color)
   paper-card-background-color: var(--card-background-color)
@@ -76,4 +76,6 @@ Google Dark Theme:
   material-secondary-background-color: var(--primary-background-color)
   mdc-theme-surface: var(--primary-background-color)
   # Pre/Code
-  markdown-code-background-color: 'var(--secondary-background-color)'
+  markdown-code-background-color: "var(--secondary-background-color)"
+  code-editor-background-color: rgb(65,65,65)
+  code-editor-gutter-color: rgb(65,65,65)

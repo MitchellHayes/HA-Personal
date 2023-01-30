@@ -10,46 +10,7 @@
           "title": "test",
           "path": "test",
           "badges": [],
-          "cards": [
-            {
-              "type": "custom:stack-in-card",
-              "title": "Ceiling Fan",
-              "mode": "horizontal",
-              "cards": [
-                {
-                  "type": "custom:mushroom-light-card",
-                  "entity": "light.master_bedroom_ceiling_fan",
-                  "layout": "vertical",
-                  "fill_container": false,
-                  "show_brightness_control": true,
-                  "use_light_color": true,
-                  "show_color_temp_control": true,
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "primary_info": "none"
-                },
-                {
-                  "type": "custom:mushroom-fan-card",
-                  "entity": "fan.master_bedroom_ceiling_fan",
-                  "icon_animation": true,
-                  "fill_container": false,
-                  "layout": "vertical",
-                  "show_oscillate_control": false,
-                  "show_percentage_control": true,
-                  "collapsible_controls": false,
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "double_tap_action": {
-                    "action": "none"
-                  },
-                  "name": "Ceiling Fan",
-                  "primary_info": "none"
-                }
-              ]
-            }
-          ]
+          "cards": []
         }
       ]
     }
