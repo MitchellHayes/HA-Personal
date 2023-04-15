@@ -88,7 +88,7 @@
   trigger:
   - platform: sun
     event: sunset
-    offset: '0'
+    offset: '-15'
   condition: []
   action:
   - device_id: 5842219f78287cb18b25231f92452279
@@ -140,11 +140,18 @@
         type: notify
         message: Check batter level on {{sensors}}
         title: Low Battery
+      - service: todoist.new_task
+        data:
+          project: Inbox
+          priority: 4
+          content: Charge {{sensors}}
       exclude:
         entity_id:
         - sensor.mitchell_s_iphone_battery_level
         - sensor.ryans_iphone_battery_level
         - sensor.michelle_s_iphone_battery_level
+        - sensor.scarlett_battery
+        - sensor.freya_battery
 - id: '1654011479692'
   alias: 'Blinds: AM Sun-based'
   description: ''
@@ -283,17 +290,6 @@
       - device_id: 026f3aefba08ebd7406b4f2b8c958195
         domain: vacuum
         entity_id: vacuum.second_floor_vacuum
-        type: clean
-    default: []
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: input_boolean.vacuum_ran
-        state: 'off'
-      sequence:
-      - device_id: c1e2fd3bb944ed5ba54ce824b6c6ba73
-        domain: vacuum
-        entity_id: vacuum.first_floor_vacuum
         type: clean
       - service: input_boolean.turn_on
         data: {}
@@ -665,22 +661,6 @@
     data:
       message: Check basement.
   mode: single
-- id: '1663768831005'
-  alias: Vacuum Gym at Midnight
-  description: ''
-  trigger:
-  - platform: time
-    at: 00:00:00
-  condition:
-  - condition: state
-    entity_id: input_boolean.basement_check
-    state: 'on'
-  action:
-  - device_id: c1e2fd3bb944ed5ba54ce824b6c6ba73
-    domain: vacuum
-    entity_id: vacuum.first_floor_vacuum
-    type: clean
-  mode: single
 - id: '1663769309933'
   alias: Auto-Off Upstairs Hallway Light
   description: ''
@@ -724,10 +704,10 @@
     event_type: Gym_Vac_Scanned
   condition: []
   action:
-  - service: input_boolean.turn_on
-    data: {}
-    target:
-      entity_id: input_boolean.basement_check
+  - device_id: c1e2fd3bb944ed5ba54ce824b6c6ba73
+    domain: vacuum
+    entity_id: vacuum.first_floor_vacuum
+    type: clean
   mode: single
 - id: '1663873412632'
   alias: Shortcut Company Kill Switch (Guests)
@@ -827,14 +807,6 @@
         entity_id: camera.front_door
         url: /lovelace-mobile/secure
   mode: single
-- id: '1667162506460'
-  alias: 'Sync: Office Fan and Lamp'
-  description: ''
-  use_blueprint:
-    path: adchevrier/synchronize-the-on-off-state-of-2-entities.yaml
-    input:
-      entity_1: light.office_ceiling_fan
-      entity_2: switch.office_lamp
 - id: '1671619842808'
   alias: 'Vacuum: Second Floor'
   description: ''

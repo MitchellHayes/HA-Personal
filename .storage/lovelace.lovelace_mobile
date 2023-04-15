@@ -119,25 +119,94 @@
                   "type": "horizontal-stack",
                   "cards": [
                     {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.mitchell",
-                      "layout": "vertical",
-                      "use_entity_picture": true,
-                      "hide_name": true
+                      "type": "custom:stack-in-card",
+                      "mode": "vertical",
+                      "cards": [
+                        {
+                          "type": "vertical-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-person-card",
+                              "entity": "person.mitchell",
+                              "layout": "vertical",
+                              "use_entity_picture": true,
+                              "hide_name": true
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "sensor.mitchell_s_iphone_battery_level",
+                              "layout": "vertical",
+                              "icon": "mdi:cellphone-charging",
+                              "hide_name": true
+                            }
+                          ]
+                        }
+                      ]
                     },
                     {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.michelle",
-                      "layout": "vertical",
-                      "use_entity_picture": true,
-                      "hide_name": true
+                      "type": "custom:stack-in-card",
+                      "mode": "vertical",
+                      "cards": [
+                        {
+                          "type": "vertical-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-person-card",
+                              "entity": "person.michelle",
+                              "layout": "vertical",
+                              "use_entity_picture": true,
+                              "hide_name": true
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "sensor.michelle_s_iphone_battery_level",
+                              "layout": "vertical",
+                              "icon": "mdi:cellphone-charging",
+                              "hide_name": true
+                            }
+                          ]
+                        }
+                      ]
                     },
                     {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.ryan",
-                      "layout": "vertical",
-                      "use_entity_picture": true,
-                      "hide_name": true
+                      "type": "custom:stack-in-card",
+                      "mode": "vertical",
+                      "cards": [
+                        {
+                          "type": "vertical-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-person-card",
+                              "entity": "person.ryan",
+                              "layout": "vertical",
+                              "use_entity_picture": true,
+                              "hide_name": true
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "sensor.ryans_iphone_battery_level",
+                              "layout": "vertical",
+                              "icon": "mdi:cellphone-charging",
+                              "hide_name": true
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 },
@@ -498,10 +567,10 @@
                       "icon_animation": true,
                       "show_percentage_control": false,
                       "tap_action": {
-                        "action": "more-info"
+                        "action": "toggle"
                       },
                       "hold_action": {
-                        "action": "toggle"
+                        "action": "more-info"
                       }
                     }
                   ]
@@ -579,7 +648,10 @@
                         "action": "toggle"
                       },
                       "name": "Lights",
-                      "collapsible_controls": false
+                      "collapsible_controls": false,
+                      "hold_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-fan-card",
@@ -668,7 +740,10 @@
                       "tap_action": {
                         "action": "toggle"
                       },
-                      "entity": "light.ryan_s_ceiling_fan_2"
+                      "entity": "light.ryan_s_ceiling_fan_2",
+                      "hold_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-fan-card",
@@ -730,11 +805,6 @@
                       "content_info": "state",
                       "icon": "mdi:account",
                       "use_entity_picture": false
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "binary_sensor.nest_protect_master_bedroom_smoke_status",
-                      "icon": "mdi:smoke-detector-variant"
                     }
                   ]
                 },
@@ -752,7 +822,10 @@
                         "action": "toggle"
                       },
                       "show_color_temp_control": true,
-                      "show_color_control": false
+                      "show_color_control": false,
+                      "hold_action": {
+                        "action": "more-info"
+                      }
                     },
                     {
                       "type": "custom:mushroom-light-card",
@@ -805,23 +878,8 @@
                       "entity": "media_player.master_bedroom",
                       "icon": "mdi:speaker",
                       "group": false
-                    },
-                    {
-                      "type": "custom:mini-media-player",
-                      "entity": "media_player.master_bathroom",
-                      "name": "Bathroom",
-                      "icon": "mdi:speaker",
-                      "group": false,
-                      "source": "icon",
-                      "sound_mode": "icon",
-                      "info": "scroll"
                     }
                   ]
-                },
-                {
-                  "type": "custom:mini-media-player",
-                  "entity": "media_player.master_bed_bath",
-                  "icon": "mdi:speaker-multiple"
                 }
               ]
             }
@@ -911,13 +969,13 @@
                                 "type": "sensor",
                                 "detail": 1,
                                 "name": "Thermostat",
-                                "entity": "sensor.thermostat_current_temperature"
+                                "entity": "sensor.thermostat_temperature"
                               },
                               {
                                 "hours_to_show": 24,
                                 "graph": "line",
                                 "type": "sensor",
-                                "entity": "sensor.thermostat_current_humidity",
+                                "entity": "sensor.thermostat_humidity",
                                 "detail": 1,
                                 "name": "Humidity"
                               },
@@ -928,6 +986,14 @@
                                 "entity": "sensor.office_temperature",
                                 "detail": 1,
                                 "name": "Craft Room"
+                              },
+                              {
+                                "hours_to_show": 24,
+                                "graph": "line",
+                                "type": "sensor",
+                                "entity": "sensor.gym_temperature",
+                                "detail": 1,
+                                "name": "Gym"
                               },
                               {
                                 "hours_to_show": 24,
@@ -1588,7 +1654,7 @@
             },
             {
               "square": false,
-              "columns": 2,
+              "columns": 1,
               "type": "grid",
               "cards": [
                 {
@@ -1620,6 +1686,11 @@
               "columns": 1,
               "type": "grid",
               "cards": [
+                {
+                  "type": "entity",
+                  "entity": "binary_sensor.car_wash",
+                  "state_color": false
+                },
                 {
                   "square": false,
                   "columns": 1,

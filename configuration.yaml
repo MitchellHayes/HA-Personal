@@ -17,6 +17,11 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+# Todoist
+calendar:
+  - platform: todoist
+    token: !secret todo_token
+
 # notify group
 notify:
   - platform: group
@@ -25,10 +30,10 @@ notify:
       - service: mobile_app_michelle_s_iphone
       - service: mobile_app_mitchell_s_iphone
 
-# Spotcast
-spotcast:
-  sp_dc: !secret sp_dc
-  sp_key: !secret sp_key
+# Car Wash
+binary_sensor:
+  - platform: car_wash
+    weather: weather.home
 
 # sensor templates
 sensor:
@@ -228,14 +233,6 @@ light:
 
 # plants
 plant:
-  Money Tree:
-    sensors:
-      moisture: sensor.money_tree_moisture
-      battery: sensor.money_tree_battery
-      temperature: sensor.money_tree_temperature
-      conductivity: sensor.money_tree_conductivity
-      brightness: sensor.money_tree_illuminance
-
   Spider Plant:
     sensors:
       moisture: sensor.spider_plant_moisture

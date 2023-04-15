@@ -4,6 +4,13 @@
   "key": "lovelace.new_dashboard_test",
   "data": {
     "config": {
+      "wallpanel": {
+        "enabled": true,
+        "hide_sidebar": true,
+        "hide_toolbar": true,
+        "fullscreen": true,
+        "idle_time": 30
+      },
       "title": "Home Dashboard",
       "views": [
         {
@@ -14,7 +21,7 @@
           "cards": [
             {
               "type": "picture-elements",
-              "image": "/local/floorOne.png",
+              "image": "/local/ui/floorplan/one/floorOne.png",
               "style": "ha-card:first-child {\n  background: rgba(28, 28, 28, 1)\n}\n",
               "elements": [
                 {
@@ -646,7 +653,7 @@
           "cards": [
             {
               "type": "picture-elements",
-              "image": "/local/floorTwo.png",
+              "image": "/local/ui/floorplan/two/floorTwo.png",
               "style": "ha-card:first-child {\n  - background: rgba(28, 28, 28, 1)\n}\n",
               "elements": [
                 {
@@ -1233,7 +1240,7 @@
           "cards": [
             {
               "type": "picture-elements",
-              "image": "/local/floorThree.png",
+              "image": "/local/ui/floorplan/three/floorThree.png",
               "style": "ha-card:first-child {\n  background: rgba(28, 28, 28, 1)\n}\n",
               "elements": [
                 {
@@ -3202,6 +3209,17 @@
           "show_icon": true,
           "show_name": false,
           "show_label": false,
+          "state_color": true,
+          "state": [
+            {
+              "value": "armed_away",
+              "color": "red"
+            },
+            {
+              "value": "armed_home",
+              "color": "red"
+            }
+          ],
           "styles": {
             "card": [
               {
