@@ -9,7 +9,80 @@
         "hide_sidebar": true,
         "hide_toolbar": true,
         "fullscreen": true,
-        "idle_time": 30
+        "card_interaction": true,
+        "idle_time": 10,
+        "cards": [
+          {
+            "type": "weather-forecast",
+            "show_current": true,
+            "show_forecast": true,
+            "entity": "weather.home",
+            "wp_style": {
+              "height": "300px",
+              "grid-column": 1
+            }
+          },
+          {
+            "type": "custom:stack-in-card",
+            "mode": "vertical",
+            "wp_style": null,
+            "cards": [
+              {
+                "type": "map",
+                "wp_style": {
+                  "grid-column": 2
+                },
+                "entities": [
+                  {
+                    "entity": "person.mitchell"
+                  },
+                  {
+                    "entity": "person.michelle"
+                  },
+                  {
+                    "entity": "person.ryan"
+                  }
+                ],
+                "title": "Where is everyone?",
+                "dark_mode": true
+              },
+              {
+                "type": "grid",
+                "cards": [
+                  {
+                    "type": "custom:mushroom-person-card",
+                    "entity": "person.mitchell",
+                    "layout": "vertical",
+                    "icon_type": "entity-picture"
+                  },
+                  {
+                    "type": "custom:mushroom-person-card",
+                    "entity": "person.michelle",
+                    "layout": "vertical",
+                    "icon_type": "entity-picture"
+                  },
+                  {
+                    "type": "custom:mushroom-person-card",
+                    "entity": "person.ryan",
+                    "layout": "vertical",
+                    "icon_type": "entity-picture"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "calendar",
+            "wp_style": {
+              "height": "575px",
+              "grid-column": 3
+            },
+            "initial_view": "listWeek",
+            "entities": [
+              "calendar.family_calendar"
+            ]
+          }
+        ]
       },
       "title": "Home Dashboard",
       "views": [
@@ -1176,7 +1249,7 @@
                   "mode": "vertical",
                   "style": {
                     "top": "25%",
-                    "left": "33%"
+                    "left": "35%"
                   },
                   "cards": [
                     {

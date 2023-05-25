@@ -68,15 +68,11 @@
   - type: opened
     platform: device
     device_id: fa735c35c19ee4664531f2757012c8f2
-    entity_id: binary_sensor.1260_colonnade_lane_patio_window_entry
+    entity_id: binary_sensor.patio_window_entry
     domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 2
-      seconds: 0
   condition: []
   action:
-  - device_id: 3c92411b77ca563694f9a70d896917f6
+  - device_id: fc8b00114fd2a54abe764a82c0d72381
     domain: climate
     entity_id: climate.thermostat
     type: set_hvac_mode
@@ -165,22 +161,22 @@
     domain: cover
     entity_id: cover.living_room_blinds_1
     type: set_position
-    position: 100
+    position: 50
   - device_id: 1b43c21a470ece7eeafe95f80f250f86
     domain: cover
     entity_id: cover.living_room_blinds_2
     type: set_position
-    position: 100
+    position: 50
   - device_id: 4a699228a9ada8252ee23a8ca2d8f1c3
     domain: cover
     entity_id: cover.ryan_s_room_blinds
     type: set_position
-    position: 100
+    position: 50
   - device_id: bacbe9810633979bb5f8318272e5e77e
     domain: cover
     entity_id: cover.office_blinds
     type: set_position
-    position: 100
+    position: 50
   - device_id: 3b559a5a8d32b36ce5c5908e3f113149
     domain: cover
     entity_id: cover.master_bedroom_1
@@ -301,6 +297,22 @@
     entity_id: climate.thermostat
     type: set_preset_mode
     preset_mode: Away
+  - type: turn_on
+    device_id: ddb7a5c7b18ce40e00826ad3cc96b596
+    entity_id: switch.living_room_detect
+    domain: switch
+  - type: turn_on
+    device_id: a7fdbc1dc83ce87dd604964add4de238
+    entity_id: switch.kitchen_detect
+    domain: switch
+  - type: turn_off
+    device_id: 791c1171f0058a051846470812d0b8d8
+    entity_id: remote.living_room_tv
+    domain: remote
+  - type: turn_off
+    device_id: b71813bb3088c58ecc7f6b5c8a57f64a
+    entity_id: remote.gym_tv
+    domain: remote
   mode: single
 - id: '1656173861699'
   alias: 'Mode: Home'
@@ -889,4 +901,88 @@
     data: {}
     target:
       device_id: a175930fdf508e3c45e3d5f273d369da
+  mode: single
+- id: '1682447000301'
+  alias: 'Fan: Ryan''s Room Temp'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ryansroom_temperature
+  condition:
+  - condition: template
+    value_template: '{{ (states(''sensor.ryansroom_temperature'') | float) - (states(''sensor.thermostat_temperature'')
+      | float) >= 3 }}'
+  action:
+  - service: fan.set_percentage
+    data:
+      percentage: 100
+    target:
+      device_id: 1ce9c179410d08876225c7d27beaf988
+  mode: single
+- id: '1682447081910'
+  alias: 'Fan: Master Bedroom Temp'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.masterbedroom_temperature
+  condition: []
+  action:
+  - if:
+    - condition: template
+      value_template: '{{ (states(''sensor.masterbedroom_temperature'') | float) -
+        (states(''sensor.thermostat_temperature'') | float) >= 3 }}'
+    then:
+    - service: fan.set_percentage
+      data:
+        percentage: 80
+      target:
+        device_id: 9a512b1bceda54bbe57d914df9005046
+    else:
+    - service: fan.set_percentage
+      data:
+        percentage: 40
+      target:
+        device_id: 9a512b1bceda54bbe57d914df9005046
+  mode: single
+- id: '1683069832296'
+  alias: 'Cameras: Detect On'
+  description: Enable Detect on Indoor Cams
+  trigger:
+  - platform: device
+    device_id: 552439faaaea4902b4b64fcc22ad996b
+    domain: alarm_control_panel
+    entity_id: alarm_control_panel.alarm_control_panel
+    type: armed_home
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 7f74fe5b1c5f9facb4f5a2ee5dfcaa87
+    entity_id: switch.living_room_detect
+    domain: switch
+  - type: turn_on
+    device_id: 12e9a64e56876a203470fd1fa302d2f5
+    entity_id: switch.kitchen_detect
+    domain: switch
+  mode: single
+- id: '1683069937245'
+  alias: 'Cameras: Detect Off'
+  description: Disable Detect on Indoor Cams
+  trigger:
+  - platform: device
+    device_id: 552439faaaea4902b4b64fcc22ad996b
+    domain: alarm_control_panel
+    entity_id: alarm_control_panel.alarm_control_panel
+    type: disarmed
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 7f74fe5b1c5f9facb4f5a2ee5dfcaa87
+    entity_id: switch.living_room_detect
+    domain: switch
+  - type: turn_off
+    device_id: 12e9a64e56876a203470fd1fa302d2f5
+    entity_id: switch.kitchen_detect
+    domain: switch
   mode: single

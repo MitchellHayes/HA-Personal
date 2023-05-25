@@ -207,13 +207,13 @@
                                 "type": "sensor",
                                 "detail": 1,
                                 "name": "Thermostat",
-                                "entity": "sensor.thermostat_current_temperature"
+                                "entity": "sensor.thermostat_temperature"
                               },
                               {
                                 "hours_to_show": 24,
                                 "graph": "line",
                                 "type": "sensor",
-                                "entity": "sensor.thermostat_current_humidity",
+                                "entity": "sensor.thermostat_humidity",
                                 "detail": 1,
                                 "name": "Humidity"
                               },
@@ -483,7 +483,7 @@
           "cards": [
             {
               "square": false,
-              "columns": 2,
+              "columns": 4,
               "type": "grid",
               "cards": [
                 {
@@ -529,41 +529,8 @@
                           "state_color": true
                         },
                         {
-                          "show_name": true,
-                          "show_icon": true,
-                          "show_state": true,
                           "type": "glance",
                           "entities": [
-                            {
-                              "entity": "binary_sensor.nest_protect_entryway_smoke_status",
-                              "name": "Entry Way"
-                            },
-                            {
-                              "entity": "binary_sensor.nest_protect_living_room_smoke_status",
-                              "name": "Living Room"
-                            },
-                            {
-                              "entity": "binary_sensor.nest_protect_hallway_smoke_status",
-                              "name": "Hallway"
-                            },
-                            {
-                              "entity": "binary_sensor.nest_protect_office_smoke_status",
-                              "name": "Craft Room"
-                            },
-                            {
-                              "entity": "binary_sensor.nest_protect_ryan_s_room_smoke_status",
-                              "name": "Ryan's Room"
-                            }
-                          ],
-                          "state_color": false
-                        },
-                        {
-                          "type": "glance",
-                          "entities": [
-                            {
-                              "entity": "binary_sensor.nest_protect_master_bedroom_smoke_status",
-                              "name": "Master Bedroom"
-                            },
                             {
                               "entity": "sensor.air_quality_ryan"
                             },
@@ -581,7 +548,6 @@
                 },
                 {
                   "square": false,
-                  "columns": 2,
                   "type": "grid",
                   "cards": [
                     {
@@ -598,10 +564,17 @@
                       "show_name": false,
                       "camera_view": "live",
                       "type": "picture-entity",
-                      "entity": "camera.garage",
-                      "camera_image": "camera.garage",
-                      "aspect_ratio": "16:9"
-                    },
+                      "aspect_ratio": "16:9",
+                      "entity": "camera.front_door_2",
+                      "camera_image": "camera.front_door_2"
+                    }
+                  ],
+                  "columns": 1
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
                     {
                       "show_state": false,
                       "show_name": false,
@@ -616,8 +589,24 @@
                       "show_name": false,
                       "camera_view": "live",
                       "type": "picture-entity",
-                      "entity": "camera.kitchen",
-                      "camera_image": "camera.kitchen",
+                      "entity": "camera.patio",
+                      "camera_image": "camera.patio",
+                      "aspect_ratio": "16:9"
+                    }
+                  ],
+                  "columns": 1
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "show_state": false,
+                      "show_name": false,
+                      "camera_view": "live",
+                      "type": "picture-entity",
+                      "entity": "camera.living_room",
+                      "camera_image": "camera.living_room",
                       "aspect_ratio": "16:9"
                     },
                     {
@@ -625,11 +614,12 @@
                       "show_name": false,
                       "camera_view": "live",
                       "type": "picture-entity",
-                      "entity": "camera.patio",
-                      "camera_image": "camera.patio",
+                      "entity": "camera.kitchen2",
+                      "camera_image": "camera.kitchen2",
                       "aspect_ratio": "16:9"
                     }
-                  ]
+                  ],
+                  "columns": 1
                 }
               ]
             }

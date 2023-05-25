@@ -47,7 +47,7 @@
                 {
                   "type": "custom:mushroom-template-card",
                   "primary": "{% set time = now().hour %}\n{% if (time >= 18) %}\n  Good Evening, {{user}}!\n{% elif (time >= 12) %}\n  Good Afternoon, {{user}}!\n{% elif (time >= 5) %}\n  Good Morning, {{user}}!\n{% else %}\n  Hello, {{user}}!\n{% endif %}",
-                  "secondary": "",
+                  "secondary": "{% if states('sensor.grass_simple') == 'High' or states('sensor.ragweed_simple') == 'High' or states('sensor.tree_simple') == 'High' %}\n  Pollen Count is High!\n{% else %}\n  Pollen count is normal.\n{% endif %}",
                   "icon": ""
                 },
                 {
@@ -1517,61 +1517,6 @@
                               {
                                 "type": "custom:mushroom-entity-card",
                                 "entity": "binary_sensor.patio_window_entry"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "horizontal-stack",
-                            "cards": [
-                              {
-                                "type": "custom:mushroom-entity-card",
-                                "entity": "binary_sensor.nest_protect_entryway_smoke_status",
-                                "icon": "mdi:smoke-detector-variant",
-                                "name": "Entry Way",
-                                "fill_container": false,
-                                "layout": "horizontal"
-                              },
-                              {
-                                "type": "custom:mushroom-entity-card",
-                                "entity": "binary_sensor.nest_protect_living_room_smoke_status",
-                                "icon": "mdi:smoke-detector-variant",
-                                "name": "Living Room",
-                                "layout": "horizontal"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "horizontal-stack",
-                            "cards": [
-                              {
-                                "type": "custom:mushroom-entity-card",
-                                "layout": "horizontal",
-                                "entity": "binary_sensor.nest_protect_hallway_smoke_status",
-                                "name": "Hallway",
-                                "icon": "mdi:smoke-detector-variant"
-                              },
-                              {
-                                "type": "custom:mushroom-entity-card",
-                                "entity": "binary_sensor.nest_protect_office_smoke_status",
-                                "icon": "mdi:smoke-detector-variant",
-                                "name": "Craft Room"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "horizontal-stack",
-                            "cards": [
-                              {
-                                "type": "custom:mushroom-entity-card",
-                                "entity": "binary_sensor.nest_protect_master_bedroom_smoke_status",
-                                "name": "Master Bedroom",
-                                "icon": "mdi:smoke-detector-variant"
-                              },
-                              {
-                                "type": "custom:mushroom-entity-card",
-                                "entity": "binary_sensor.nest_protect_ryan_s_room_smoke_status",
-                                "name": "Ryan's Room",
-                                "icon": "mdi:smoke-detector-variant"
                               }
                             ]
                           },

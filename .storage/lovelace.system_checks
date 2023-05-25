@@ -112,6 +112,16 @@
                 "red": 3
               },
               "needle": false
+            },
+            {
+              "type": "gauge",
+              "severity": {
+                "green": 66,
+                "yellow": 33,
+                "red": 3
+              },
+              "needle": false,
+              "entity": "sensor.ryans_air_purifier_filter_life"
             }
           ]
         },
