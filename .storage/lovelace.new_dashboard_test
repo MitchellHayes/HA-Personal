@@ -5,7 +5,7 @@
   "data": {
     "config": {
       "wallpanel": {
-        "enabled": true,
+        "enabled": false,
         "hide_sidebar": true,
         "hide_toolbar": true,
         "fullscreen": true,

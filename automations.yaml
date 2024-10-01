@@ -87,17 +87,17 @@
     offset: '-15'
   condition: []
   action:
-  - device_id: 5842219f78287cb18b25231f92452279
+  - device_id: a251c8df7e8c5e3917cf81c6dcee054f
     domain: cover
-    entity_id: cover.kitchen_blinds
+    entity_id: 3b17943518bd025c07c97022e39aa8fd
     type: set_position
     position: 0
-  - device_id: 2aebd58c41cb947398868f1fdaf95525
+  - device_id: 5bfd9bc8850d74371e641574a7dbc496
     domain: cover
-    entity_id: cover.living_room_blinds_1
+    entity_id: 0c3820c1b37eb601364270a3b665f22d
     type: set_position
     position: 0
-  - device_id: 1b43c21a470ece7eeafe95f80f250f86
+  - device_id: f43e11190b93158cec468714e5142330
     domain: cover
     entity_id: cover.living_room_blinds_2
     type: set_position
@@ -134,13 +134,26 @@
       - device_id: 6e4e58134b1f17ed9bbbc01d2c47ccbc
         domain: mobile_app
         type: notify
-        message: Check batter level on {{sensors}}
+        message: Check battery level on {{sensors}}
         title: Low Battery
-      - service: todoist.new_task
-        data:
-          project: Inbox
-          priority: 4
-          content: Charge {{sensors}}
+      - if:
+        - condition: zone
+          entity_id: person.mitchell
+          zone: zone.home
+        then:
+        - service: media_player.volume_set
+          data_template:
+            entity_id: media_player.kitchen_display
+            volume_level: 0.7
+        - service: tts.google_translate_say
+          data:
+            cache: false
+            entity_id: media_player.kitchen_speaker
+            message: Check battery level on {{sensors}}
+        - service: media_player.volume_set
+          data_template:
+            entity_id: media_player.kitchen_display
+            volume_level: 0.5
       exclude:
         entity_id:
         - sensor.mitchell_s_iphone_battery_level
@@ -148,6 +161,11 @@
         - sensor.michelle_s_iphone_battery_level
         - sensor.scarlett_battery
         - sensor.freya_battery
+        - sensor.ipad_battery_level
+        - sensor.ipad_battery
+        - sensor.ryans_apple_watch_battery
+        - sensor.michelles_apple_watch_battery
+        - sensor.mitchells_apple_watch_battery
 - id: '1654011479692'
   alias: 'Blinds: AM Sun-based'
   description: ''
@@ -157,19 +175,19 @@
     offset: 0
   condition: []
   action:
-  - device_id: 2aebd58c41cb947398868f1fdaf95525
+  - device_id: 5bfd9bc8850d74371e641574a7dbc496
     domain: cover
-    entity_id: cover.living_room_blinds_1
+    entity_id: 0c3820c1b37eb601364270a3b665f22d
     type: set_position
     position: 50
-  - device_id: 1b43c21a470ece7eeafe95f80f250f86
+  - device_id: f43e11190b93158cec468714e5142330
     domain: cover
     entity_id: cover.living_room_blinds_2
     type: set_position
     position: 50
-  - device_id: 4a699228a9ada8252ee23a8ca2d8f1c3
+  - device_id: f14534d326b7fb00fd3da43650617fd6
     domain: cover
-    entity_id: cover.ryan_s_room_blinds
+    entity_id: fd480d2202816f88a9b2d357ce00a99a
     type: set_position
     position: 50
   - device_id: bacbe9810633979bb5f8318272e5e77e
@@ -224,17 +242,17 @@
     entity_id: cover.office_blinds
     type: set_position
     position: 100
-  - device_id: 4a699228a9ada8252ee23a8ca2d8f1c3
+  - device_id: f14534d326b7fb00fd3da43650617fd6
     domain: cover
-    entity_id: cover.ryan_s_room_blinds
+    entity_id: fd480d2202816f88a9b2d357ce00a99a
     type: set_position
     position: 100
-  - device_id: e1128e29d037b94207f1b6e4a7c2af70
+  - device_id: 5bfd9bc8850d74371e641574a7dbc496
     domain: cover
-    entity_id: cover.living_room_blinds_1
+    entity_id: 0c3820c1b37eb601364270a3b665f22d
     type: set_position
     position: 100
-  - device_id: 1b43c21a470ece7eeafe95f80f250f86
+  - device_id: f43e11190b93158cec468714e5142330
     domain: cover
     entity_id: cover.living_room_blinds_2
     type: set_position
@@ -277,15 +295,16 @@
     domain: alarm_control_panel
     entity_id: alarm_control_panel.alarm_control_panel
     type: arm_away
+    code: '9513'
   - choose:
     - conditions:
       - condition: state
         entity_id: input_boolean.vacuum_ran
         state: 'off'
       sequence:
-      - device_id: 026f3aefba08ebd7406b4f2b8c958195
+      - device_id: 51c495a7d310b408944ceb6ff0ea24f1
         domain: vacuum
-        entity_id: vacuum.second_floor_vacuum
+        entity_id: ebe1d35f969f87ae96c8418a22ea32e4
         type: clean
       - service: input_boolean.turn_on
         data: {}
@@ -296,15 +315,7 @@
     domain: climate
     entity_id: climate.thermostat
     type: set_preset_mode
-    preset_mode: Away
-  - type: turn_on
-    device_id: ddb7a5c7b18ce40e00826ad3cc96b596
-    entity_id: switch.living_room_detect
-    domain: switch
-  - type: turn_on
-    device_id: a7fdbc1dc83ce87dd604964add4de238
-    entity_id: switch.kitchen_detect
-    domain: switch
+    preset_mode: away
   - type: turn_off
     device_id: 791c1171f0058a051846470812d0b8d8
     entity_id: remote.living_room_tv
@@ -340,7 +351,7 @@
     domain: climate
     entity_id: climate.thermostat
     type: set_preset_mode
-    preset_mode: Home
+    preset_mode: home
   mode: single
 - id: '1657498537397'
   alias: Reset Helpers at 2300
@@ -357,100 +368,6 @@
       - input_boolean.vacuum_ran
       - input_boolean.company_over_kill_switch
   mode: single
-- id: '1657749467969'
-  alias: Garage Door Close
-  description: ''
-  trigger:
-  - platform: zone
-    entity_id: person.michelle
-    zone: zone.home
-    event: leave
-  - platform: zone
-    entity_id: person.mitchell
-    zone: zone.home
-    event: leave
-  condition:
-  - condition: device
-    device_id: 20ef7f659c8d5a8544dedcf9ac489147
-    domain: cover
-    entity_id: cover.garage_door
-    type: is_open
-  action:
-  - service: notify.mitchell_and_michelle_phones
-    data:
-      message: Would you like to close the garage door?
-      title: Garage Door
-      data:
-        actions:
-        - action: CLOSE_GARAGE
-          title: Close Garage Door
-  - wait_for_trigger:
-    - platform: event
-      event_type: mobile_app_notification_action
-      event_data:
-        action: CLOSE_GARAGE
-    timeout:
-      hours: 0
-      minutes: 5
-      seconds: 0
-      milliseconds: 0
-    continue_on_timeout: false
-  - device_id: 20ef7f659c8d5a8544dedcf9ac489147
-    domain: cover
-    entity_id: cover.garage_door
-    type: close
-  - service: notify.mitchell_and_michelle_phones
-    data:
-      message: The garage door was closed.
-      title: Garage Door
-  mode: single
-- id: '1657749566896'
-  alias: Garage Door Open
-  description: ''
-  trigger:
-  - platform: zone
-    entity_id: person.michelle
-    zone: zone.home
-    event: enter
-  - platform: zone
-    entity_id: person.mitchell
-    zone: zone.home
-    event: enter
-  condition:
-  - condition: device
-    device_id: 20ef7f659c8d5a8544dedcf9ac489147
-    domain: cover
-    entity_id: cover.garage_door
-    type: is_closed
-  action:
-  - service: notify.mitchell_and_michelle_phones
-    data:
-      message: Would you like to open the garage door?
-      title: Garage Door
-      data:
-        actions:
-        - action: OPEN_GARAGE
-          title: Open Garage Door
-  - wait_for_trigger:
-    - platform: event
-      event_type: mobile_app_notification_action
-      event_data:
-        action: OPEN_GARAGE
-    timeout:
-      hours: 0
-      minutes: 2
-      seconds: 0
-      milliseconds: 0
-    continue_on_timeout: false
-  - device_id: 20ef7f659c8d5a8544dedcf9ac489147
-    domain: cover
-    entity_id: cover.garage_door
-    type: open
-  - service: notify.mitchell_and_michelle_phones
-    data:
-      message: The garage door was opened.
-      title: Garage Door
-  mode: single
 - id: '1661388546429'
   alias: 'Reminder: Charge Michelle''s Tesla'
   description: ''
@@ -463,16 +380,10 @@
     - condition: zone
       entity_id: device_tracker.freya_location_tracker
       zone: zone.home
-    - type: is_battery_level
+    - type: is_not_plugged_in
       condition: device
       device_id: ecea222fa0985e37d2b824e945d0ac90
-      entity_id: sensor.freya_battery
-      domain: sensor
-      below: 50
-    - type: is_not_charging
-      condition: device
-      device_id: ecea222fa0985e37d2b824e945d0ac90
-      entity_id: binary_sensor.freya_charging
+      entity_id: 4d564e7a77b19a97e2ec45fef5fb36b4
       domain: binary_sensor
   action:
   - service: notify.mitchell_and_michelle_phones
@@ -491,12 +402,10 @@
     to: 'on'
   condition: []
   action:
-  - service: mass.queue_command
+  - service: media_player.play_media
     data:
-      command: play_media
-      uri: spotify:playlist:37i9dQZF1DX63RoW298D1b
-      enqueue_mode: play
-      radio_mode: true
+      media_content_id: spotify:playlist:37i9dQZF1DX63RoW298D1b
+      media_content_type: playlist
     target:
       entity_id: media_player.mass_second_floor_bathroom
   mode: single
@@ -512,16 +421,10 @@
     - condition: zone
       entity_id: device_tracker.scarlett_location_tracker
       zone: zone.home
-    - type: is_battery_level
+    - type: is_not_plugged_in
       condition: device
       device_id: 67413852794146bda7453759331ee1a0
-      entity_id: sensor.scarlett_battery
-      domain: sensor
-      below: 50
-    - type: is_not_charging
-      condition: device
-      device_id: 67413852794146bda7453759331ee1a0
-      entity_id: binary_sensor.scarlett_charging
+      entity_id: 548a7966121e173f0540f301cf0827f7
       domain: binary_sensor
   action:
   - service: notify.mitchell_and_michelle_phones
@@ -647,32 +550,6 @@
       entity_id: scene.michelle_s_office_lights
     metadata: {}
   mode: single
-- id: '1663768612148'
-  alias: 'Reminder: Basement Check'
-  description: ''
-  trigger:
-  - platform: time
-    at: '21:00:00'
-  condition:
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: person.mitchell
-      state: home
-    - condition: state
-      entity_id: person.michelle
-      state: home
-  - condition: state
-    entity_id: input_boolean.basement_check
-    state: 'off'
-  action:
-  - service: notify.mobile_app_michelle_s_iphone
-    data:
-      message: Check basement.
-  - service: notify.mobile_app_mitchell_s_iphone
-    data:
-      message: Check basement.
-  mode: single
 - id: '1663769309933'
   alias: Auto-Off Upstairs Hallway Light
   description: ''
@@ -696,17 +573,21 @@
     domain: light
   mode: single
 - id: '1663769727534'
-  alias: Reset Helpers at 0200
+  alias: Reset Helpers at 0600
   description: ''
   trigger:
   - platform: time
-    at: 02:00:00
+    at: 06:00:00
   condition: []
   action:
   - service: input_boolean.turn_off
     data: {}
     target:
       entity_id: input_boolean.basement_check
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.status_sleeping
   mode: single
 - id: '1663872498680'
   alias: NFC Gym Vac Switch
@@ -716,9 +597,9 @@
     event_type: Gym_Vac_Scanned
   condition: []
   action:
-  - device_id: c1e2fd3bb944ed5ba54ce824b6c6ba73
+  - device_id: 58a949696ac1cff3640530ba625a6bab
     domain: vacuum
-    entity_id: vacuum.first_floor_vacuum
+    entity_id: 4dbbdf7877cd658ff4820e2317cf74aa
     type: clean
   mode: single
 - id: '1663873412632'
@@ -745,39 +626,10 @@
     to: 'off'
   condition: []
   action:
-  - service: mass.queue_command
-    data:
-      command: stop
-      uri: spotify:playlist:37i9dQZF1DX63RoW298D1b
+  - service: media_player.media_stop
+    data: {}
     target:
       entity_id: media_player.mass_second_floor_bathroom
-  mode: single
-- id: '1665425091815'
-  alias: 'Lights: Outdoor on'
-  description: ''
-  trigger:
-  - platform: sun
-    event: sunset
-    offset: -00:30:00
-  condition: []
-  action:
-  - type: turn_on
-    device_id: fb16e6cacfb7530e35190a4c6b20e88b
-    entity_id: switch.patio_lights
-    domain: switch
-  mode: single
-- id: '1665425190448'
-  alias: 'Lights: Outdoor off'
-  description: ''
-  trigger:
-  - platform: time
-    at: 00:00:00
-  condition: []
-  action:
-  - type: turn_off
-    device_id: fb16e6cacfb7530e35190a4c6b20e88b
-    entity_id: switch.patio_lights
-    domain: switch
   mode: single
 - id: '1666900245347'
   alias: 'Reminder: Doorbell notification'
@@ -789,18 +641,17 @@
     type: doorbell_chime
   condition: []
   action:
-  - service: camera.snapshot
-    data:
+  - data:
       filename: /config/www/doorbell.png
+    action: camera.snapshot
     target:
-      entity_id: camera.front_door
+      device_id: a3c5985da1d47ab1602f459a91b409fb
   - delay:
       hours: 0
       minutes: 0
       seconds: 3
       milliseconds: 0
-  - service: notify.living_room_tv
-    data:
+  - data:
       message: Someone is at the door
       title: Front Door
       data:
@@ -811,13 +662,14 @@
         color: grey
         image:
           path: /config/www/doorbell.png
-  - service: notify.mitchell_and_michelle_phones
-    data:
+    action: notify.living_room_tv
+  - data:
       message: Someone is at the door.
       title: Doorbell
       data:
         entity_id: camera.front_door
         url: /lovelace-mobile/secure
+    action: notify.mitchell_and_michelle_phones
   mode: single
 - id: '1671619842808'
   alias: 'Vacuum: Second Floor'
@@ -827,9 +679,9 @@
     at: 00:00:00
   condition: []
   action:
-  - device_id: 026f3aefba08ebd7406b4f2b8c958195
+  - device_id: 51c495a7d310b408944ceb6ff0ea24f1
     domain: vacuum
-    entity_id: vacuum.second_floor_vacuum
+    entity_id: ebe1d35f969f87ae96c8418a22ea32e4
     type: clean
   mode: single
 - id: '1672427999221'
@@ -946,43 +798,167 @@
       target:
         device_id: 9a512b1bceda54bbe57d914df9005046
   mode: single
-- id: '1683069832296'
-  alias: 'Cameras: Detect On'
-  description: Enable Detect on Indoor Cams
+- id: '1693913893555'
+  alias: 'Test: Good Night Routine'
+  description: ''
   trigger:
-  - platform: device
-    device_id: 552439faaaea4902b4b64fcc22ad996b
-    domain: alarm_control_panel
-    entity_id: alarm_control_panel.alarm_control_panel
-    type: armed_home
-  condition: []
+  - type: occupied
+    platform: device
+    device_id: b9de06a17b0bcea06a09b2bc77cab245
+    entity_id: 7e99bd265a7e1bc68d4e99e131554212
+    domain: binary_sensor
+  - type: occupied
+    platform: device
+    device_id: b9de06a17b0bcea06a09b2bc77cab245
+    entity_id: 2445bb10ad0cf832a4b3dbe363f2af9c
+    domain: binary_sensor
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.schedule_bed_time
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.status_sleeping
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.masterbedroom_occupancy
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: zone
+        entity_id: person.mitchell
+        zone: zone.home
+      - condition: zone
+        entity_id: person.michelle
+        zone: zone.home
   action:
-  - type: turn_on
-    device_id: 7f74fe5b1c5f9facb4f5a2ee5dfcaa87
-    entity_id: switch.living_room_detect
-    domain: switch
-  - type: turn_on
-    device_id: 12e9a64e56876a203470fd1fa302d2f5
-    entity_id: switch.kitchen_detect
-    domain: switch
+  - service: tts.google_translate_say
+    data:
+      cache: true
+      entity_id: media_player.master_bedroom
+      message: Starting Good Night Routine
+  - service: notify.mobile_app_mitchell_s_iphone
+    data:
+      message: Would you like to cancel "Good Night"
+      title: Routines
+      data:
+        actions:
+        - action: GOOD_NIGHT_CANCEL
+          title: 'Yes'
+  - wait_for_trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: GOOD_NIGHT_CANCEL
+      id: stop
+    timeout:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+    continue_on_timeout: true
+  - if:
+    - condition: trigger
+      id:
+      - stop
+    then:
+    - service: tts.google_translate_say
+      data:
+        cache: true
+        entity_id: media_player.master_bedroom
+        message: Good Night Routine Was Canceled
+    else:
+    - service: tts.google_translate_say
+      data:
+        cache: true
+        entity_id: media_player.master_bedroom
+        message: Test Good Night Routine Was Successful
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.status_sleeping
   mode: single
-- id: '1683069937245'
-  alias: 'Cameras: Detect Off'
-  description: Disable Detect on Indoor Cams
+- id: '1694126178868'
+  alias: 'Routine: Good Night'
+  description: ''
   trigger:
-  - platform: device
-    device_id: 552439faaaea4902b4b64fcc22ad996b
-    domain: alarm_control_panel
-    entity_id: alarm_control_panel.alarm_control_panel
-    type: disarmed
-  condition: []
+  - type: occupied
+    platform: device
+    device_id: b9de06a17b0bcea06a09b2bc77cab245
+    entity_id: 7e99bd265a7e1bc68d4e99e131554212
+    domain: binary_sensor
+  - type: occupied
+    platform: device
+    device_id: b9de06a17b0bcea06a09b2bc77cab245
+    entity_id: 2445bb10ad0cf832a4b3dbe363f2af9c
+    domain: binary_sensor
+  condition:
+  - condition: or
+    conditions:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.schedule_bed_time
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.status_sleeping
+        state: 'off'
+      - condition: zone
+        entity_id: person.michelle
+        zone: zone.home
+      - condition: zone
+        entity_id: person.mitchell
+        zone: zone.home
+      - type: is_occupied
+        condition: device
+        device_id: b9de06a17b0bcea06a09b2bc77cab245
+        entity_id: 2445bb10ad0cf832a4b3dbe363f2af9c
+        domain: binary_sensor
+      - type: is_occupied
+        condition: device
+        device_id: b9de06a17b0bcea06a09b2bc77cab245
+        entity_id: 7e99bd265a7e1bc68d4e99e131554212
+        domain: binary_sensor
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.schedule_bed_time
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.status_sleeping
+        state: 'off'
+      - condition: zone
+        entity_id: person.michelle
+        zone: zone.home
+      - condition: not
+        conditions:
+        - condition: zone
+          entity_id: person.mitchell
+          zone: zone.home
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.schedule_bed_time
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.status_sleeping
+        state: 'off'
+      - condition: zone
+        entity_id: person.mitchell
+        zone: zone.home
+      - condition: not
+        conditions:
+        - condition: zone
+          entity_id: person.michelle
+          zone: zone.home
   action:
-  - type: turn_off
-    device_id: 7f74fe5b1c5f9facb4f5a2ee5dfcaa87
-    entity_id: switch.living_room_detect
-    domain: switch
-  - type: turn_off
-    device_id: 12e9a64e56876a203470fd1fa302d2f5
-    entity_id: switch.kitchen_detect
-    domain: switch
+  - service: script.toggle
+    data: {}
+    target:
+      entity_id: script.good_night
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.status_sleeping
   mode: single

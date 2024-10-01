@@ -17,11 +17,6 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-# Todoist
-calendar:
-  - platform: todoist
-    token: !secret todo_token
-
 # notify group
 notify:
   - platform: group
@@ -30,11 +25,6 @@ notify:
       - service: mobile_app_michelle_s_iphone
       - service: mobile_app_mitchell_s_iphone
 
-# Car Wash
-binary_sensor:
-  - platform: car_wash
-    weather: weather.home
-
 # sensor templates
 sensor:
   # Time and Date
@@ -42,6 +32,11 @@ sensor:
     display_options:
       - "time"
       - "date"
+  # Weather Alerts
+  - platform: weatheralerts
+    state: MD
+    zone: 508
+    county: 25
 
   # Home/Away for Dashboard
   - platform: template
@@ -240,3 +235,4 @@ plant:
       temperature: sensor.spider_plant_temperature
       conductivity: sensor.spider_plant_conductivity
       brightness: sensor.spider_plant_illuminance
+
