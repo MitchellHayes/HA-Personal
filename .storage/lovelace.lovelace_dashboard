@@ -1851,14 +1851,11 @@
         {
           "title": "People",
           "path": "people",
-          "icon": "mdi:account-group",
-          "type": "panel",
-          "theme": "minimalist-desktop",
-          "badges": [],
-          "cards": [
+          "type": "sections",
+          "max_columns": 4,
+          "sections": [
             {
-              "type": "custom:layout-card",
-              "layout_type": "custom:grid-layout",
+              "type": "grid",
               "cards": [
                 {
                   "type": "horizontal-stack",
@@ -1888,8 +1885,9 @@
                       }
                     }
                   ],
-                  "view_layout": {
-                    "grid-area": "h1"
+                  "layout_options": {
+                    "grid_columns": "full",
+                    "grid_rows": "auto"
                   }
                 },
                 {
@@ -1976,11 +1974,12 @@
                           "name": "Phone Battery",
                           "hours_to_show": 12
                         }
-                      ],
-                      "view-layout": {
-                        "grid-area": "c1"
-                      }
+                      ]
                     }
+                  },
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": "auto"
                   }
                 },
                 {
@@ -1990,55 +1989,383 @@
                   "states": {
                     "mitchell": {
                       "type": "map",
+                      "aspect_ratio": "16x9",
+                      "dark_mode": true,
                       "entities": [
                         {
                           "entity": "device_tracker.mitchell_s_iphone"
                         }
                       ],
                       "hours_to_show": 18,
-                      "default_zoom": 12,
-                      "style": "ha-card {\n  max-height: 80vh !important;\n}\n"
+                      "default_zoom": 12
                     },
                     "michelle": {
                       "type": "map",
+                      "dark_mode": true,
+                      "aspect_ratio": "16x9",
                       "entities": [
                         {
                           "entity": "device_tracker.michelle_s_iphone"
                         }
                       ],
                       "hours_to_show": 18,
-                      "default_zoom": 12,
-                      "style": "ha-card {\n  max-height: 80vh !important;\n}\n"
+                      "default_zoom": 12
                     },
                     "ryan": {
                       "type": "map",
+                      "aspect_ratio": "16x9",
+                      "dark_mode": true,
                       "entities": [
                         {
                           "entity": "device_tracker.ryans_iphone"
                         }
                       ],
                       "hours_to_show": 18,
-                      "default_zoom": 12,
-                      "style": "ha-card {\n  max-height: 80vh !important;\n}\n"
+                      "default_zoom": 12
                     }
                   },
-                  "view-layout": {
-                    "grid-area": "c2"
+                  "layout_options": {
+                    "grid_columns": 12,
+                    "grid_rows": "auto"
                   }
                 }
               ],
-              "layout": {
-                "gridrows": "auto",
-                "grid-template-columns": "35% 65%",
-                "grid-template-areas": "\"h1 h1\"\n\"c1 c2\"\n",
-                "mediaquery": {
-                  "(max-width: 949px)": {
-                    "grid-template-columns": "100%",
-                    "grid-template-areas": "\"h1\"\n\"c1\"\n\"c2\"\n"
+              "column_span": 4
+            }
+          ],
+          "cards": [],
+          "icon": "mdi:account-group"
+        },
+        {
+          "type": "sections",
+          "path": "test",
+          "max_columns": 4,
+          "title": "test",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "picture-elements",
+                  "elements": [
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.time",
+                      "style": {
+                        "left": "50%",
+                        "top": "10%",
+                        "font-size": "6vh"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": "/local/ui/btns/firstFloor_on.png",
+                      "style": {
+                        "left": "50%",
+                        "top": "20%",
+                        "width": "80%"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": "/local/ui/btns/secondFloor_off.png",
+                      "style": {
+                        "left": "50%",
+                        "top": "26%",
+                        "width": "80%"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": "/local/ui/btns/thirdFloor_off.png",
+                      "style": {
+                        "left": "50%",
+                        "top": "32%",
+                        "width": "80%"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": "/local/ui/btns/vacuums_off.png",
+                      "style": {
+                        "left": "50%",
+                        "top": "38%",
+                        "width": "80%"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": "/local/ui/btns/media_off.png",
+                      "style": {
+                        "left": "50%",
+                        "top": "44%",
+                        "width": "80%"
+                      }
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.mitchell_away",
+                          "state": "home"
+                        }
+                      ],
+                      "elements": [
+                        {
+                          "type": "image",
+                          "style": {
+                            "left": "25%",
+                            "top": "55%",
+                            "height": "8vh",
+                            "width": "8vh"
+                          },
+                          "image": "/local/mitchellHome.png",
+                          "tap_action": {
+                            "action": "navigate",
+                            "navigation_path": "#mitchellDetails"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.mitchell_away",
+                          "state": "not_home"
+                        }
+                      ],
+                      "elements": [
+                        {
+                          "type": "image",
+                          "image": "/local/mitchellGone.png",
+                          "style": {
+                            "left": "25%",
+                            "top": "55%",
+                            "height": "8vh",
+                            "width": "8vh"
+                          },
+                          "tap_action": {
+                            "action": "navigate",
+                            "navigation_path": "#mitchellDetails"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.michelle_away",
+                          "state": "not_home"
+                        }
+                      ],
+                      "elements": [
+                        {
+                          "type": "image",
+                          "style": {
+                            "left": "50%",
+                            "top": "55%",
+                            "height": "8vh",
+                            "width": "8vh"
+                          },
+                          "image": "/local/michelleGone.png",
+                          "tap_action": {
+                            "action": "navigate",
+                            "navigation_path": "#michelleDetails"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.michelle_away",
+                          "state": "home"
+                        }
+                      ],
+                      "elements": [
+                        {
+                          "type": "image",
+                          "style": {
+                            "left": "50%",
+                            "top": "55%",
+                            "height": "8vh",
+                            "width": "8vh"
+                          },
+                          "image": "/local/michelleHome.png",
+                          "tap_action": {
+                            "action": "navigate",
+                            "navigation_path": "#michelleDetails"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.ryan_away",
+                          "state": "not_home"
+                        }
+                      ],
+                      "elements": [
+                        {
+                          "type": "image",
+                          "style": {
+                            "left": "75%",
+                            "top": "55%",
+                            "height": "8vh",
+                            "width": "8vh"
+                          },
+                          "image": "/local/ryanGone.png",
+                          "tap_action": {
+                            "action": "navigate",
+                            "navigation_path": "#ryanDetails"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "conditional",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.ryan_away",
+                          "state": "home"
+                        }
+                      ],
+                      "elements": [
+                        {
+                          "type": "image",
+                          "style": {
+                            "left": "75%",
+                            "top": "55%",
+                            "height": "8vh",
+                            "width": "8vh"
+                          },
+                          "image": "/local/ryanHome.png",
+                          "tap_action": {
+                            "action": "navigate",
+                            "navigation_path": "#ryanDetails"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "image": "/local/ui/sidebar/sidebarBG2.png",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 13
                   }
+                }
+              ],
+              "column_span": 4
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#mitchellDetails",
+                      "show_header": true,
+                      "name": "Mitchell",
+                      "show_icon": false,
+                      "show_name": true,
+                      "show_state": false
+                    },
+                    {
+                      "type": "map",
+                      "entities": [
+                        {
+                          "entity": "person.mitchell"
+                        }
+                      ],
+                      "theme_mode": "dark",
+                      "hours_to_show": 6
+                    }
+                  ]
                 },
-                "overflow": "hidden"
-              }
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#michelleDetails",
+                      "show_header": true,
+                      "name": "Michelle",
+                      "show_icon": false,
+                      "show_name": true,
+                      "show_state": false
+                    },
+                    {
+                      "type": "map",
+                      "entities": [
+                        {
+                          "entity": "person.michelle"
+                        }
+                      ],
+                      "theme_mode": "dark",
+                      "hours_to_show": 6
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#ryanDetails",
+                      "show_header": true,
+                      "name": "Ryan",
+                      "show_icon": false,
+                      "show_name": true,
+                      "show_state": false
+                    },
+                    {
+                      "type": "map",
+                      "entities": [
+                        {
+                          "entity": "person.ryan"
+                        }
+                      ],
+                      "theme_mode": "dark",
+                      "hours_to_show": 6
+                    }
+                  ]
+                }
+              ],
+              "column_span": 1
+            }
+          ],
+          "cards": []
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Home",
+          "path": "home",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "New section"
+                }
+              ]
             }
           ]
         }

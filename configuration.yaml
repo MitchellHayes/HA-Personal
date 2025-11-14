@@ -38,55 +38,6 @@ sensor:
     zone: 508
     county: 25
 
-  # Home/Away for Dashboard
-  - platform: template
-    sensors:
-      mitchell_away:
-        icon_template: "mdi:account-search"
-        value_template: >-
-          {% if is_state('person.mitchell', 'home') %}
-            home
-          {% else %}
-            not_home
-          {% endif %}
-
-      michelle_away:
-        icon_template: "mdi:account-search"
-        value_template: >-
-          {% if is_state('person.michelle', 'home') %}
-            home
-          {% else %}
-            not_home
-          {% endif %}
-
-      ryan_away:
-        icon_template: "mdi:account-search"
-        value_template: >-
-          {% if is_state('person.ryan', 'home') %}
-            home
-          {% else %}
-            not_home
-          {% endif %}
-
-  # Templates for playing media
-  - platform: template
-    sensors:
-      first_floor_media:
-        value_template: >-
-          {% if is_state('media_player.family_room_tv', 'playing') or is_state('media_player.family_room', 'playing') %}
-            playing
-          {% else %}
-            not_playing
-          {% endif %}
-
-      second_floor_media:
-        value_template: >-
-          {% if is_state('media_player.living_room_tv', 'playing') or is_state('media_player.kitchen_speaker', 'playing') %}
-            playing
-          {% else %}
-            not_playing
-          {% endif %}
-
   # Templates for Home Air Quality
   - platform: template
     sensors:
@@ -171,6 +122,8 @@ sensor:
             Very High
           {% endif %}
 
+
+
 # Color temp for ceiling fan in Master Bedroom
 light:
   - platform: template
@@ -182,57 +135,46 @@ light:
         level_template: "{{ states('input_number.master_bedroom_ceiling_fan_brightness')|int }}"
         temperature_template: "{{ states('input_number.master_bedroom_ceiling_fan_temp')|int }}"
         set_level:
-          - service: input_number.set_value
+          - action: input_number.set_value
             data:
               value: "{{ brightness|int }}"
             target:
               entity_id: input_number.master_bedroom_ceiling_fan_brightness
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_yellow
               brightness: "{{ ((states('input_number.master_bedroom_ceiling_fan_temp')|int-153)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int }}"
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_white
               brightness: "{{ ((500-states('input_number.master_bedroom_ceiling_fan_temp')|int)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int }}"
         set_temperature:
-          - service: input_number.set_value
+          - action: input_number.set_value
             data:
               value: "{{ color_temp|int }}"
             target:
               entity_id: input_number.master_bedroom_ceiling_fan_temp
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_yellow
               brightness: "{{((states('input_number.master_bedroom_ceiling_fan_temp')|int-153)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int}}"
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_white
               brightness: "{{((500-states('input_number.master_bedroom_ceiling_fan_temp')|int)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int}}"
         turn_on:
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_yellow
               brightness: "{{((states('input_number.master_bedroom_ceiling_fan_temp')|int-153)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int}}"
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_white
               brightness: "{{((500-states('input_number.master_bedroom_ceiling_fan_temp')|int)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int}}"
         turn_off:
-          - service: light.turn_off
+          - action: light.turn_off
             data:
               entity_id: light.master_bedroom_ceiling_fan_yellow
-          - service: light.turn_off
+          - action: light.turn_off
             data:
               entity_id: light.master_bedroom_ceiling_fan_white
-
-# plants
-plant:
-  Spider Plant:
-    sensors:
-      moisture: sensor.spider_plant_moisture
-      battery: sensor.spider_plant_battery
-      temperature: sensor.spider_plant_temperature
-      conductivity: sensor.spider_plant_conductivity
-      brightness: sensor.spider_plant_illuminance
-

@@ -1,66 +1,3 @@
-- id: '1643669900483'
-  alias: 'Lights: Evening'
-  description: Turning on lights in evening
-  trigger:
-  - platform: time
-    at: '18:00:00'
-    id: Time is 6pm
-  condition:
-  - condition: or
-    conditions:
-    - condition: zone
-      entity_id: person.mitchell
-      zone: zone.home
-    - condition: zone
-      entity_id: person.michelle
-      zone: zone.home
-    - condition: zone
-      entity_id: person.ryan
-      zone: zone.home
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: input_boolean.company_over_kill_switch
-      state: 'off'
-  action:
-  - service: scene.turn_on
-    target:
-      entity_id: scene.evening_lights_2
-    metadata: {}
-  mode: single
-- id: '1643670114591'
-  alias: 'Lights: Night'
-  description: ''
-  trigger:
-  - platform: time
-    at: '19:30:00'
-    id: Time is 7:30pm
-  condition:
-  - condition: or
-    conditions:
-    - condition: zone
-      entity_id: person.mitchell
-      zone: zone.home
-    - condition: zone
-      entity_id: person.michelle
-      zone: zone.home
-    - condition: zone
-      entity_id: person.ryan
-      zone: zone.home
-  - condition: and
-    conditions:
-    - condition: numeric_state
-      attribute: brightness
-      entity_id: light.second_floor_lights
-      above: '50'
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: input_boolean.company_over_kill_switch
-      state: 'off'
-  action:
-  - scene: scene.evening_lights
-  mode: single
 - id: '1643674563860'
   alias: 'Windows: Turn off Thermostat'
   description: ''
@@ -81,12 +18,12 @@
 - id: '1644634889174'
   alias: 'Blinds: Evening'
   description: ''
-  trigger:
-  - platform: sun
-    event: sunset
+  triggers:
+  - event: sunset
     offset: '-15'
-  condition: []
-  action:
+    trigger: sun
+  conditions: []
+  actions:
   - device_id: a251c8df7e8c5e3917cf81c6dcee054f
     domain: cover
     entity_id: 3b17943518bd025c07c97022e39aa8fd
@@ -169,12 +106,12 @@
 - id: '1654011479692'
   alias: 'Blinds: AM Sun-based'
   description: ''
-  trigger:
-  - platform: sun
-    event: sunrise
+  triggers:
+  - event: sunrise
     offset: 0
-  condition: []
-  action:
+    trigger: sun
+  conditions: []
+  actions:
   - device_id: 5bfd9bc8850d74371e641574a7dbc496
     domain: cover
     entity_id: 0c3820c1b37eb601364270a3b665f22d
@@ -214,14 +151,14 @@
 - id: '1654011954760'
   alias: 'Blinds: PM Sun-based'
   description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id:
+  triggers:
+  - entity_id:
     - sun.sun
     value_template: '{{ state.attributes.azimuth }}'
     above: '177.6'
-  condition: []
-  action:
+    trigger: numeric_state
+  conditions: []
+  actions:
   - device_id: 3b559a5a8d32b36ce5c5908e3f113149
     domain: cover
     entity_id: cover.master_bedroom_1
@@ -261,36 +198,19 @@
 - id: '1655482532951'
   alias: 'Mode: Away'
   description: ''
-  trigger:
-  - platform: zone
-    entity_id: person.michelle
-    zone: zone.home
-    event: leave
-  - platform: zone
-    entity_id: person.mitchell
-    zone: zone.home
-    event: leave
-  - platform: zone
-    entity_id: person.ryan
-    zone: zone.home
-    event: leave
-  condition:
-  - condition: not
-    conditions:
-    - condition: zone
-      entity_id: person.michelle
-      zone: zone.home
-    - condition: zone
-      entity_id: person.ryan
-      zone: zone.home
-    - condition: zone
-      entity_id: person.mitchell
-      zone: zone.home
-  action:
-  - service: scene.turn_on
-    target:
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.family_home_away
+    to: away
+    from: home
+  conditions: []
+  actions:
+  - target:
       entity_id: scene.aay
     metadata: {}
+    action: scene.turn_on
+    data: {}
   - device_id: 552439faaaea4902b4b64fcc22ad996b
     domain: alarm_control_panel
     entity_id: alarm_control_panel.alarm_control_panel
@@ -306,10 +226,10 @@
         domain: vacuum
         entity_id: ebe1d35f969f87ae96c8418a22ea32e4
         type: clean
-      - service: input_boolean.turn_on
-        data: {}
+      - data: {}
         target:
           entity_id: input_boolean.vacuum_ran
+        action: input_boolean.turn_on
     default: []
   - device_id: fc8b00114fd2a54abe764a82c0d72381
     domain: climate
@@ -317,32 +237,25 @@
     type: set_preset_mode
     preset_mode: away
   - type: turn_off
-    device_id: 791c1171f0058a051846470812d0b8d8
-    entity_id: remote.living_room_tv
-    domain: remote
-  - type: turn_off
     device_id: b71813bb3088c58ecc7f6b5c8a57f64a
     entity_id: remote.gym_tv
+    domain: remote
+  - type: turn_off
+    device_id: 02e3a56c0f2a96549ceb416f0f696f46
+    entity_id: aae2a6409b8c4576235eafe58c1979d2
     domain: remote
   mode: single
 - id: '1656173861699'
   alias: 'Mode: Home'
   description: ''
-  trigger:
-  - platform: zone
-    entity_id: person.michelle
-    zone: zone.home
-    event: enter
-  - platform: zone
-    entity_id: person.mitchell
-    zone: zone.home
-    event: enter
-  - platform: zone
-    entity_id: person.ryan
-    zone: zone.home
-    event: enter
-  condition: []
-  action:
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.family_home_away
+    from: away
+    to: home
+  conditions: []
+  actions:
   - type: turn_on
     device_id: e2a7a1ed1dfd8c9a4c12ece758aa3856
     entity_id: light.entry_way_step_lights
@@ -371,10 +284,10 @@
 - id: '1661388546429'
   alias: 'Reminder: Charge Michelle''s Tesla'
   description: ''
-  trigger:
-  - platform: time
-    at: '20:00:00'
-  condition:
+  triggers:
+  - at: '20:00:00'
+    trigger: time
+  conditions:
   - condition: and
     conditions:
     - condition: zone
@@ -385,37 +298,40 @@
       device_id: ecea222fa0985e37d2b824e945d0ac90
       entity_id: 4d564e7a77b19a97e2ec45fef5fb36b4
       domain: binary_sensor
-  action:
-  - service: notify.mitchell_and_michelle_phones
-    data:
-      message: Should you charge Freya?
+  actions:
+  - data:
+      message: Freya is unplugged and battery is currently {{ states('sensor.freya_battery')
+        }}.
       title: Car Charging Reminder
+    action: notify.mitchell_and_michelle_phones
   mode: single
 - id: '1661605513250'
   alias: 'Music: Second Floor Bathroom On'
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - light.second_floor_bathroom
     from: 'off'
     to: 'on'
-  condition: []
-  action:
-  - service: media_player.play_media
-    data:
-      media_content_id: spotify:playlist:37i9dQZF1DX63RoW298D1b
-      media_content_type: playlist
+    trigger: state
+  conditions: []
+  actions:
+  - data:
+      media:
+        media_content_id: spotify:playlist:37i9dQZF1DX63RoW298D1b
+        media_content_type: playlist
+        metadata: {}
+    action: media_player.play_media
     target:
-      entity_id: media_player.mass_second_floor_bathroom
+      entity_id: media_player.second_floor_bathroom_google_mini
   mode: single
 - id: '1661609190131'
   alias: 'Reminder: Charge Mitchell''s Tesla'
   description: ''
-  trigger:
-  - platform: time
-    at: '20:00:00'
-  condition:
+  triggers:
+  - at: '20:00:00'
+    trigger: time
+  conditions:
   - condition: and
     conditions:
     - condition: zone
@@ -426,11 +342,12 @@
       device_id: 67413852794146bda7453759331ee1a0
       entity_id: 548a7966121e173f0540f301cf0827f7
       domain: binary_sensor
-  action:
-  - service: notify.mitchell_and_michelle_phones
-    data:
-      message: Should you charge Scarlett?
+  actions:
+  - data:
+      message: Scarlett is unplugged and battery is currently {{ states('sensor.scarlett_battery')
+        }}.
       title: Car Charging Reminder
+    action: notify.mitchell_and_michelle_phones
   mode: single
 - id: '1661625581272'
   alias: Auto-Off Stairs Light
@@ -757,20 +674,28 @@
 - id: '1682447000301'
   alias: 'Fan: Ryan''s Room Temp'
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - sensor.ryansroom_temperature
-  condition:
-  - condition: template
-    value_template: '{{ (states(''sensor.ryansroom_temperature'') | float) - (states(''sensor.thermostat_temperature'')
-      | float) >= 3 }}'
-  action:
-  - service: fan.set_percentage
-    data:
-      percentage: 100
-    target:
-      device_id: 1ce9c179410d08876225c7d27beaf988
+    trigger: state
+  conditions: []
+  actions:
+  - if:
+    - condition: template
+      value_template: '{{ (states(''sensor.ryansroom_temperature'') | float) - (states(''sensor.thermostat_temperature'')
+        | float) >= 3 }}'
+    then:
+    - data:
+        percentage: 80
+      target:
+        device_id: 1ce9c179410d08876225c7d27beaf988
+      action: fan.set_percentage
+    else:
+    - data:
+        percentage: 40
+      target:
+        device_id: 1ce9c179410d08876225c7d27beaf988
+      action: fan.set_percentage
   mode: single
 - id: '1682447081910'
   alias: 'Fan: Master Bedroom Temp'
@@ -797,87 +722,6 @@
         percentage: 40
       target:
         device_id: 9a512b1bceda54bbe57d914df9005046
-  mode: single
-- id: '1693913893555'
-  alias: 'Test: Good Night Routine'
-  description: ''
-  trigger:
-  - type: occupied
-    platform: device
-    device_id: b9de06a17b0bcea06a09b2bc77cab245
-    entity_id: 7e99bd265a7e1bc68d4e99e131554212
-    domain: binary_sensor
-  - type: occupied
-    platform: device
-    device_id: b9de06a17b0bcea06a09b2bc77cab245
-    entity_id: 2445bb10ad0cf832a4b3dbe363f2af9c
-    domain: binary_sensor
-  condition:
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: binary_sensor.schedule_bed_time
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.status_sleeping
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.masterbedroom_occupancy
-      state: 'on'
-    - condition: or
-      conditions:
-      - condition: zone
-        entity_id: person.mitchell
-        zone: zone.home
-      - condition: zone
-        entity_id: person.michelle
-        zone: zone.home
-  action:
-  - service: tts.google_translate_say
-    data:
-      cache: true
-      entity_id: media_player.master_bedroom
-      message: Starting Good Night Routine
-  - service: notify.mobile_app_mitchell_s_iphone
-    data:
-      message: Would you like to cancel "Good Night"
-      title: Routines
-      data:
-        actions:
-        - action: GOOD_NIGHT_CANCEL
-          title: 'Yes'
-  - wait_for_trigger:
-    - platform: event
-      event_type: mobile_app_notification_action
-      event_data:
-        action: GOOD_NIGHT_CANCEL
-      id: stop
-    timeout:
-      hours: 0
-      minutes: 0
-      seconds: 5
-      milliseconds: 0
-    continue_on_timeout: true
-  - if:
-    - condition: trigger
-      id:
-      - stop
-    then:
-    - service: tts.google_translate_say
-      data:
-        cache: true
-        entity_id: media_player.master_bedroom
-        message: Good Night Routine Was Canceled
-    else:
-    - service: tts.google_translate_say
-      data:
-        cache: true
-        entity_id: media_player.master_bedroom
-        message: Test Good Night Routine Was Successful
-    - service: input_boolean.turn_on
-      data: {}
-      target:
-        entity_id: input_boolean.status_sleeping
   mode: single
 - id: '1694126178868'
   alias: 'Routine: Good Night'
@@ -961,4 +805,30 @@
     data: {}
     target:
       entity_id: input_boolean.status_sleeping
+  mode: single
+- id: '1763059403149'
+  alias: 'Mode: On The Way Home'
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.michelle_almost_home
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.mitchell_almost_home
+    to: 'on'
+  conditions:
+  - condition: device
+    device_id: fc8b00114fd2a54abe764a82c0d72381
+    domain: climate
+    entity_id: 1dbaf24f116fd70ff7e80cbce6adf7fa
+    type: is_preset_mode
+    preset_mode: away
+  actions:
+  - device_id: fc8b00114fd2a54abe764a82c0d72381
+    domain: climate
+    entity_id: 1dbaf24f116fd70ff7e80cbce6adf7fa
+    type: set_preset_mode
+    preset_mode: home
   mode: single
