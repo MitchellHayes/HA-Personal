@@ -1,19 +1,32 @@
 - id: '1643674563860'
   alias: 'Windows: Turn off Thermostat'
   description: ''
-  trigger:
+  triggers:
   - type: opened
-    platform: device
     device_id: fa735c35c19ee4664531f2757012c8f2
     entity_id: binary_sensor.patio_window_entry
     domain: binary_sensor
-  condition: []
-  action:
-  - device_id: fc8b00114fd2a54abe764a82c0d72381
-    domain: climate
-    entity_id: climate.thermostat
-    type: set_hvac_mode
-    hvac_mode: 'off'
+    trigger: device
+  conditions: []
+  actions:
+  - sequence:
+    - delay:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        milliseconds: 0
+    - if:
+      - type: is_open
+        condition: device
+        device_id: fa735c35c19ee4664531f2757012c8f2
+        entity_id: 6a095d9d15cc996e286d41b57cb6f7c5
+        domain: binary_sensor
+      then:
+      - device_id: fc8b00114fd2a54abe764a82c0d72381
+        domain: climate
+        entity_id: climate.thermostat
+        type: set_hvac_mode
+        hvac_mode: 'off'
   mode: single
 - id: '1644634889174'
   alias: 'Blinds: Evening'
@@ -63,46 +76,63 @@
 - id: '1651761148757'
   alias: 'Reminder: Charge Home Batteries'
   description: ''
-  use_blueprint:
-    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
-    input:
-      time: '19:00:00'
-      actions:
-      - device_id: 6e4e58134b1f17ed9bbbc01d2c47ccbc
-        domain: mobile_app
-        type: notify
+  triggers:
+  - at: '19:00:00'
+    trigger: time
+  conditions:
+  - condition: state
+    entity_id: input_boolean.company_over_kill_switch
+    state: 'off'
+  actions:
+  - if:
+    - condition: zone
+      entity_id: person.mitchell
+      zone: zone.home
+    then:
+    - data_template:
+        entity_id: media_player.kitchen_display
+        volume_level: 0.7
+      action: media_player.volume_set
+    - data:
+        cache: false
+        entity_id: media_player.kitchen_speaker
         message: Check battery level on {{sensors}}
-        title: Low Battery
-      - if:
-        - condition: zone
-          entity_id: person.mitchell
-          zone: zone.home
-        then:
-        - service: media_player.volume_set
-          data_template:
-            entity_id: media_player.kitchen_display
-            volume_level: 0.7
-        - service: tts.google_translate_say
-          data:
-            cache: false
-            entity_id: media_player.kitchen_speaker
-            message: Check battery level on {{sensors}}
-        - service: media_player.volume_set
-          data_template:
-            entity_id: media_player.kitchen_display
-            volume_level: 0.5
-      exclude:
-        entity_id:
-        - sensor.mitchell_s_iphone_battery_level
-        - sensor.ryans_iphone_battery_level
-        - sensor.michelle_s_iphone_battery_level
-        - sensor.scarlett_battery
-        - sensor.freya_battery
-        - sensor.ipad_battery_level
-        - sensor.ipad_battery
-        - sensor.ryans_apple_watch_battery
-        - sensor.michelles_apple_watch_battery
-        - sensor.mitchells_apple_watch_battery
+      action: tts.google_translate_say
+    - data_template:
+        entity_id: media_player.kitchen_display
+        volume_level: 0.5
+      action: media_player.volume_set
+    else:
+    - device_id: 6e4e58134b1f17ed9bbbc01d2c47ccbc
+      domain: mobile_app
+      type: notify
+      message: Check battery level on {{sensors}}
+      title: Low Battery
+  variables:
+    day: 0
+    threshold: 20
+    exclude:
+      entity_id:
+      - sensor.mitchell_s_iphone_battery_level
+      - sensor.ryans_iphone_battery_level
+      - sensor.michelle_s_iphone_battery_level
+      - sensor.scarlett_battery
+      - sensor.freya_battery
+      - sensor.ipad_battery_level
+      - sensor.ipad_battery
+      - sensor.ryans_apple_watch_battery
+      - sensor.michelles_apple_watch_battery
+      - sensor.mitchells_apple_watch_battery
+    sensors: "{% set result = namespace(sensors=[]) %} {% for state in states.sensor
+      | selectattr('attributes.device_class', '==', 'battery') %}\n  {% if 0 <= state.state
+      | int(-1) < threshold | int and not state.entity_id in exclude.entity_id %}\n
+      \   {% set result.sensors = result.sensors + [state.name ~ ' (' ~ state.state
+      ~ ' %)'] %}\n  {% endif %}\n{% endfor %} {% for state in states.binary_sensor
+      | selectattr('attributes.device_class', '==', 'battery') | selectattr('state',
+      '==', 'on') %}\n  {% if not state.entity_id in exclude.entity_id %}\n    {%
+      set result.sensors = result.sensors + [state.name] %}\n  {% endif %}\n{% endfor
+      %} {{result.sensors|join(', ')}}"
+  mode: single
 - id: '1654011479692'
   alias: 'Blinds: AM Sun-based'
   description: ''
@@ -215,7 +245,6 @@
     domain: alarm_control_panel
     entity_id: alarm_control_panel.alarm_control_panel
     type: arm_away
-    code: '9513'
   - choose:
     - conditions:
       - condition: state
@@ -235,15 +264,10 @@
     domain: climate
     entity_id: climate.thermostat
     type: set_preset_mode
-    preset_mode: away
-  - type: turn_off
-    device_id: b71813bb3088c58ecc7f6b5c8a57f64a
-    entity_id: remote.gym_tv
-    domain: remote
-  - type: turn_off
-    device_id: 02e3a56c0f2a96549ceb416f0f696f46
-    entity_id: aae2a6409b8c4576235eafe58c1979d2
-    domain: remote
+    preset_mode: away_indefinitely
+  - action: script.turn_off_all_tvs
+    metadata: {}
+    data: {}
   mode: single
 - id: '1656173861699'
   alias: 'Mode: Home'
@@ -251,20 +275,20 @@
   triggers:
   - trigger: state
     entity_id:
-    - sensor.family_home_away
-    from: away
-    to: home
+    - person.michelle
+    - person.mitchell
+    - person.ryan
+    to:
+    - home
   conditions: []
   actions:
   - type: turn_on
     device_id: e2a7a1ed1dfd8c9a4c12ece758aa3856
     entity_id: light.entry_way_step_lights
     domain: light
-  - device_id: fc8b00114fd2a54abe764a82c0d72381
-    domain: climate
-    entity_id: climate.thermostat
-    type: set_preset_mode
-    preset_mode: home
+  - action: script.thermostat_home_sleep
+    metadata: {}
+    data: {}
   mode: single
 - id: '1657498537397'
   alias: Reset Helpers at 2300
@@ -281,73 +305,49 @@
       - input_boolean.vacuum_ran
       - input_boolean.company_over_kill_switch
   mode: single
-- id: '1661388546429'
-  alias: 'Reminder: Charge Michelle''s Tesla'
+- id: '1661609190131'
+  alias: 'Reminder: Charge The Cars'
   description: ''
   triggers:
   - at: '20:00:00'
     trigger: time
-  conditions:
-  - condition: and
-    conditions:
-    - condition: zone
-      entity_id: device_tracker.freya_location_tracker
-      zone: zone.home
-    - type: is_not_plugged_in
-      condition: device
-      device_id: ecea222fa0985e37d2b824e945d0ac90
-      entity_id: 4d564e7a77b19a97e2ec45fef5fb36b4
-      domain: binary_sensor
-  actions:
-  - data:
-      message: Freya is unplugged and battery is currently {{ states('sensor.freya_battery')
-        }}.
-      title: Car Charging Reminder
-    action: notify.mitchell_and_michelle_phones
-  mode: single
-- id: '1661605513250'
-  alias: 'Music: Second Floor Bathroom On'
-  description: ''
-  triggers:
-  - entity_id:
-    - light.second_floor_bathroom
-    from: 'off'
-    to: 'on'
-    trigger: state
   conditions: []
   actions:
-  - data:
-      media:
-        media_content_id: spotify:playlist:37i9dQZF1DX63RoW298D1b
-        media_content_type: playlist
-        metadata: {}
-    action: media_player.play_media
-    target:
-      entity_id: media_player.second_floor_bathroom_google_mini
-  mode: single
-- id: '1661609190131'
-  alias: 'Reminder: Charge Mitchell''s Tesla'
-  description: ''
-  triggers:
-  - at: '20:00:00'
-    trigger: time
-  conditions:
-  - condition: and
-    conditions:
-    - condition: zone
-      entity_id: device_tracker.scarlett_location_tracker
-      zone: zone.home
-    - type: is_not_plugged_in
-      condition: device
-      device_id: 67413852794146bda7453759331ee1a0
-      entity_id: 548a7966121e173f0540f301cf0827f7
-      domain: binary_sensor
-  actions:
-  - data:
-      message: Scarlett is unplugged and battery is currently {{ states('sensor.scarlett_battery')
-        }}.
-      title: Car Charging Reminder
-    action: notify.mitchell_and_michelle_phones
+  - choose:
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: zone
+          entity_id: device_tracker.scarlett_location_tracker
+          zone: zone.home
+        - type: is_not_plugged_in
+          condition: device
+          device_id: 67413852794146bda7453759331ee1a0
+          entity_id: 548a7966121e173f0540f301cf0827f7
+          domain: binary_sensor
+      sequence:
+      - data:
+          message: Scarlett is unplugged and battery is currently {{ states('sensor.scarlett_battery')
+            }}.
+          title: Charge Scarlett
+        action: notify.mitchell_and_michelle_phones
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: zone
+          entity_id: device_tracker.freya_location_tracker
+          zone: zone.home
+        - type: is_not_plugged_in
+          condition: device
+          device_id: ecea222fa0985e37d2b824e945d0ac90
+          entity_id: 4d564e7a77b19a97e2ec45fef5fb36b4
+          domain: binary_sensor
+      sequence:
+      - data:
+          message: Freya is unplugged and battery is currently {{ states('sensor.freya_battery')
+            }}.
+          title: Charge Freya
+        action: notify.mitchell_and_michelle_phones
   mode: single
 - id: '1661625581272'
   alias: Auto-Off Stairs Light
@@ -533,60 +533,42 @@
       entity_id: input_boolean.company_over_kill_switch
   mode: single
 - id: '1664834813628'
-  alias: 'Music: Second Floor Bathroom Off'
+  alias: 'Music: Second Floor Bathroom'
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - light.second_floor_bathroom
-    from: 'on'
-    to: 'off'
-  condition: []
-  action:
-  - service: media_player.media_stop
-    data: {}
-    target:
-      entity_id: media_player.mass_second_floor_bathroom
-  mode: single
-- id: '1666900245347'
-  alias: 'Reminder: Doorbell notification'
-  description: ''
-  trigger:
-  - platform: device
-    device_id: 73667d54823f91686f75fae95d3aa05d
-    domain: nest
-    type: doorbell_chime
-  condition: []
-  action:
-  - data:
-      filename: /config/www/doorbell.png
-    action: camera.snapshot
-    target:
-      device_id: a3c5985da1d47ab1602f459a91b409fb
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 3
-      milliseconds: 0
-  - data:
-      message: Someone is at the door
-      title: Front Door
+  triggers:
+  - type: changed_states
+    device_id: c5c52665e1c913b4e571e66f0fa4a9c2
+    entity_id: e38ba6a51bb891ac4ce9146c0fbb9f8c
+    domain: light
+    trigger: device
+  conditions: []
+  actions:
+  - if:
+    - condition: device
+      type: is_on
+      device_id: c5c52665e1c913b4e571e66f0fa4a9c2
+      entity_id: e38ba6a51bb891ac4ce9146c0fbb9f8c
+      domain: light
+    then:
+    - action: media_player.volume_set
+      metadata: {}
       data:
-        duration: 20
-        fontsize: small
-        position: bottom-right
-        transparency: 25%
-        color: grey
-        image:
-          path: /config/www/doorbell.png
-    action: notify.living_room_tv
-  - data:
-      message: Someone is at the door.
-      title: Doorbell
+        volume_level: 0.25
+      target:
+        device_id: c4bb0b82c1f419b87cb0f4868120adec
+    - action: music_assistant.play_media
+      target:
+        device_id: c4bb0b82c1f419b87cb0f4868120adec
       data:
-        entity_id: camera.front_door
-        url: /lovelace-mobile/secure
-    action: notify.mitchell_and_michelle_phones
+        enqueue: play
+        media_id: spotify://playlist/0HNvJ8OXNvStYGyHqCLhls
+        media_type: playlist
+    else:
+    - action: media_player.toggle
+      metadata: {}
+      data: {}
+      target:
+        device_id: c4bb0b82c1f419b87cb0f4868120adec
   mode: single
 - id: '1671619842808'
   alias: 'Vacuum: Second Floor'
@@ -637,39 +619,6 @@
     data: {}
     target:
       entity_id: light.master_bedroom_ceiling_fan
-  mode: single
-- id: '1673485276522'
-  description: ''
-  trigger:
-  - platform: device
-    device_id: 73667d54823f91686f75fae95d3aa05d
-    domain: nest
-    type: doorbell_chime
-  condition: []
-  action:
-  - service: browser_mod.popup
-    data:
-      title: Someone is at the door
-      size: normal
-      content:
-        show_state: true
-        show_name: true
-        camera_view: auto
-        type: picture-entity
-        entity: camera.front_door
-        camera_image: camera.front_door
-        aspect_ratio: '4:3'
-    target:
-      device_id: a175930fdf508e3c45e3d5f273d369da
-  - delay:
-      hours: 0
-      minutes: 2
-      seconds: 0
-      milliseconds: 0
-  - service: browser_mod.close_popup
-    data: {}
-    target:
-      device_id: a175930fdf508e3c45e3d5f273d369da
   mode: single
 - id: '1682447000301'
   alias: 'Fan: Ryan''s Room Temp'
@@ -814,21 +763,132 @@
     entity_id:
     - binary_sensor.michelle_almost_home
     to: 'on'
+    from:
   - trigger: state
     entity_id:
     - binary_sensor.mitchell_almost_home
     to: 'on'
+    from:
   conditions:
   - condition: device
     device_id: fc8b00114fd2a54abe764a82c0d72381
     domain: climate
     entity_id: 1dbaf24f116fd70ff7e80cbce6adf7fa
     type: is_preset_mode
-    preset_mode: away
+    preset_mode: away_indefinitely
   actions:
-  - device_id: fc8b00114fd2a54abe764a82c0d72381
-    domain: climate
-    entity_id: 1dbaf24f116fd70ff7e80cbce6adf7fa
-    type: set_preset_mode
-    preset_mode: home
+  - action: script.thermostat_home_sleep
+    metadata: {}
+    data: {}
+  - sequence:
+    - delay:
+        hours: 0
+        minutes: 45
+        seconds: 0
+        milliseconds: 0
+    - if:
+      - condition: state
+        entity_id: sensor.family_home_away
+        state: away
+      then:
+      - device_id: fc8b00114fd2a54abe764a82c0d72381
+        domain: climate
+        entity_id: 1dbaf24f116fd70ff7e80cbce6adf7fa
+        type: set_preset_mode
+        preset_mode: away_indefinitely
+      - action: notify.mobile_app_iphone
+        metadata: {}
+        data:
+          message: '''You didn''t make it home in time, house has been set back to
+            away.'''
+  mode: single
+- id: '1763145802563'
+  alias: 'House Mode: Handler'
+  description: ''
+  triggers:
+  - entity_id: input_select.house_mode
+    trigger: state
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_select.house_mode
+        state: home
+      sequence:
+      - type: turn_on
+        device_id: e2a7a1ed1dfd8c9a4c12ece758aa3856
+        entity_id: light.entry_way_step_lights
+        domain: light
+      - action: script.thermostat_home_sleep
+        metadata: {}
+        data: {}
+      - device_id: 51c495a7d310b408944ceb6ff0ea24f1
+        domain: vacuum
+        entity_id: ebe1d35f969f87ae96c8418a22ea32e4
+        type: dock
+    - conditions:
+      - condition: state
+        entity_id: input_select.house_mode
+        state: away
+      sequence:
+      - target:
+          entity_id: scene.aay
+        metadata: {}
+        action: scene.turn_on
+        data: {}
+      - device_id: 552439faaaea4902b4b64fcc22ad996b
+        domain: alarm_control_panel
+        entity_id: alarm_control_panel.alarm_control_panel
+        type: arm_away
+      - if:
+        - condition: state
+          entity_id: input_boolean.vacuum_ran
+          state: 'off'
+        then:
+        - device_id: 51c495a7d310b408944ceb6ff0ea24f1
+          domain: vacuum
+          entity_id: ebe1d35f969f87ae96c8418a22ea32e4
+          type: clean
+        - data: {}
+          target:
+            entity_id: input_boolean.vacuum_ran
+          action: input_boolean.turn_on
+      - device_id: fc8b00114fd2a54abe764a82c0d72381
+        domain: climate
+        entity_id: climate.thermostat
+        type: set_preset_mode
+        preset_mode: away_indefinitely
+      - action: script.turn_off_all_tvs
+        metadata: {}
+        data: {}
+    - conditions:
+      - condition: state
+        entity_id: input_select.house_mode
+        state: on the way home
+      sequence:
+      - action: script.thermostat_home_sleep
+        metadata: {}
+        data: {}
+      - sequence:
+        - delay:
+            hours: 0
+            minutes: 45
+            seconds: 0
+            milliseconds: 0
+        - if:
+          - condition: state
+            entity_id: sensor.family_home_away
+            state: away
+          then:
+          - device_id: fc8b00114fd2a54abe764a82c0d72381
+            domain: climate
+            entity_id: 1dbaf24f116fd70ff7e80cbce6adf7fa
+            type: set_preset_mode
+            preset_mode: away_indefinitely
+          - action: notify.mobile_app_iphone
+            metadata: {}
+            data:
+              message: '''You didn''t make it home in time, house has been set back
+                to away.'''
   mode: single
