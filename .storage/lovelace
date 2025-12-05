@@ -1,0 +1,2800 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace",
+  "data": {
+    "config": {
+      "title": "Home",
+      "views": [
+        {
+          "type": "sections",
+          "path": "main",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:meteoalarm-card",
+                  "entities": [
+                    {
+                      "entity": "sensor.southeast_harford"
+                    }
+                  ],
+                  "integration": "weatheralerts",
+                  "hide_when_no_warning": false,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.southeast_harford",
+                      "state_not": "0"
+                    }
+                  ],
+                  "scaling_mode": "headline_and_scale",
+                  "override_headline": false,
+                  "disable_swiper": false,
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "#weatherAlert"
+                  }
+                },
+                {
+                  "type": "markdown",
+                  "content": "{% set hour = now().hour %} {% if hour >= 18 %}\n  <span class=\"greeting\">Good Evening, {{user}}!</span>\n{% elif hour >= 12 %}\n  <span class=\"greeting\">Good Afternoon, {{user}}!</span>\n{% elif hour >= 5 %}\n  <span class=\"greeting\">Good Morning, {{user}}!</span>\n{% else %}\n  <span class=\"greeting\">Hello, {{user}}!</span>\n{% endif %}\n<p>\nIt's currently {{ states('sensor.thermostat_temperature') }}° inside and\n{{ state_attr('weather.openweathermap', 'temperature') }}° outside.\n</p>\n<p>\n<span class=\"subtext\"> {% if states('sensor.grass_simple') == 'High'\n   or states('sensor.ragweed_simple') == 'High'\n   or states('sensor.tree_simple') == 'High' %}\n  Pollen levels are high today!\n{% else %}\n  Pollen levels are normal.\n{% endif %} </span>\n</p>",
+                  "card_mod": {
+                    "style": "ha-markdown {\n  line-height: 0.5;\n}\n"
+                  }
+                },
+                {
+                  "type": "custom:threedy-card",
+                  "base_entity": "sensor.octoprint",
+                  "printer_type": "I3",
+                  "name": "3D Printer",
+                  "theme": "Default",
+                  "scale": 1,
+                  "round_time": false,
+                  "camera_entity": "camera.octoprint",
+                  "round_temperature": true,
+                  "temperature_unit": "C",
+                  "use_mqtt": true,
+                  "monitored": [
+                    "Hotend",
+                    "Bed"
+                  ],
+                  "use_24hr": true,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.octoprint_print_status",
+                      "state": "Printing"
+                    }
+                  ],
+                  "layout_options": {
+                    "grid_columns": "full"
+                  }
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:button-card",
+                      "name": "House",
+                      "icon": "mdi:home",
+                      "styles": {
+                        "card": [
+                          {
+                            "padding": "12px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "color": "#3b82f6"
+                          },
+                          {
+                            "width": "30px"
+                          },
+                          {
+                            "height": "30px"
+                          }
+                        ],
+                        "name": [
+                          {
+                            "color": "white"
+                          },
+                          {
+                            "font-weight": 500
+                          },
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "margin-top": "6px"
+                          }
+                        ]
+                      },
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "house"
+                      }
+                    },
+                    {
+                      "type": "custom:button-card",
+                      "name": "Lights",
+                      "icon": "mdi:lightbulb",
+                      "styles": {
+                        "card": [
+                          {
+                            "padding": "12px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "color": "#facc15"
+                          },
+                          {
+                            "width": "30px"
+                          },
+                          {
+                            "height": "30px"
+                          }
+                        ],
+                        "name": [
+                          {
+                            "color": "white"
+                          },
+                          {
+                            "font-weight": 500
+                          },
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "margin-top": "6px"
+                          }
+                        ]
+                      },
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "lights"
+                      }
+                    },
+                    {
+                      "type": "custom:button-card",
+                      "name": "Secure",
+                      "icon": "mdi:shield",
+                      "styles": {
+                        "card": [
+                          {
+                            "padding": "12px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "color": "#22c55e"
+                          },
+                          {
+                            "width": "30px"
+                          },
+                          {
+                            "height": "30px"
+                          }
+                        ],
+                        "name": [
+                          {
+                            "color": "white"
+                          },
+                          {
+                            "font-weight": 500
+                          },
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "margin-top": "6px"
+                          }
+                        ]
+                      },
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "secure"
+                      }
+                    },
+                    {
+                      "type": "custom:button-card",
+                      "name": "Flags",
+                      "icon": "mdi:flag",
+                      "styles": {
+                        "card": [
+                          {
+                            "padding": "12px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "color": "#8b5cf6"
+                          },
+                          {
+                            "width": "30px"
+                          },
+                          {
+                            "height": "30px"
+                          }
+                        ],
+                        "name": [
+                          {
+                            "color": "white"
+                          },
+                          {
+                            "font-weight": 500
+                          },
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "margin-top": "6px"
+                          }
+                        ]
+                      },
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "labs"
+                      }
+                    },
+                    {
+                      "type": "custom:button-card",
+                      "name": "Cars",
+                      "icon": "mdi:car",
+                      "styles": {
+                        "card": [
+                          {
+                            "padding": "12px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "color": "#ef4444"
+                          },
+                          {
+                            "width": "30px"
+                          },
+                          {
+                            "height": "30px"
+                          }
+                        ],
+                        "name": [
+                          {
+                            "color": "white"
+                          },
+                          {
+                            "font-weight": 500
+                          },
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "margin-top": "6px"
+                          }
+                        ]
+                      },
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "cars"
+                      }
+                    },
+                    {
+                      "type": "custom:button-card",
+                      "name": "Glance",
+                      "icon": "mdi:history",
+                      "styles": {
+                        "card": [
+                          {
+                            "padding": "12px"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "color": "white"
+                          },
+                          {
+                            "width": "30px"
+                          },
+                          {
+                            "height": "30px"
+                          }
+                        ],
+                        "name": [
+                          {
+                            "color": "white"
+                          },
+                          {
+                            "font-weight": 500
+                          },
+                          {
+                            "font-size": "14px"
+                          },
+                          {
+                            "margin-top": "6px"
+                          }
+                        ]
+                      },
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "glance"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:atomic-calendar-revive",
+                  "entities": [
+                    {
+                      "entity": "calendar.family_calendar",
+                      "name": "My Calendar",
+                      "color": "white",
+                      "max_results": 4,
+                      "icon": "mdi:calendar"
+                    }
+                  ],
+                  "firstDayOfWeek": 1,
+                  "refreshInterval": 60,
+                  "showDate": false,
+                  "hideDuplicates": false,
+                  "hideFinishedEvents": true,
+                  "showCurrentEventLine": false,
+                  "showProgressBar": false,
+                  "showMonth": false,
+                  "showWeekDay": true,
+                  "showDescription": false,
+                  "disableEventLink": true,
+                  "showFullDayProgress": false,
+                  "showEventIcon": false,
+                  "showHiddenText": false,
+                  "showCalendarName": false,
+                  "showWeekNumber": false,
+                  "calShowDescription": false,
+                  "showLastCalendarWeek": false,
+                  "dimFinishedEvents": true,
+                  "disableCalLink": true,
+                  "disableCalLocationLink": true,
+                  "disableCalEventLink": true,
+                  "noEventsForNextDaysText": "No events in the next few days",
+                  "showLoader": false,
+                  "maxEventCount": 4,
+                  "maxDaysToShow": 7,
+                  "showDatePerEvent": false,
+                  "language": "en",
+                  "titleLength": 0,
+                  "descLength": 0,
+                  "showMultiDay": false,
+                  "showRelativeTime": false,
+                  "compactMode": false,
+                  "showAllDayEvents": true,
+                  "allDayBottom": false,
+                  "eventDateFormat": "ddd D",
+                  "showEventDate": true,
+                  "hoursOnSameLine": false,
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 4
+                  }
+                },
+                {
+                  "show_current": true,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.openweathermap",
+                  "forecast_type": "daily",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 4
+                  },
+                  "forecast_slots": 4
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "features_position": "bottom",
+                      "vertical": true,
+                      "entity": "person.mitchell",
+                      "show_entity_picture": true,
+                      "hide_state": false,
+                      "name": " ",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace/mitchell"
+                      }
+                    },
+                    {
+                      "type": "tile",
+                      "features_position": "bottom",
+                      "vertical": true,
+                      "entity": "person.michelle",
+                      "show_entity_picture": true,
+                      "hide_state": false,
+                      "name": " ",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace/michelle"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "features_position": "bottom",
+                      "vertical": true,
+                      "entity": "person.ryan",
+                      "show_entity_picture": true,
+                      "hide_state": false,
+                      "name": " ",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace/ryan"
+                      }
+                    },
+                    {
+                      "type": "tile",
+                      "features_position": "bottom",
+                      "vertical": true,
+                      "entity": "device_tracker.takumi_tracker",
+                      "show_entity_picture": true,
+                      "hide_state": false,
+                      "name": " ",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace/takumi"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "horizontal-buttons-stack",
+                  "1_link": "#firstFloor",
+                  "1_name": "First Floor",
+                  "1_icon": "mdi:home-floor-1",
+                  "1_entity": "light.first_floor_lights",
+                  "2_link": "#secondFloor",
+                  "2_name": "Second Floor",
+                  "2_icon": "mdi:home-floor-2",
+                  "2_entity": "light.second_floor_lights",
+                  "3_link": "#thirdFloor",
+                  "3_name": "Third Floor",
+                  "3_icon": "mdi:home-floor-3",
+                  "3_entity": "light.third_floor_lights",
+                  "layout_options": {
+                    "grid_columns": "full"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#firstFloor"
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "sensor.gym_temperature"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.gym_occupancy",
+                          "icon": "mdi:account"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.gym_pm2_5"
+                        },
+                        {
+                          "type": "template",
+                          "content": "{% if is_state('binary_sensor.doors_first_floor', 'off')%}\n  Closed\n{% elif is_state('binary_sensor.doors_first_floor', 'on')%}\n  Open\n{% else %}\n  Broken\n{% endif %}",
+                          "icon": "mdi:door"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "button",
+                      "button_type": "slider",
+                      "entity": "light.entry_way_step_lights"
+                    },
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "button",
+                      "button_type": "slider",
+                      "entity": "light.family_room_main_lights"
+                    },
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "media-player",
+                      "entity": "media_player.family_room_tv"
+                    },
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "media-player",
+                      "entity": "media_player.family_room"
+                    },
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "media-player",
+                      "entity": "media_player.entry_way"
+                    }
+                  ],
+                  "layout_options": {
+                    "grid_columns": "full"
+                  }
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#secondFloor"
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "sensor.thermostat_temperature"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.thermostat_humidity"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.second_floor_pm2_5"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.nest_protect_living_room_smoke_status",
+                          "icon": "mdi:smoke-detector-variant"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:stack-in-card",
+                      "mode": "vertical",
+                      "cards": [
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.living_room_main_lights",
+                              "name": "Living Room",
+                              "icon": "mdi:sofa",
+                              "use_light_color": true,
+                              "show_brightness_control": true,
+                              "tap_action": {
+                                "action": "toggle"
+                              }
+                            },
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.second_floor_bathroom",
+                              "fill_container": false,
+                              "show_brightness_control": true,
+                              "name": "Bathroom"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.kitchen_main_lights_1",
+                              "name": "Kitchen",
+                              "icon": "mdi:knife",
+                              "use_light_color": true,
+                              "show_brightness_control": true,
+                              "collapsible_controls": false,
+                              "tap_action": {
+                                "action": "toggle"
+                              }
+                            },
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.kitchen_sink",
+                              "name": "Sink Light",
+                              "icon": "mdi:countertop",
+                              "use_light_color": true,
+                              "show_brightness_control": true,
+                              "collapsible_controls": false,
+                              "tap_action": {
+                                "action": "toggle"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "vertical-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.dining_room_chandelier",
+                              "name": "Dining Room",
+                              "icon": "mdi:silverware-fork-knife",
+                              "use_light_color": true,
+                              "show_brightness_control": true,
+                              "tap_action": {
+                                "action": "toggle"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:mushroom-fan-card",
+                      "entity": "fan.living_room_ceiling_fan",
+                      "icon_animation": true,
+                      "show_percentage_control": false,
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "hold_action": {
+                        "action": "more-info"
+                      }
+                    },
+                    {
+                      "type": "custom:stack-in-card",
+                      "mode": "horizontal",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-cover-card",
+                          "entity": "cover.living_room_blinds",
+                          "icon": "mdi:blinds"
+                        },
+                        {
+                          "type": "custom:mushroom-cover-card",
+                          "entity": "cover.kitchen_blinds",
+                          "icon": "mdi:blinds"
+                        }
+                      ],
+                      "columns": 2
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#thirdFloor"
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "sensor.master_bedroom_temperature_2",
+                          "name": "Master Bedroom",
+                          "icon": "mdi:alpha-m-circle"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.ryan_s_room_temperature_2",
+                          "name": "Ryan's Room",
+                          "icon": "mdi:alpha-r-circle"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.craft_room_temperature",
+                          "name": "Game Room",
+                          "icon": "mdi:alpha-g-circle"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:stack-in-card",
+                      "mode": "vertical",
+                      "cards": [
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.upstairs_hallway_main_lights",
+                              "name": "Hallway",
+                              "icon": "mdi:lightbulb",
+                              "use_light_color": true,
+                              "show_brightness_control": true,
+                              "tap_action": {
+                                "action": "toggle"
+                              }
+                            },
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.master_bedroom",
+                              "fill_container": false,
+                              "show_brightness_control": true,
+                              "name": "Master Bedroom"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.master_bathroom_main_lights",
+                              "name": "Master Bathroom",
+                              "icon": "mdi:lightbulb",
+                              "use_light_color": true,
+                              "show_brightness_control": true,
+                              "collapsible_controls": false,
+                              "tap_action": {
+                                "action": "toggle"
+                              }
+                            },
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.ryan_s_ceiling_fan_2",
+                              "name": "Ryan's Room",
+                              "icon": "mdi:ceiling-fan-light",
+                              "use_light_color": true,
+                              "show_brightness_control": false,
+                              "collapsible_controls": false,
+                              "tap_action": {
+                                "action": "toggle"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.office_ceiling_fan",
+                              "name": "Game Room",
+                              "icon": "mdi:ceiling-fan-light",
+                              "use_light_color": true,
+                              "show_brightness_control": false,
+                              "collapsible_controls": false,
+                              "tap_action": {
+                                "action": "toggle"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:stack-in-card",
+                      "mode": "vertical",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.master_bedroom_ceiling_fan",
+                          "icon_animation": true,
+                          "show_percentage_control": false,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "more-info"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.ryan_s_ceiling_fan_2",
+                          "icon_animation": true,
+                          "show_percentage_control": false,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "more-info"
+                          }
+                        },
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.office_ceiling_fan",
+                          "icon_animation": true,
+                          "show_percentage_control": false,
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "more-info"
+                          },
+                          "name": "Game Room"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:stack-in-card",
+                      "mode": "vertical",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-cover-card",
+                          "entity": "cover.master_bedroom_blinds",
+                          "name": "Master Bedroom",
+                          "icon": "mdi:blinds"
+                        },
+                        {
+                          "type": "custom:mushroom-cover-card",
+                          "entity": "cover.ryan_s_room_blinds",
+                          "name": "Ryan's Room",
+                          "icon": "mdi:blinds"
+                        },
+                        {
+                          "type": "custom:mushroom-cover-card",
+                          "entity": "cover.office_blinds",
+                          "name": "Game Room Blinds",
+                          "icon": "mdi:blinds"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#weatherAlert",
+                      "button_type": "name"
+                    },
+                    {
+                      "type": "markdown",
+                      "content": "{% set alerts = state_attr('sensor.southeast_harford', 'alerts') %}\n\n{# Helper to hide null/empty/\"null\" strings #}\n{% macro clean(value) -%}\n  {%- if value in [None, '', 'null'] -%}\n  {%- else -%}{{ value }}{%- endif -%}\n{%- endmacro %}\n\n{% if not alerts %}\nNo active weather alerts.\n{% else %}\n  {% for alert in alerts %}\n    {% set event_name = clean(alert.get('event')) or 'Weather Alert' %}\n\n# {{ event_name }}\n\n    {# Times #}\n    {% set sent = alert.get('sent') %}\n    {% set ends = alert.get('ends') or alert.get('endsExpires') or alert.get('expires') %}\n    {% set sent_ts = sent | as_timestamp if sent else None %}\n    {% set ends_ts = ends | as_timestamp if ends else None %}\n\n    {# Headline may be a list #}\n    {% set headline = alert.get('NWSheadline') %}\n    {% if headline is string %}\n      {% set headline_str = headline %}\n    {% elif headline is sequence %}\n      {% set headline_str = headline | join(' / ') %}\n    {% else %}\n      {% set headline_str = None %}\n    {% endif %}\n\n    {% if headline_str %}\n**{{ headline_str }}**\n    {% endif %}\n\n    {% if sent_ts %}\n**Issued:** {{ sent_ts | timestamp_custom('%b %-d, %I:%M %p %Z', True) }}\n    {% endif %}\n\n    {% if ends_ts %}\n**Valid until:** {{ ends_ts | timestamp_custom('%b %-d, %I:%M %p %Z', True) }}\n    {% endif %}\n\n    {% if clean(alert.get('description')) %}\n\n**Details:**\n{{ alert.get('description') | trim }}\n    {% endif %}\n\n    {% if clean(alert.get('instruction')) %}\n\n**Instructions**\n{{ alert.get('instruction') | trim }}\n    {% endif %}\n\n*Source:* {{ clean(alert.get('senderName')) or clean(alert.get('sender')) or 'NWS' }}\n\n    {# Extra numeric fields, only if present #}\n    {% set extras = [] %}\n    {% if clean(alert.get('windGust')) %}\n      {% set _ = extras.append('Wind gusts: ' ~ alert.get('windGust')) %}\n    {% endif %}\n    {% if clean(alert.get('hailSize')) %}\n      {% set _ = extras.append('Hail size: ' ~ alert.get('hailSize')) %}\n    {% endif %}\n    {% if clean(alert.get('waterspoutDetection')) %}\n      {% set _ = extras.append('Waterspout detection: ' ~ alert.get('waterspoutDetection')) %}\n    {% endif %}\n\n    {% if extras %}\n**Additional info:** {{ extras | join(' · ') }}\n    {% endif %}\n\n    {% if not loop.last %}\n\n---\n\n    {% endif %}\n  {% endfor %}\n{% endif %}\n",
+                      "text_only": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "max_columns": 1,
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "alarm_control_panel.alarm_control_panel",
+              "show_entity_picture": false
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "weather.openweathermap",
+              "state_content": [
+                "state",
+                "temperature"
+              ],
+              "color": "white"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.u_s_air_pollution_level"
+            }
+          ],
+          "dense_section_placement": false,
+          "title": "Welcome"
+        },
+        {
+          "title": "House",
+          "path": "house",
+          "icon": "mdi:home",
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "thermostat",
+                  "entity": "climate.thermostat",
+                  "show_current_as_primary": false
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "separator",
+                  "name": "Vacuums",
+                  "icon": "mdi:robot-vacuum",
+                  "card_layout": "large"
+                },
+                {
+                  "type": "custom:stack-in-card",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "grid",
+                          "square": true,
+                          "columns": 2,
+                          "cards": [
+                            {
+                              "type": "entities",
+                              "show_header_toggle": false,
+                              "style": "* {\n  padding: 0px;\n}\nh1.card-header {\n  padding: 10px;\n  margin-top: -4px\n}\n#states {\n  padding: 10px;\n}\nha-card {\n  {% if is_state('vacuum.second_floor_vacuum','Cleaning') %}\n  background: radial-gradient(at bottom, rgba(255,255,255, 0.26) 0%, rgba(43,55,78,0) 70%);\n  background-size: 140% 70%;\n  background-repeat: no-repeat;\n  background-position: 50% 100%;\n  background-color: #3e4c69;\n  transition: background 1.5s, background-position 2s, background-color 1.5s;\n  transition-delay: 0.6s;\n  {% else %}\n  transition: background 1.5s;\n  transition-delay: 0.2s;\n  background-color: var( --ha-card-background, var(--card-background-color, white) );\n  background-size: 140% 70%;\n  background-position: 50% 360%;\n  {% endif %}\n}\n",
+                              "entities": [
+                                {
+                                  "entity": "vacuum.first_floor_vacuum",
+                                  "state_color": false,
+                                  "icon": "mdi:robot-vacuum",
+                                  "name": "‎",
+                                  "style": "hui-generic-entity-row {\n  margin-bottom: 14px;\n  margin-top: -2px;\n  padding-right: 0.6em; \n}\nhui-generic-entity-row > div {\n  width: max-content !important;\n}\n"
+                                },
+                                {
+                                  "type": "section",
+                                  "label": "Gym Vacuum",
+                                  "style": "div.divider { \n  display: none;\n}\ndiv.label { \n  margin-top: -12px;\n  margin-bottom: 10px;\n  font-size: 17px;\n  font-weight: 600\n}\n"
+                                },
+                                {
+                                  "entity": "vacuum.first_floor_vacuum",
+                                  "type": "custom:multiple-entity-row",
+                                  "icon": "mdi:battery",
+                                  "attribute": "battery_level",
+                                  "name": "Battery",
+                                  "unit": "%",
+                                  "style": {
+                                    "hui-generic-entity-row$": "div {\n  display: none !important;\n}\n",
+                                    ".": "hui-generic-entity-row  {\n  position: absolute !important;\n  top: -14px !important;\n  margin-left: -7px !important;\n  transform: scale(0.9, 0.9);\n}\n"
+                                  }
+                                }
+                              ],
+                              "footer": {
+                                "type": "custom:paper-buttons-row",
+                                "styles": {
+                                  "justify-content": "space-between;",
+                                  "padding": "8px;",
+                                  "width": "auto;",
+                                  "margin-top": "-6px;",
+                                  "margin-bottom": "0px;",
+                                  "filter": "drop-shadow(0px 2px 2px rgba(0,0,0,0.5));"
+                                },
+                                "buttons": [
+                                  {
+                                    "name": false,
+                                    "icon": "mdi:play",
+                                    "tap_action": {
+                                      "action": "call-service",
+                                      "service": "vacuum.start",
+                                      "target": {
+                                        "entity_id": "vacuum.first_floor_vacuum"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": false,
+                                    "icon": "mdi:pause",
+                                    "tap_action": {
+                                      "action": "call-service",
+                                      "service": "vacuum.pause",
+                                      "target": {
+                                        "entity_id": "vacuum.second_floor_vacuum"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": false,
+                                    "icon": "mdi:home-map-marker",
+                                    "tap_action": {
+                                      "action": "call-service",
+                                      "service": "vacuum.return_to_base",
+                                      "target": {
+                                        "entity_id": "vacuum.first_floor_vacuum"
+                                      }
+                                    }
+                                  }
+                                ],
+                                "style": "* {\n  padding: 0px;\n}\nh1.card-header {\n  padding: 10px;\n  margin-top: -4px\n}\n#states {\n  padding: 10px;\n}\nha-card {\n  {% if is_state('vacuum.second_floor_vacuum','Cleaning') %}\n  background: radial-gradient(at bottom, rgba(255,255,255, 0.26) 0%, rgba(43,55,78,0) 70%);\n  background-size: 140% 70%;\n  background-repeat: no-repeat;\n  background-position: 50% 100%;\n  background-color: #3e4c69;\n  transition: background 1.5s, background-position 2s, background-color 1.5s;\n  transition-delay: 0.6s;\n  {% else %}\n  transition: background 1.5s;\n  transition-delay: 0.2s;\n  background-color: var( --ha-card-background, var(--card-background-color, white) );\n  background-size: 140% 70%;\n  background-position: 50% 360%;\n  {% endif %}\n}\n"
+                              }
+                            },
+                            {
+                              "type": "entities",
+                              "show_header_toggle": false,
+                              "style": "* {\n  padding: 0px;\n}\nh1.card-header {\n  padding: 10px;\n  margin-top: -4px\n}\n#states {\n  padding: 10px;\n}\nha-card {\n  {% if is_state('vacuum.second_floor_vacuum','Cleaning') %}\n  background: radial-gradient(at bottom, rgba(255,255,255, 0.26) 0%, rgba(43,55,78,0) 70%);\n  background-size: 140% 70%;\n  background-repeat: no-repeat;\n  background-position: 50% 100%;\n  background-color: #3e4c69;\n  transition: background 1.5s, background-position 2s, background-color 1.5s;\n  transition-delay: 0.6s;\n  {% else %}\n  transition: background 1.5s;\n  transition-delay: 0.2s;\n  background-color: var( --ha-card-background, var(--card-background-color, white) );\n  background-size: 140% 70%;\n  background-position: 50% 360%;\n  {% endif %}\n}\n",
+                              "entities": [
+                                {
+                                  "entity": "vacuum.second_floor_vacuum",
+                                  "state_color": false,
+                                  "icon": "mdi:robot-vacuum",
+                                  "name": "‎",
+                                  "style": "hui-generic-entity-row {\n  margin-bottom: 14px;\n  margin-top: -2px;\n  padding-right: 0.6em; \n}\nhui-generic-entity-row > div {\n  width: max-content !important;\n}\n"
+                                },
+                                {
+                                  "type": "section",
+                                  "label": "Second Floor",
+                                  "style": "div.divider { \n  display: none;\n}\ndiv.label { \n  margin-top: -12px;\n  margin-bottom: 10px;\n  font-size: 17px;\n  font-weight: 600\n}\n"
+                                },
+                                {
+                                  "entity": "sensor.second_floor_vacuum_battery",
+                                  "type": "custom:multiple-entity-row",
+                                  "icon": "mdi:battery",
+                                  "name": "Battery",
+                                  "unit": "%",
+                                  "style": {
+                                    "hui-generic-entity-row$": "div {\n  display: none !important;\n}\n",
+                                    ".": "hui-generic-entity-row  {\n  position: absolute !important;\n  top: -14px !important;\n  margin-left: -7px !important;\n  transform: scale(0.9, 0.9);\n}\n"
+                                  }
+                                }
+                              ],
+                              "footer": {
+                                "type": "custom:paper-buttons-row",
+                                "styles": {
+                                  "justify-content": "space-between;",
+                                  "padding": "8px;",
+                                  "width": "auto;",
+                                  "margin-top": "-6px;",
+                                  "margin-bottom": "0px;",
+                                  "filter": "drop-shadow(0px 2px 2px rgba(0,0,0,0.5));"
+                                },
+                                "buttons": [
+                                  {
+                                    "name": false,
+                                    "icon": "mdi:play",
+                                    "tap_action": {
+                                      "action": "call-service",
+                                      "service": "vacuum.start",
+                                      "target": {
+                                        "entity_id": "vacuum.second_floor_vacuum"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": false,
+                                    "icon": "mdi:pause",
+                                    "tap_action": {
+                                      "action": "call-service",
+                                      "service": "vacuum.pause",
+                                      "target": {
+                                        "entity_id": "vacuum.second_floor_vacuum"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": false,
+                                    "icon": "mdi:home-map-marker",
+                                    "tap_action": {
+                                      "action": "call-service",
+                                      "service": "vacuum.return_to_base",
+                                      "target": {
+                                        "entity_id": "vacuum.second_floor_vacuum"
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "horizontal-buttons-stack",
+                  "1_link": "#therms",
+                  "1_name": "Temperature",
+                  "1_icon": "mdi:thermometer"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#therms"
+                    },
+                    {
+                      "type": "custom:stack-in-card",
+                      "cards": [
+                        {
+                          "type": "grid",
+                          "square": false,
+                          "columns": 2,
+                          "cards": [
+                            {
+                              "hours_to_show": 24,
+                              "graph": "line",
+                              "type": "sensor",
+                              "detail": 1,
+                              "name": "Thermostat",
+                              "entity": "sensor.thermostat_temperature"
+                            },
+                            {
+                              "hours_to_show": 24,
+                              "graph": "line",
+                              "type": "sensor",
+                              "entity": "sensor.thermostat_humidity",
+                              "detail": 1,
+                              "name": "Humidity"
+                            },
+                            {
+                              "hours_to_show": 24,
+                              "graph": "line",
+                              "type": "sensor",
+                              "entity": "sensor.craft_room_temperature",
+                              "detail": 1,
+                              "name": "Game Room"
+                            },
+                            {
+                              "hours_to_show": 24,
+                              "graph": "line",
+                              "type": "sensor",
+                              "entity": "sensor.gym_temperature",
+                              "detail": 1,
+                              "name": "Gym"
+                            },
+                            {
+                              "hours_to_show": 24,
+                              "graph": "line",
+                              "type": "sensor",
+                              "entity": "sensor.ryan_s_room_temperature_2",
+                              "detail": 1,
+                              "name": "Ryan's Room"
+                            },
+                            {
+                              "hours_to_show": 24,
+                              "graph": "line",
+                              "type": "sensor",
+                              "entity": "sensor.master_bedroom_temperature_2",
+                              "detail": 1,
+                              "name": "Master Bedroom"
+                            }
+                          ],
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "input_boolean.mobile_therm_charts",
+                          "show_state": false,
+                          "show_icon": true,
+                          "show_name": false,
+                          "icon": "mdi:arrow-up",
+                          "icon_height": "15px"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "max_columns": 1,
+          "cards": [],
+          "subview": true,
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Lights",
+          "path": "lights",
+          "icon": "mdi:lightbulb",
+          "type": "sections",
+          "max_columns": 1,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.all_lights",
+                  "name": "All Lights",
+                  "icon": "mdi:lightbulb-group",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "separator",
+                  "name": "First Floor",
+                  "card_layout": "large"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.entry_way_step_lights",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.family_room_main_lights",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "separator",
+                  "name": "Second Floor",
+                  "card_layout": "large"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.kitchen_main_lights_1",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Kitchen"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.kitchen_sink",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.dining_room_chandelier",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Dining Room"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.living_room_main_lights",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Living Room"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.second_floor_bathroom",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Bathroom"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.stairs_step_lights",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Stairs"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "separator",
+                  "name": "Third Floor",
+                  "card_layout": "large"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.upstairs_hallway_main_lights",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Hallway"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.office_ceiling_fan",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Craft Room"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.ryan_s_ceiling_fan_2",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Ryan's Room"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "empty-column",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.master_bedroom_ceiling_fan",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Master Bedroom Ceiling Fan"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.master_bedroom_lamps",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Master Bedroom Lamps"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "light.master_bathroom_main_lights",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "none"
+                  },
+                  "name": "Master Bathroom"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "empty-column",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  }
+                }
+              ]
+            }
+          ],
+          "subview": true,
+          "cards": [],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Labs",
+          "path": "labs",
+          "icon": "mdi:flag",
+          "type": "sections",
+          "max_columns": 1,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "input_boolean.company_over_kill_switch",
+                  "button_type": "switch"
+                }
+              ]
+            }
+          ],
+          "subview": true,
+          "cards": [],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Secure",
+          "path": "secure",
+          "icon": "mdi:shield-home",
+          "type": "sections",
+          "max_columns": 1,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "entity": "alarm_control_panel.alarm_control_panel",
+                  "card_layout": "large",
+                  "sub_button": [],
+                  "button_type": "state",
+                  "show_attribute": false,
+                  "show_last_changed": true,
+                  "force_icon": false
+                },
+                {
+                  "type": "custom:frigate-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.front_door_camera_fluent_lens_0",
+                      "live_provider": "auto",
+                      "webrtc_card": {}
+                    },
+                    {
+                      "camera_entity": "camera.foor_door_doorbell",
+                      "live_provider": "auto"
+                    },
+                    {
+                      "camera_entity": "camera.kitchen_display",
+                      "live_provider": "auto"
+                    }
+                  ],
+                  "view": {},
+                  "menu": {
+                    "buttons": {
+                      "substreams": {
+                        "enabled": true
+                      },
+                      "ptz_controls": {
+                        "enabled": true
+                      }
+                    },
+                    "style": "none"
+                  },
+                  "status_bar": {
+                    "style": "outside",
+                    "items": {
+                      "title": {
+                        "enabled": true
+                      },
+                      "technology": {
+                        "enabled": true
+                      }
+                    }
+                  },
+                  "live": {
+                    "preload": true,
+                    "lazy_load": false
+                  },
+                  "media_gallery": {
+                    "controls": {
+                      "thumbnails": {
+                        "show_download_control": true
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "horizontal-buttons-stack",
+                  "1_link": "#sensors",
+                  "1_name": "Sensors",
+                  "1_icon": "mdi:exclamation-thick"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#sensors"
+                    },
+                    {
+                      "type": "custom:stack-in-card",
+                      "cards": [
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "binary_sensor.front_door_entry"
+                            },
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "binary_sensor.back_door_entry"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "binary_sensor.garage_entry",
+                              "name": "Door to Garage"
+                            },
+                            {
+                              "type": "custom:mushroom-entity-card",
+                              "entity": "binary_sensor.patio_window_entry"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": "auto"
+                  }
+                }
+              ]
+            }
+          ],
+          "subview": true,
+          "cards": [],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Cars",
+          "path": "cars",
+          "icon": "mdi:car",
+          "subview": true,
+          "type": "sections",
+          "max_columns": 1,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "separator",
+                  "name": "Scarlett",
+                  "card_layout": "large"
+                },
+                {
+                  "type": "custom:stack-in-card",
+                  "cards": [
+                    {
+                      "type": "picture-elements",
+                      "elements": [
+                        {
+                          "type": "state-label",
+                          "entity": "sensor.scarlett_range",
+                          "style": {
+                            "top": "80%",
+                            "left": "1%",
+                            "transform": "none"
+                          }
+                        },
+                        {
+                          "type": "state-label",
+                          "entity": "sensor.scarlett_battery",
+                          "style": {
+                            "top": "80%",
+                            "left": "88%",
+                            "transform": "none"
+                          }
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "binary_sensor.scarlett_online",
+                              "state": "online"
+                            }
+                          ],
+                          "elements": [
+                            {
+                              "type": "state-icon",
+                              "entity": "binary_sensor.scarlett_online",
+                              "icon": "mdi:car-connected",
+                              "style": {
+                                "top": "1%",
+                                "left": "1%",
+                                "transform": "none"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "binary_sensor.scarlett_charger",
+                              "state": "charging"
+                            }
+                          ],
+                          "elements": [
+                            {
+                              "type": "state-icon",
+                              "entity": "binary_sensor.scarlett_charger",
+                              "icon": "mdi:battery-charging",
+                              "style": {
+                                "top": "1%",
+                                "left": "1%",
+                                "transform": "none"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "binary_sensor.scarlett_update_available",
+                              "state": "updating"
+                            }
+                          ],
+                          "elements": [
+                            {
+                              "type": "state-icon",
+                              "entity": "binary_sensor.scarlett_update_available",
+                              "icon": "mdi:download",
+                              "style": {
+                                "top": "1%",
+                                "left": "1%",
+                                "transform": "none"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "image": "/local/Scarlett.png"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "separator",
+                  "name": "Freya",
+                  "card_layout": "large"
+                },
+                {
+                  "type": "custom:stack-in-card",
+                  "cards": [
+                    {
+                      "type": "picture-elements",
+                      "elements": [
+                        {
+                          "type": "state-label",
+                          "entity": "sensor.freya_range",
+                          "style": {
+                            "top": "80%",
+                            "left": "1%",
+                            "transform": "none"
+                          }
+                        },
+                        {
+                          "type": "state-label",
+                          "entity": "sensor.freya_battery",
+                          "style": {
+                            "top": "80%",
+                            "left": "88%",
+                            "transform": "none"
+                          }
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "binary_sensor.freya_online",
+                              "state": "online"
+                            }
+                          ],
+                          "elements": [
+                            {
+                              "type": "state-icon",
+                              "entity": "binary_sensor.freya_online",
+                              "icon": "mdi:car-connected",
+                              "style": {
+                                "top": "1%",
+                                "left": "1%",
+                                "transform": "none"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "binary_sensor.freya_charger",
+                              "state": "charging"
+                            }
+                          ],
+                          "elements": [
+                            {
+                              "type": "state-icon",
+                              "entity": "binary_sensor.freya_charger",
+                              "icon": "mdi:battery-charging",
+                              "style": {
+                                "top": "1%",
+                                "left": "1%",
+                                "transform": "none"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "entity": "binary_sensor.freya_update_available",
+                              "state": "updating"
+                            }
+                          ],
+                          "elements": [
+                            {
+                              "type": "state-icon",
+                              "entity": "binary_sensor.freya_update_available",
+                              "icon": "mdi:download",
+                              "style": {
+                                "top": "1%",
+                                "left": "1%",
+                                "transform": "none"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "image": "/local/Freya.png"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "horizontal-buttons-stack",
+                  "1_link": "#stats",
+                  "1_name": "Stats",
+                  "1_icon": "mdi:chart-areaspline-variant"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:bubble-card",
+                      "card_type": "pop-up",
+                      "hash": "#stats"
+                    },
+                    {
+                      "type": "custom:stack-in-card",
+                      "cards": [
+                        {
+                          "type": "custom:bubble-card",
+                          "card_type": "separator",
+                          "name": "Scarlett",
+                          "card_layout": "large"
+                        },
+                        {
+                          "type": "custom:mini-graph-card",
+                          "entities": [
+                            {
+                              "entity": "sensor.scarlett_battery",
+                              "show_line": true
+                            }
+                          ],
+                          "hours_to_show": 72,
+                          "points_per_hour": 4,
+                          "line_width": 2,
+                          "animate": true,
+                          "color_thresholds": [
+                            {
+                              "value": 19,
+                              "color": "#db1414"
+                            },
+                            {
+                              "value": 39,
+                              "color": "#fcca03"
+                            },
+                            {
+                              "value": 74,
+                              "color": "#03fd73"
+                            },
+                            {
+                              "value": 80,
+                              "color": "#54cfff"
+                            },
+                            {
+                              "value": 100,
+                              "color": "#003aff"
+                            }
+                          ],
+                          "show": {
+                            "name": false,
+                            "icon": false,
+                            "state": true,
+                            "legend": false,
+                            "extrema": false,
+                            "labels": true,
+                            "labels_secondary": true
+                          }
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.scarlett_battery",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Battery"
+                            },
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.scarlett_range",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Range Est."
+                            },
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "binary_sensor.scarlett_online",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Online"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.scarlett_odometer",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Odometer"
+                            },
+                            {
+                              "type": "conditional",
+                              "conditions": [
+                                {
+                                  "condition": "state",
+                                  "entity": "device_tracker.scarlett_destination_location_tracker",
+                                  "state": "unknown"
+                                }
+                              ],
+                              "card": {
+                                "name": "Current Location",
+                                "show_state": true,
+                                "show_icon": false,
+                                "type": "button",
+                                "entity": "device_tracker.scarlett_location_tracker",
+                                "tap_action": {
+                                  "action": "toggle"
+                                }
+                              }
+                            },
+                            {
+                              "type": "conditional",
+                              "conditions": [
+                                {
+                                  "condition": "state",
+                                  "entity": "device_tracker.scarlett_destination_location_tracker",
+                                  "state_not": "unknown"
+                                }
+                              ],
+                              "card": {
+                                "name": "Current Destination",
+                                "show_state": true,
+                                "show_icon": false,
+                                "type": "button",
+                                "entity": "device_tracker.scarlett_destination_location_tracker",
+                                "tap_action": {
+                                  "action": "toggle"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.scarlett_charging_rate",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Charge Power"
+                            },
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.scarlett_charging_rate",
+                              "show_icon": false,
+                              "show_state": true,
+                              "name": "Charge Rate"
+                            },
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.scarlett_energy_added",
+                              "name": "Energy Added",
+                              "show_icon": false,
+                              "show_state": true,
+                              "show_name": true
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:stack-in-card",
+                      "cards": [
+                        {
+                          "type": "custom:bubble-card",
+                          "card_type": "separator",
+                          "name": "Freya",
+                          "card_layout": "large"
+                        },
+                        {
+                          "type": "custom:mini-graph-card",
+                          "entities": [
+                            {
+                              "entity": "sensor.freya_battery",
+                              "show_line": true
+                            }
+                          ],
+                          "hours_to_show": 72,
+                          "points_per_hour": 2,
+                          "line_width": 2,
+                          "animate": true,
+                          "color_thresholds": [
+                            {
+                              "value": 24,
+                              "color": "#db1414"
+                            },
+                            {
+                              "value": 49,
+                              "color": "#fcca03"
+                            },
+                            {
+                              "value": 94,
+                              "color": "#03fd73"
+                            },
+                            {
+                              "value": 100,
+                              "color": "#54cfff"
+                            }
+                          ],
+                          "show": {
+                            "name": false,
+                            "icon": false,
+                            "state": true,
+                            "legend": false,
+                            "extrema": false,
+                            "labels": true,
+                            "labels_secondary": true
+                          }
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.freya_battery",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Battery"
+                            },
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.freya_range",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Range Est."
+                            },
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "binary_sensor.freya_online",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Online"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.freya_odometer",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Odometer"
+                            },
+                            {
+                              "type": "conditional",
+                              "conditions": [
+                                {
+                                  "condition": "state",
+                                  "entity": "device_tracker.freya_destination_location_tracker",
+                                  "state": "unknown"
+                                }
+                              ],
+                              "card": {
+                                "name": "Current Location",
+                                "show_state": true,
+                                "show_icon": false,
+                                "type": "button",
+                                "entity": "device_tracker.freya_location_tracker",
+                                "tap_action": {
+                                  "action": "toggle"
+                                }
+                              }
+                            },
+                            {
+                              "type": "conditional",
+                              "conditions": [
+                                {
+                                  "condition": "state",
+                                  "entity": "device_tracker.freya_destination_location_tracker",
+                                  "state_not": "unknown"
+                                }
+                              ],
+                              "card": {
+                                "name": "Current Destination",
+                                "show_state": true,
+                                "show_icon": false,
+                                "type": "button",
+                                "entity": "device_tracker.freya_destination_location_tracker",
+                                "tap_action": {
+                                  "action": "toggle"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.freya_charging_rate",
+                              "show_state": true,
+                              "show_icon": false,
+                              "name": "Charge Power"
+                            },
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.freya_charging_rate",
+                              "show_icon": false,
+                              "show_state": true,
+                              "name": "Charge Rate"
+                            },
+                            {
+                              "type": "button",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "entity": "sensor.freya_energy_added",
+                              "name": "Energy Added",
+                              "show_icon": false,
+                              "show_state": true,
+                              "show_name": true
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 1,
+          "icon": "mdi:history",
+          "path": "glance",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "HVAC Runtime",
+                  "heading_style": "title",
+                  "icon": "mdi:hvac"
+                },
+                {
+                  "type": "tile",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "entity": "sensor.stats_hvac_runtime_24_hours",
+                  "name": "Runtime - 24 hrs",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 1
+                  },
+                  "entity": "sensor.stats_hvac_runtime_7_days",
+                  "name": "Runtime - 7 days",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.thermostat_temperature",
+                    "sensor.openweathermap_temperature"
+                  ],
+                  "stat_types": [
+                    "max"
+                  ],
+                  "hide_legend": false,
+                  "logarithmic_scale": false,
+                  "days_to_show": 3
+                },
+                {
+                  "type": "heading",
+                  "heading": "Vacuum Stats",
+                  "heading_style": "title",
+                  "icon": "mdi:robot-vacuum"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.second_floor_vacuum_area_cleaned",
+                  "name": "Area Cleaned - 2nd Floor",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.second_floor_vacuum_cleaning_duration",
+                  "name": "Time - 2nd Floor",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "heading",
+                  "heading": "Visitors",
+                  "heading_style": "title",
+                  "icon": "mdi:account-group"
+                },
+                {
+                  "type": "tile",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 1
+                  },
+                  "entity": "event.foor_door_doorbell_chime",
+                  "name": "Doorbell",
+                  "vertical": false,
+                  "features_position": "bottom"
+                }
+              ]
+            }
+          ],
+          "subview": true,
+          "cards": [],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ]
+        },
+        {
+          "title": "Mitchell",
+          "path": "mitchell",
+          "icon": "",
+          "subview": true,
+          "type": "sections",
+          "max_columns": 1,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "person.mitchell"
+                    },
+                    {
+                      "entity": "sensor.mitchell_s_iphone_steps",
+                      "name": "Step Count"
+                    }
+                  ],
+                  "show_header_toggle": false,
+                  "state_color": false
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "history-graph",
+                      "entities": [
+                        {
+                          "entity": "person.mitchell"
+                        }
+                      ],
+                      "hours_to_show": 12,
+                      "logarithmic_scale": false
+                    },
+                    {
+                      "type": "map",
+                      "entities": [
+                        {
+                          "entity": "person.mitchell"
+                        }
+                      ],
+                      "hours_to_show": 12,
+                      "default_zoom": 13,
+                      "theme_mode": "dark"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.mitchell_s_iphone_battery_level",
+                      "name": "Phone",
+                      "state_color": false
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.mitchell_s_iphone_watch_battery",
+                      "name": "Watch",
+                      "state_color": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ],
+          "cards": []
+        },
+        {
+          "title": "Michelle",
+          "path": "michelle",
+          "icon": "",
+          "subview": true,
+          "type": "sections",
+          "max_columns": 1,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "person.michelle"
+                    },
+                    {
+                      "entity": "sensor.michelle_s_iphone_steps",
+                      "name": "Step Count"
+                    }
+                  ],
+                  "show_header_toggle": false,
+                  "state_color": false
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "history-graph",
+                      "entities": [
+                        {
+                          "entity": "person.michelle"
+                        }
+                      ],
+                      "hours_to_show": 12,
+                      "logarithmic_scale": false
+                    },
+                    {
+                      "type": "map",
+                      "entities": [
+                        {
+                          "entity": "person.michelle"
+                        }
+                      ],
+                      "hours_to_show": 12,
+                      "default_zoom": 13,
+                      "theme_mode": "dark"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.michelle_s_iphone_battery_level",
+                      "name": "Phone",
+                      "state_color": false
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.michelle_s_iphone_watch_battery",
+                      "name": "Watch",
+                      "state_color": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ],
+          "cards": []
+        },
+        {
+          "title": "Ryan",
+          "path": "ryan",
+          "icon": "",
+          "subview": true,
+          "type": "sections",
+          "max_columns": 1,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "person.ryan"
+                    },
+                    {
+                      "entity": "sensor.ryans_iphone_steps",
+                      "name": "Step Count"
+                    }
+                  ],
+                  "show_header_toggle": false,
+                  "state_color": false
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "history-graph",
+                      "entities": [
+                        {
+                          "entity": "person.ryan"
+                        }
+                      ],
+                      "hours_to_show": 12,
+                      "logarithmic_scale": false
+                    },
+                    {
+                      "type": "map",
+                      "entities": [
+                        {
+                          "entity": "person.ryan"
+                        }
+                      ],
+                      "hours_to_show": 12,
+                      "default_zoom": 13,
+                      "theme_mode": "dark"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.ryans_iphone_battery_level",
+                      "state_color": false,
+                      "name": "Phone"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ],
+          "cards": []
+        },
+        {
+          "title": "Takumi",
+          "path": "takumi",
+          "icon": "",
+          "subview": true,
+          "type": "sections",
+          "max_columns": 1,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "device_tracker.takumi_tracker"
+                    },
+                    {
+                      "entity": "sensor.takumi_daily_steps",
+                      "name": "Daily Steps",
+                      "icon": "mdi:dog-side",
+                      "secondary_info": "none"
+                    },
+                    {
+                      "entity": "sensor.takumi_daily_nap",
+                      "name": "Daily Nap",
+                      "icon": "mdi:sleep"
+                    }
+                  ],
+                  "show_header_toggle": false,
+                  "state_color": false
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "history-graph",
+                      "entities": [
+                        {
+                          "entity": "device_tracker.takumi_tracker"
+                        }
+                      ],
+                      "hours_to_show": 12,
+                      "logarithmic_scale": false
+                    },
+                    {
+                      "type": "map",
+                      "entities": [
+                        {
+                          "entity": "device_tracker.takumi_tracker"
+                        }
+                      ],
+                      "hours_to_show": 12,
+                      "default_zoom": 17,
+                      "theme_mode": "dark"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.takumi_collar_battery_level",
+                      "name": "Collar",
+                      "state_color": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Home",
+              "icon": "mdi:home",
+              "color": "",
+              "label": "",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/main"
+              }
+            }
+          ],
+          "cards": []
+        }
+      ]
+    }
+  }
+}
