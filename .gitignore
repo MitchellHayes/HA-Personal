@@ -11,10 +11,7 @@
 
 # if the files to be tracked are in subdirectories
 !.storage/lovelace.lovelace_dashboard
-!.storage/lovelace.lovelace_mobile
-!.storage/lovelace.system_checks
-!.storage/lovelace.lovelace_test
-!.storage/lovelace.new_dashboard_test
+!.storage/lovelace.lovelace_main
 !/blueprints/*
 !/www/community/*
 !/www/ui/*
