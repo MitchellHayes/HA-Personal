@@ -25,25 +25,27 @@ notify:
       - service: mobile_app_michelle_s_iphone
       - service: mobile_app_mitchell_s_iphone
 
-# sensor templates
+# Non-template sensors
 sensor:
   # Time and Date
   - platform: time_date
     display_options:
       - "time"
       - "date"
+
   # Weather Alerts
   - platform: weatheralerts
     state: MD
     zone: 508
     county: 25
 
-  # Templates for Home Air Quality
-  - platform: template
-    sensors:
-      gym_air_quality_2:
-        value_template: >-
-          {% set airQuality = states('sensor.gym_pm2_5') | float %}
+template:
+  # State-based template sensors – Home Air Quality
+  - sensor:
+      - default_entity_id: sensor.gym_air_quality_2
+        name: "Gym Air Quality 2"
+        state: >-
+          {% set airQuality = states('sensor.gym_pm2_5') | float(0) %}
           {% if 0 <= airQuality <= 60 %}
             Green
           {% elif 60 < airQuality <= 90 %}
@@ -52,9 +54,10 @@ sensor:
             Red
           {% endif %}
 
-      ryan_air_quality:
-        value_template: >-
-          {% set airQuality = states('sensor.air_quality_ryan') | float %}
+      - default_entity_id: sensor.ryan_air_quality
+        name: "Ryan Air Quality"
+        state: >-
+          {% set airQuality = states('sensor.air_quality_ryan') | float(0) %}
           {% if 0 <= airQuality <= 60 %}
             Green
           {% elif 60 < airQuality <= 90 %}
@@ -63,9 +66,10 @@ sensor:
             Red
           {% endif %}
 
-      second_floor_air_quality_2:
-        value_template: >-
-          {% set airQuality = states('sensor.second_floor_pm2_5') | float %}
+      - default_entity_id: sensor.second_floor_air_quality_2
+        name: "Second Floor Air Quality 2"
+        state: >-
+          {% set airQuality = states('sensor.second_floor_pm2_5') | float(0) %}
           {% if 0 <= airQuality <= 60 %}
             Green
           {% elif 60 < airQuality <= 90 %}
@@ -74,14 +78,13 @@ sensor:
             Red
           {% endif %}
 
-  # Templates for Weather Info
-  - platform: template
-    sensors:
-      ragweed_simple:
-        friendly_name: "Ragweed Levels"
-        icon_template: "mdi:sprout"
-        value_template: >-
-          {% set ragweed = states('sensor.home_ragweed_pollen_0d') | float %}
+  # State-based template sensors – Pollen Levels
+  - sensor:
+      - default_entity_id: sensor.ragweed_simple
+        name: "Ragweed Levels"
+        icon: "mdi:sprout"
+        state: >-
+          {% set ragweed = states('sensor.home_ragweed_pollen_0d') | float(0) %}
           {% if 0 <= ragweed <= 9 %}
             Low
           {% elif 9 < ragweed <= 49 %}
@@ -92,11 +95,11 @@ sensor:
             Very High
           {% endif %}
 
-      tree_simple:
-        friendly_name: "Tree Levels"
-        icon_template: "mdi:tree"
-        value_template: >-
-          {% set tree = states('sensor.home_tree_pollen_0d') | float %}
+      - default_entity_id: sensor.tree_simple
+        name: "Tree Levels"
+        icon: "mdi:tree"
+        state: >-
+          {% set tree = states('sensor.home_tree_pollen_0d') | float(0) %}
           {% if 0 <= tree <= 14 %}
             Low
           {% elif 14 < tree <= 89 %}
@@ -107,11 +110,11 @@ sensor:
             Very High
           {% endif %}
 
-      grass_simple:
-        friendly_name: "Grass Levels"
-        icon_template: "mdi:grass"
-        value_template: >-
-          {% set grass = states('sensor.home_grass_pollen_0d') | float %}
+      - default_entity_id: sensor.grass_simple
+        name: "Grass Levels"
+        icon: "mdi:grass"
+        state: >-
+          {% set grass = states('sensor.home_grass_pollen_0d') | float(0) %}
           {% if 0 <= grass <= 4 %}
             Low
           {% elif 4 < grass <= 19 %}
@@ -122,55 +125,99 @@ sensor:
             Very High
           {% endif %}
 
-
-
-# Color temp for ceiling fan in Master Bedroom
-light:
-  - platform: template
-    lights:
-      master_bedroom_ceiling_fan:
-        friendly_name: "Master Bedroom Ceiling Fan Light"
+  - light:
+      - default_entity_id: light.master_bedroom_ceiling_fan
         unique_id: master_bedroom_ceiling_fan
-        value_template: "{{ (state_attr('light.master_bedroom_ceiling_fan_yellow', 'brightness')|int(0) + state_attr('light.master_bedroom_ceiling_fan_white', 'brightness')|int(0)) > 0 }}"
-        level_template: "{{ states('input_number.master_bedroom_ceiling_fan_brightness')|int }}"
-        temperature_template: "{{ states('input_number.master_bedroom_ceiling_fan_temp')|int }}"
+        name: "Master Bedroom Ceiling Fan Light"
+        state: >-
+          {% set y = state_attr('light.master_bedroom_ceiling_fan_yellow', 'brightness') | int(0) %}
+          {% set w = state_attr('light.master_bedroom_ceiling_fan_white', 'brightness') | int(0) %}
+          {% if (y + w) > 0 %}
+            on
+          {% else %}
+            off
+          {% endif %}
+        level: "{{ states('input_number.master_bedroom_ceiling_fan_brightness') | int }}"
+        temperature: "{{ states('input_number.master_bedroom_ceiling_fan_temp') | int }}"
         set_level:
           - action: input_number.set_value
             data:
-              value: "{{ brightness|int }}"
+              value: "{{ brightness | int }}"
             target:
               entity_id: input_number.master_bedroom_ceiling_fan_brightness
           - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_yellow
-              brightness: "{{ ((states('input_number.master_bedroom_ceiling_fan_temp')|int-153)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int }}"
+              brightness: >-
+                {{
+                  (
+                    (states('input_number.master_bedroom_ceiling_fan_temp') | int - 153) /
+                    347 *
+                    (states('input_number.master_bedroom_ceiling_fan_brightness') | int)
+                  ) | int
+                }}
           - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_white
-              brightness: "{{ ((500-states('input_number.master_bedroom_ceiling_fan_temp')|int)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int }}"
+              brightness: >-
+                {{
+                  (
+                    (500 - states('input_number.master_bedroom_ceiling_fan_temp') | int) /
+                    347 *
+                    (states('input_number.master_bedroom_ceiling_fan_brightness') | int)
+                  ) | int
+                }}
         set_temperature:
           - action: input_number.set_value
             data:
-              value: "{{ color_temp|int }}"
+              value: "{{ color_temp | int }}"
             target:
               entity_id: input_number.master_bedroom_ceiling_fan_temp
           - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_yellow
-              brightness: "{{((states('input_number.master_bedroom_ceiling_fan_temp')|int-153)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int}}"
+              brightness: >-
+                {{
+                  (
+                    (states('input_number.master_bedroom_ceiling_fan_temp') | int - 153) /
+                    347 *
+                    (states('input_number.master_bedroom_ceiling_fan_brightness') | int)
+                  ) | int
+                }}
           - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_white
-              brightness: "{{((500-states('input_number.master_bedroom_ceiling_fan_temp')|int)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int}}"
+              brightness: >-
+                {{
+                  (
+                    (500 - states('input_number.master_bedroom_ceiling_fan_temp') | int) /
+                    347 *
+                    (states('input_number.master_bedroom_ceiling_fan_brightness') | int)
+                  ) | int
+                }}
         turn_on:
           - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_yellow
-              brightness: "{{((states('input_number.master_bedroom_ceiling_fan_temp')|int-153)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int}}"
+              brightness: >-
+                {{
+                  (
+                    (states('input_number.master_bedroom_ceiling_fan_temp') | int - 153) /
+                    347 *
+                    (states('input_number.master_bedroom_ceiling_fan_brightness') | int)
+                  ) | int
+                }}
           - action: light.turn_on
             data:
               entity_id: light.master_bedroom_ceiling_fan_white
-              brightness: "{{((500-states('input_number.master_bedroom_ceiling_fan_temp')|int)/347*states('input_number.master_bedroom_ceiling_fan_brightness')|int)|int}}"
+              brightness: >-
+                {{
+                  (
+                    (500 - states('input_number.master_bedroom_ceiling_fan_temp') | int) /
+                    347 *
+                    (states('input_number.master_bedroom_ceiling_fan_brightness') | int)
+                  ) | int
+                }}
         turn_off:
           - action: light.turn_off
             data:

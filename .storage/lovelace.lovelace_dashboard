@@ -6,178 +6,9 @@
     "config": {
       "views": [
         {
-          "theme": "Backend-selected",
-          "title": "Home",
-          "icon": "mdi:home",
           "type": "sections",
-          "badges": [],
           "cards": [],
-          "max_columns": 4,
           "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:vertical-stack-in-card",
-                      "cards": [
-                        {
-                          "clock_style": "digital",
-                          "clock_size": "large",
-                          "time_format": "24",
-                          "show_seconds": false,
-                          "no_background": false,
-                          "type": "clock",
-                          "face_style": "markers",
-                          "card_mod": "style:| time-wrapper { padding }"
-                        },
-                        {
-                          "type": "markdown",
-                          "content": "{{ now().strftime('%A, %B %d') }}",
-                          "card_mod": {
-                            "style": "ha-card {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 30px;\n  font-weight: 200;\n}\nha-markdown {\n  padding: 0px !important;\n}\n"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "name": "Home",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/0"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/first-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "1st Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/second-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "2nd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/third-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "3rd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/cal"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Calendar"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/weather"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Weather"
-                },
-                {
-                  "entities": [
-                    "calendar.family_calendar"
-                  ],
-                  "days_to_show": 4,
-                  "show_empty_days": true,
-                  "first_day_of_week": "",
-                  "date_vertical_alignment": "",
-                  "weekday_font_size": "16px",
-                  "day_font_size": "28px",
-                  "month_font_size": "14px",
-                  "event_font_size": "18px",
-                  "time_24h": "",
-                  "time_font_size": "14px",
-                  "show_location": false,
-                  "location_font_size": "14px",
-                  "weather": {
-                    "position": "date",
-                    "date": {
-                      "show_conditions": true,
-                      "show_high_temp": true,
-                      "show_low_temp": false,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    },
-                    "event": {
-                      "show_conditions": true,
-                      "show_temp": true,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    }
-                  },
-                  "type": "custom:calendar-card-pro"
-                }
-              ]
-            },
             {
               "type": "grid",
               "cards": [
@@ -205,16 +36,18 @@
                             {
                               "entity": "device_tracker.takumi_tracker"
                             }
-                          ]
+                          ],
+                          "state_color": false,
+                          "columns": 2
                         },
                         {
                           "type": "map",
                           "entities": [
                             {
-                              "entity": "person.mitchell"
+                              "entity": "person.michelle"
                             },
                             {
-                              "entity": "person.michelle"
+                              "entity": "person.mitchell"
                             },
                             {
                               "entity": "person.ryan"
@@ -229,14 +62,6 @@
                     }
                   ],
                   "title": "Where are we?"
-                },
-                {
-                  "show_current": true,
-                  "show_forecast": true,
-                  "type": "weather-forecast",
-                  "entity": "weather.openweathermap",
-                  "forecast_type": "daily",
-                  "forecast_slots": 5
                 }
               ]
             },
@@ -358,6 +183,18 @@
                           {
                             "options": {},
                             "entity_id": "light.kitchen_sink"
+                          },
+                          {
+                            "options": {},
+                            "entity_id": "light.browser_mod_4cbb02a8_7714abe9_screen"
+                          },
+                          {
+                            "options": {},
+                            "entity_id": "light.master_bedroom_ceiling_fan_white"
+                          },
+                          {
+                            "options": {},
+                            "entity_id": "light.master_bedroom_ceiling_fan_yellow"
                           }
                         ]
                       }
@@ -467,6 +304,10 @@
                   "title": "Security"
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": []
             }
           ],
           "dense_section_placement": false,
@@ -475,7 +316,10 @@
             "layout": "center",
             "badges_position": "bottom",
             "badges_wrap": "wrap"
-          }
+          },
+          "max_columns": 3,
+          "icon": "mdi:home",
+          "path": "home"
         },
         {
           "theme": "Backend-selected",
@@ -486,170 +330,6 @@
           "badges": [],
           "cards": [],
           "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:vertical-stack-in-card",
-                      "cards": [
-                        {
-                          "clock_style": "digital",
-                          "clock_size": "large",
-                          "time_format": "24",
-                          "show_seconds": false,
-                          "no_background": false,
-                          "type": "clock",
-                          "face_style": "markers",
-                          "card_mod": "style:| time-wrapper { padding }"
-                        },
-                        {
-                          "type": "markdown",
-                          "content": "{{ now().strftime('%A, %B %d') }}",
-                          "card_mod": {
-                            "style": "ha-card {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 30px;\n  font-weight: 200;\n}\nha-markdown {\n  padding: 0px !important;\n}\n"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "name": "Home",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/0"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/first-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "1st Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/second-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "2nd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/third-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "3rd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/cal"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Calendar"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/weather"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Weather"
-                },
-                {
-                  "entities": [
-                    "calendar.family_calendar"
-                  ],
-                  "days_to_show": 4,
-                  "show_empty_days": true,
-                  "first_day_of_week": "",
-                  "date_vertical_alignment": "",
-                  "weekday_font_size": "16px",
-                  "day_font_size": "28px",
-                  "month_font_size": "14px",
-                  "event_font_size": "18px",
-                  "time_24h": "",
-                  "time_font_size": "14px",
-                  "show_location": false,
-                  "location_font_size": "14px",
-                  "weather": {
-                    "position": "date",
-                    "date": {
-                      "show_conditions": true,
-                      "show_high_temp": true,
-                      "show_low_temp": false,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    },
-                    "event": {
-                      "show_conditions": true,
-                      "show_temp": true,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    }
-                  },
-                  "type": "custom:calendar-card-pro"
-                }
-              ]
-            },
             {
               "type": "grid",
               "cards": [
@@ -744,9 +424,1124 @@
               "column_span": 3
             }
           ],
-          "max_columns": 4,
+          "max_columns": 3,
           "dense_section_placement": false,
           "subview": true
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "First Floor",
+          "path": "first-floor",
+          "icon": "mdi:home-floor-1",
+          "type": "sections",
+          "badges": [],
+          "cards": [],
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.gym_temperature",
+                      "name": "Temperature",
+                      "layout": "vertical",
+                      "fill_container": false
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.gym_occupancy",
+                      "layout": "vertical",
+                      "fill_container": false,
+                      "icon": "mdi:account"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.garage_entry",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "name": "Garage | Entry Door"
+                    }
+                  ],
+                  "title": "Sensors",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.front_door_entry",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "name": "Front Door"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.patio_window_entry",
+                      "name": "Patio Window",
+                      "layout": "vertical",
+                      "fill_container": false
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.front_door_camera_person",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "name": "Person Sensor | Front Door"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.entry_way_step_lights",
+                          "name": "Entry Way",
+                          "show_brightness_control": true,
+                          "collapsible_controls": true
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.family_room_main_lights",
+                          "show_brightness_control": true,
+                          "collapsible_controls": true
+                        }
+                      ]
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": "auto"
+                  },
+                  "title": "Lights"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "media-control",
+                          "entity": "media_player.gym_tv"
+                        },
+                        {
+                          "type": "media-control",
+                          "entity": "media_player.family_room"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "media-control",
+                          "entity": "media_player.entryway_speaker"
+                        }
+                      ]
+                    }
+                  ],
+                  "title": "Media",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                }
+              ],
+              "column_span": 2
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.front_door_camera_fluent_lens_0",
+                      "live_provider": "webrtc-card",
+                      "webrtc_card": {},
+                      "go2rtc": {
+                        "modes": []
+                      }
+                    }
+                  ],
+                  "menu": {
+                    "style": "outside",
+                    "buttons": {
+                      "iris": {
+                        "enabled": false
+                      },
+                      "cameras": {
+                        "enabled": false
+                      },
+                      "substreams": {
+                        "enabled": false
+                      },
+                      "live": {
+                        "enabled": true
+                      },
+                      "clips": {
+                        "enabled": false
+                      },
+                      "snapshots": {
+                        "enabled": false
+                      },
+                      "download": {
+                        "enabled": false
+                      },
+                      "camera_ui": {
+                        "enabled": true
+                      },
+                      "timeline": {
+                        "enabled": false
+                      },
+                      "ptz_controls": {
+                        "enabled": false
+                      }
+                    }
+                  },
+                  "live": {
+                    "preload": true,
+                    "lazy_load": false
+                  }
+                },
+                {
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.foor_door_doorbell",
+                      "webrtc_card": {},
+                      "go2rtc": {
+                        "modes": []
+                      },
+                      "title": "Doorbell",
+                      "always_error_if_entity_unavailable": false
+                    }
+                  ],
+                  "menu": {
+                    "style": "outside",
+                    "buttons": {
+                      "iris": {
+                        "enabled": false
+                      },
+                      "cameras": {
+                        "enabled": false
+                      },
+                      "substreams": {
+                        "enabled": false
+                      },
+                      "live": {
+                        "enabled": true
+                      },
+                      "clips": {
+                        "enabled": false
+                      },
+                      "snapshots": {
+                        "enabled": false
+                      },
+                      "download": {
+                        "enabled": false
+                      },
+                      "camera_ui": {
+                        "enabled": true
+                      },
+                      "timeline": {
+                        "enabled": false
+                      },
+                      "ptz_controls": {
+                        "enabled": false
+                      }
+                    }
+                  },
+                  "live": {
+                    "preload": true,
+                    "lazy_load": false
+                  }
+                }
+              ]
+            }
+          ],
+          "max_columns": 3
+        },
+        {
+          "type": "sections",
+          "cards": [],
+          "max_columns": 3,
+          "path": "second-floor",
+          "icon": "mdi:home-floor-2",
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "sensor.thermostat_temperature",
+                      "name": "Temperature",
+                      "layout": "vertical",
+                      "fill_container": false
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "fill_container": false,
+                      "layout": "vertical",
+                      "entity": "sensor.thermostat_humidity",
+                      "name": "Humidity"
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "binary_sensor.thermostat_occupancy",
+                      "layout": "vertical",
+                      "fill_container": false,
+                      "icon": "mdi:account",
+                      "name": "Occupancy"
+                    }
+                  ],
+                  "title": "Sensors",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.living_room_main_lights",
+                          "show_brightness_control": true,
+                          "collapsible_controls": true
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.living_room_ceiling_fan",
+                          "show_brightness_control": true,
+                          "collapsible_controls": true
+                        },
+                        {
+                          "type": "custom:mushroom-fan-card",
+                          "entity": "fan.living_room_ceiling_fan",
+                          "name": "Ceiling Fan",
+                          "icon_animation": true,
+                          "tap_action": {
+                            "action": "more-info"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": "auto"
+                  },
+                  "title": "Lights & Fan"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.kitchen_lights",
+                          "show_brightness_control": true,
+                          "collapsible_controls": true
+                        },
+                        {
+                          "type": "custom:mushroom-light-card",
+                          "entity": "light.dining_room_chandelier",
+                          "show_brightness_control": true,
+                          "collapsible_controls": true
+                        }
+                      ]
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-cover-card",
+                          "entity": "cover.living_room_blinds",
+                          "show_position_control": true,
+                          "show_buttons_control": true
+                        },
+                        {
+                          "type": "custom:mushroom-cover-card",
+                          "entity": "cover.kitchen_blinds",
+                          "icon": "mdi:blinds",
+                          "show_buttons_control": true,
+                          "show_position_control": true
+                        }
+                      ]
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": "auto"
+                  },
+                  "title": "Blinds"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "media-control",
+                          "entity": "media_player.living_room"
+                        },
+                        {
+                          "type": "media-control",
+                          "entity": "media_player.kitchen_speaker_2"
+                        }
+                      ]
+                    }
+                  ],
+                  "title": "Media",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                }
+              ],
+              "column_span": 2
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:xiaomi-vacuum-map-card",
+                  "vacuum_platform": "DeebotUniverse/Deebot-4-Home-Assistant",
+                  "entity": "vacuum.second_floor_vacuum",
+                  "map_source": {
+                    "camera": "image.second_floor_vacuum_map"
+                  },
+                  "map_locked": true,
+                  "icons": [
+                    {
+                      "icon": "mdi:play",
+                      "conditions": [
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "cleaning"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "error"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "returning"
+                        }
+                      ],
+                      "tooltip": "Start",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.start",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum"
+                        }
+                      }
+                    },
+                    {
+                      "icon": "mdi:pause",
+                      "conditions": [
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "docked"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "idle"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "error"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "paused"
+                        }
+                      ],
+                      "tooltip": "Pause",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.pause",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum"
+                        }
+                      }
+                    },
+                    {
+                      "icon": "mdi:stop",
+                      "conditions": [
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "docked"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "idle"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "error"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "paused"
+                        }
+                      ],
+                      "tooltip": "Stop",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.stop",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum"
+                        }
+                      }
+                    },
+                    {
+                      "icon": "mdi:home-map-marker",
+                      "conditions": [
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "docked"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "value_not": "returning"
+                        }
+                      ],
+                      "tooltip": "Return to base",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.return_to_base",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum"
+                        }
+                      }
+                    },
+                    {
+                      "icon": "mdi:map-marker",
+                      "tooltip": "Locate",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.locate",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum"
+                        }
+                      }
+                    },
+                    {
+                      "menu_id": "fan_speed",
+                      "icon": "mdi:fan-alert",
+                      "label": "quiet",
+                      "conditions": [
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "attribute": "fan_speed",
+                          "value": "quiet"
+                        }
+                      ],
+                      "tooltip": "Change fan speed",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.set_fan_speed",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum",
+                          "fan_speed": "quiet"
+                        }
+                      }
+                    },
+                    {
+                      "menu_id": "fan_speed",
+                      "icon": "mdi:fan-alert",
+                      "label": "normal",
+                      "conditions": [
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "attribute": "fan_speed",
+                          "value": "normal"
+                        }
+                      ],
+                      "tooltip": "Change fan speed",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.set_fan_speed",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum",
+                          "fan_speed": "normal"
+                        }
+                      }
+                    },
+                    {
+                      "menu_id": "fan_speed",
+                      "icon": "mdi:fan-alert",
+                      "label": "max",
+                      "conditions": [
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "attribute": "fan_speed",
+                          "value": "max"
+                        }
+                      ],
+                      "tooltip": "Change fan speed",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.set_fan_speed",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum",
+                          "fan_speed": "max"
+                        }
+                      }
+                    },
+                    {
+                      "menu_id": "fan_speed",
+                      "icon": "mdi:fan-alert",
+                      "label": "max_plus",
+                      "conditions": [
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "attribute": "fan_speed",
+                          "value": "max_plus"
+                        }
+                      ],
+                      "tooltip": "Change fan speed",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.set_fan_speed",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum",
+                          "fan_speed": "max_plus"
+                        }
+                      }
+                    },
+                    {
+                      "icon": "mdi:fan-alert",
+                      "conditions": [
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "attribute": "fan_speed",
+                          "value_not": "quiet"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "attribute": "fan_speed",
+                          "value_not": "normal"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "attribute": "fan_speed",
+                          "value_not": "max"
+                        },
+                        {
+                          "entity": "vacuum.second_floor_vacuum",
+                          "attribute": "fan_speed",
+                          "value_not": "max_plus"
+                        }
+                      ],
+                      "tooltip": "Change fan speed",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.set_fan_speed",
+                        "service_data": {
+                          "entity_id": "vacuum.second_floor_vacuum",
+                          "fan_speed": "quiet"
+                        }
+                      }
+                    },
+                    {
+                      "type": "menu",
+                      "menu_id": "water_amount",
+                      "icon_id": "water_amount",
+                      "available_values_attribute": "options",
+                      "icon": "mdi:water",
+                      "icon_mapping": {
+                        "low": "mdi:water-minus",
+                        "medium": "mdi:water",
+                        "high": "mdi:water-plus",
+                        "ultrahigh": "mdi:water-alert"
+                      },
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "select.select_option",
+                        "service_data": {
+                          "option": "[[value]]",
+                          "entity_id": "[[entity_id]]"
+                        }
+                      },
+                      "entity": "select.second_floor_vacuum_water_flow_level"
+                    }
+                  ],
+                  "tiles": [
+                    {
+                      "tile_id": "fan_speed",
+                      "entity": "vacuum.second_floor_vacuum",
+                      "label": "Fan speed",
+                      "attribute": "fan_speed",
+                      "icon": "mdi:fan",
+                      "translations": {
+                        "silent": "Silent",
+                        "standard": "Standard",
+                        "medium": "Medium",
+                        "turbo": "Turbo",
+                        "auto": "Auto",
+                        "gentle": "Gentle"
+                      }
+                    },
+                    {
+                      "tile_id": "water_amount",
+                      "label": "Mop Water Flow",
+                      "icon": "mdi:water",
+                      "entity": "select.second_floor_vacuum_water_flow_level",
+                      "precision": 0,
+                      "translations": {}
+                    },
+                    {
+                      "tile_id": "cleaning_time",
+                      "label": "Cleaning time",
+                      "icon": "mdi:timer-sand",
+                      "unit": "min",
+                      "entity": "sensor.second_floor_vacuum_cleaning_duration",
+                      "precision": 0,
+                      "translations": {}
+                    }
+                  ],
+                  "map_modes": [
+                    {
+                      "name": "Zone cleanup",
+                      "icon": "mdi:select-drag",
+                      "run_immediately": false,
+                      "coordinates_rounding": true,
+                      "coordinates_to_meters_divider": -1,
+                      "selection_type": "MANUAL_RECTANGLE",
+                      "max_selections": 1,
+                      "repeats_type": "NONE",
+                      "max_repeats": 1,
+                      "service_call_schema": {
+                        "service": "vacuum.send_command",
+                        "service_data": {
+                          "entity_id": "[[entity_id]]",
+                          "command": "custom_area",
+                          "params": {
+                            "coordinates": "[[selection_unwrapped]]"
+                          }
+                        }
+                      },
+                      "predefined_selections": [],
+                      "variables": {}
+                    }
+                  ],
+                  "additional_presets": []
+                }
+              ],
+              "column_span": 1
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Third Floor",
+          "path": "third-floor",
+          "icon": "mdi:home-floor-3",
+          "type": "sections",
+          "badges": [],
+          "cards": [],
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "vertical-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-chips-card",
+                          "chips": [
+                            {
+                              "type": "entity",
+                              "entity": "sensor.master_bedroom_temperature_2"
+                            },
+                            {
+                              "type": "entity",
+                              "entity": "binary_sensor.master_bedroom_occupancy_2",
+                              "icon": "mdi:account"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.master_bathroom_main_lights",
+                              "show_brightness_control": true,
+                              "collapsible_controls": true,
+                              "name": "Bedroom Lights"
+                            },
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.master_bathroom_main_lights",
+                              "show_brightness_control": true,
+                              "collapsible_controls": true,
+                              "name": "Bathroom Lights"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-fan-card",
+                              "entity": "fan.master_bedroom_ceiling_fan",
+                              "icon_animation": true,
+                              "name": "Ceiling Fan"
+                            },
+                            {
+                              "type": "custom:mushroom-cover-card",
+                              "entity": "cover.master_bedroom_blinds",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "icon": "mdi:blinds",
+                              "name": "Blinds"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "condition": "state",
+                              "entity": "media_player.master_bedroom",
+                              "state": "playing"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:mini-media-player",
+                            "entity": "media_player.master_bedroom",
+                            "toggle_power": false
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "title": "Master Bedroom",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "vertical-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-chips-card",
+                          "chips": [
+                            {
+                              "type": "entity",
+                              "entity": "sensor.ryan_s_room_temperature_2"
+                            },
+                            {
+                              "type": "entity",
+                              "entity": "sensor.air_quality_ryan"
+                            },
+                            {
+                              "type": "entity",
+                              "entity": "binary_sensor.ryan_s_room_occupancy_2",
+                              "icon": "mdi:account"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.ryan_s_ceiling_fan_2",
+                              "show_brightness_control": true,
+                              "collapsible_controls": true,
+                              "name": "Lights"
+                            },
+                            {
+                              "type": "custom:mushroom-fan-card",
+                              "entity": "fan.ryan_s_ceiling_fan_2",
+                              "icon_animation": true,
+                              "tap_action": {
+                                "action": "more-info"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-cover-card",
+                              "entity": "cover.ryan_s_room_blinds",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "icon": "mdi:blinds",
+                              "name": "Blinds"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "condition": "state",
+                              "entity": "media_player.ryan_s_room",
+                              "state": "playing"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:mini-media-player",
+                            "entity": "media_player.ryan_s_room",
+                            "toggle_power": false
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "title": "Ryan's Room",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "vertical-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-chips-card",
+                          "chips": [
+                            {
+                              "type": "entity",
+                              "entity": "sensor.craft_room_temperature"
+                            },
+                            {
+                              "type": "entity",
+                              "entity": "binary_sensor.craft_room_occupancy",
+                              "icon": "mdi:account"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-light-card",
+                              "entity": "light.office_ceiling_fan",
+                              "show_brightness_control": true,
+                              "collapsible_controls": true,
+                              "name": "Lights"
+                            },
+                            {
+                              "type": "custom:mushroom-fan-card",
+                              "entity": "fan.office_ceiling_fan",
+                              "icon_animation": true,
+                              "tap_action": {
+                                "action": "more-info"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:mushroom-cover-card",
+                              "entity": "cover.office_blinds",
+                              "tap_action": {
+                                "action": "more-info"
+                              },
+                              "icon": "mdi:blinds",
+                              "name": "Blinds"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "conditional",
+                          "conditions": [
+                            {
+                              "condition": "state",
+                              "entity": "media_player.office",
+                              "state": "playing"
+                            }
+                          ],
+                          "card": {
+                            "type": "custom:mini-media-player",
+                            "entity": "media_player.office",
+                            "toggle_power": false
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "title": "Game Room",
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                }
+              ],
+              "column_span": 3
+            }
+          ],
+          "max_columns": 3
+        },
+        {
+          "type": "sections",
+          "max_columns": 3,
+          "icon": "mdi:calendar",
+          "path": "cal",
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:week-planner-card",
+                  "calendars": [
+                    {
+                      "entity": "calendar.family_calendar",
+                      "hideInLegend": false
+                    },
+                    {
+                      "entity": "calendar.holidays_in_united_states"
+                    }
+                  ],
+                  "startingDay": "today",
+                  "hideWeekend": false,
+                  "noCardBackground": false,
+                  "compact": false,
+                  "weather": {
+                    "showCondition": false,
+                    "showTemperature": false,
+                    "showLowTemperature": false,
+                    "useTwiceDaily": false
+                  },
+                  "locale": "en",
+                  "showLocation": false,
+                  "hidePastEvents": false,
+                  "hideDaysWithoutEvents": false,
+                  "hideTodayWithoutEvents": false,
+                  "combineSimilarEvents": false,
+                  "showLegend": false,
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 8
+                  },
+                  "columns": {
+                    "extraLarge": "7",
+                    "large": "7",
+                    "medium": "7",
+                    "small": "7",
+                    "extraSmall": "7"
+                  },
+                  "showTitle": true,
+                  "days": "21",
+                  "maxDayEvents": "0",
+                  "card_mod": {
+                    "style": ".title{\nfont-size: 18px;\nline-height: 20px;\n}\n.none{\nfont-size: 18px !important;\nline-height: 20px !important;\n}\n"
+                  }
+                }
+              ],
+              "column_span": 3
+            }
+          ],
+          "cards": []
+        },
+        {
+          "type": "sections",
+          "max_columns": 3,
+          "title": "=",
+          "path": "music",
+          "icon": "mdi:music",
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:mass-player-card",
+                  "entities": [
+                    "media_player.kitchen_speaker_2"
+                  ],
+                  "expressive": true,
+                  "download_local": false,
+                  "queue": {
+                    "show_album_covers": true,
+                    "show_artist_names": true
+                  },
+                  "media_browser": {
+                    "columns": 2,
+                    "favorites": {
+                      "podcasts": {
+                        "enabled": false
+                      },
+                      "album": {},
+                      "audiobooks": {
+                        "enabled": false
+                      }
+                    },
+                    "recents": {
+                      "podcasts": {
+                        "enabled": false
+                      },
+                      "audiobooks": {
+                        "enabled": false
+                      }
+                    },
+                    "recommendations": {}
+                  },
+                  "players": {
+                    "enabled": false
+                  },
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                }
+              ],
+              "column_span": 3
+            }
+          ],
+          "cards": []
         },
         {
           "theme": "Backend-selected",
@@ -1407,1717 +2202,134 @@
             }
           ],
           "subview": true
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "First Floor",
-          "path": "first-floor",
-          "icon": "mdi:home-floor-1",
-          "type": "sections",
-          "badges": [],
-          "cards": [],
-          "subview": true,
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:vertical-stack-in-card",
-                      "cards": [
-                        {
-                          "clock_style": "digital",
-                          "clock_size": "large",
-                          "time_format": "24",
-                          "show_seconds": false,
-                          "no_background": false,
-                          "type": "clock",
-                          "face_style": "markers",
-                          "card_mod": "style:| time-wrapper { padding }"
-                        },
-                        {
-                          "type": "markdown",
-                          "content": "{{ now().strftime('%A, %B %d') }}",
-                          "card_mod": {
-                            "style": "ha-card {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 30px;\n  font-weight: 200;\n}\nha-markdown {\n  padding: 0px !important;\n}\n"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "name": "Home",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/0"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/first-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "1st Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/second-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "2nd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/third-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "3rd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/cal"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Calendar"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/music"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Music"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/weather"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Weather"
-                },
-                {
-                  "entities": [
-                    "calendar.family_calendar"
-                  ],
-                  "days_to_show": 4,
-                  "show_empty_days": true,
-                  "first_day_of_week": "",
-                  "date_vertical_alignment": "",
-                  "weekday_font_size": "16px",
-                  "day_font_size": "28px",
-                  "month_font_size": "14px",
-                  "event_font_size": "18px",
-                  "time_24h": "",
-                  "time_font_size": "14px",
-                  "show_location": false,
-                  "location_font_size": "14px",
-                  "weather": {
-                    "position": "date",
-                    "date": {
-                      "show_conditions": true,
-                      "show_high_temp": true,
-                      "show_low_temp": false,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    },
-                    "event": {
-                      "show_conditions": true,
-                      "show_temp": true,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    }
-                  },
-                  "type": "custom:calendar-card-pro"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.gym_temperature",
-                      "name": "Temperature",
-                      "layout": "vertical",
-                      "fill_container": false
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.gym_occupancy",
-                      "layout": "vertical",
-                      "fill_container": false,
-                      "icon": "mdi:account"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.garage_entry",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "name": "Garage | Entry Door"
-                    }
-                  ],
-                  "title": "Sensors",
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.front_door_entry",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "name": "Front Door"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.patio_window_entry",
-                      "name": "Patio Window",
-                      "layout": "vertical",
-                      "fill_container": false
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.front_door_camera_person",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "name": "Person Sensor | Front Door"
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-light-card",
-                          "entity": "light.entry_way_step_lights",
-                          "name": "Entry Way",
-                          "show_brightness_control": true,
-                          "collapsible_controls": true
-                        },
-                        {
-                          "type": "custom:mushroom-light-card",
-                          "entity": "light.family_room_main_lights",
-                          "show_brightness_control": true,
-                          "collapsible_controls": true
-                        }
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full",
-                    "rows": "auto"
-                  },
-                  "title": "Lights"
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "media-control",
-                          "entity": "media_player.gym_tv"
-                        },
-                        {
-                          "type": "media-control",
-                          "entity": "media_player.family_room"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "media-control",
-                          "entity": "media_player.entryway_speaker"
-                        }
-                      ]
-                    }
-                  ],
-                  "title": "Media",
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                }
-              ],
-              "column_span": 2
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.front_door_camera_fluent_lens_0",
-                      "live_provider": "webrtc-card",
-                      "webrtc_card": {},
-                      "go2rtc": {
-                        "modes": []
-                      }
-                    }
-                  ],
-                  "menu": {
-                    "style": "outside",
-                    "buttons": {
-                      "iris": {
-                        "enabled": false
-                      },
-                      "cameras": {
-                        "enabled": false
-                      },
-                      "substreams": {
-                        "enabled": false
-                      },
-                      "live": {
-                        "enabled": true
-                      },
-                      "clips": {
-                        "enabled": false
-                      },
-                      "snapshots": {
-                        "enabled": false
-                      },
-                      "download": {
-                        "enabled": false
-                      },
-                      "camera_ui": {
-                        "enabled": true
-                      },
-                      "timeline": {
-                        "enabled": false
-                      },
-                      "ptz_controls": {
-                        "enabled": false
-                      }
-                    }
-                  },
-                  "live": {
-                    "preload": true,
-                    "lazy_load": false
-                  }
-                },
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.foor_door_doorbell",
-                      "webrtc_card": {},
-                      "go2rtc": {
-                        "modes": []
-                      },
-                      "title": "Doorbell",
-                      "always_error_if_entity_unavailable": false
-                    }
-                  ],
-                  "menu": {
-                    "style": "outside",
-                    "buttons": {
-                      "iris": {
-                        "enabled": false
-                      },
-                      "cameras": {
-                        "enabled": false
-                      },
-                      "substreams": {
-                        "enabled": false
-                      },
-                      "live": {
-                        "enabled": true
-                      },
-                      "clips": {
-                        "enabled": false
-                      },
-                      "snapshots": {
-                        "enabled": false
-                      },
-                      "download": {
-                        "enabled": false
-                      },
-                      "camera_ui": {
-                        "enabled": true
-                      },
-                      "timeline": {
-                        "enabled": false
-                      },
-                      "ptz_controls": {
-                        "enabled": false
-                      }
-                    }
-                  },
-                  "live": {
-                    "preload": true,
-                    "lazy_load": false
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "sections",
-          "cards": [],
-          "max_columns": 4,
-          "path": "second-floor",
-          "icon": "mdi:home-floor-2",
-          "subview": true,
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:vertical-stack-in-card",
-                      "cards": [
-                        {
-                          "clock_style": "digital",
-                          "clock_size": "large",
-                          "time_format": "24",
-                          "show_seconds": false,
-                          "no_background": false,
-                          "type": "clock",
-                          "face_style": "markers",
-                          "card_mod": "style:| time-wrapper { padding }"
-                        },
-                        {
-                          "type": "markdown",
-                          "content": "{{ now().strftime('%A, %B %d') }}",
-                          "card_mod": {
-                            "style": "ha-card {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 30px;\n  font-weight: 200;\n}\nha-markdown {\n  padding: 0px !important;\n}\n"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "name": "Home",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/0"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/first-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "1st Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/second-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "2nd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/third-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "3rd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/cal"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Calendar"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/music"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Music"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/weather"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Weather"
-                },
-                {
-                  "entities": [
-                    "calendar.family_calendar"
-                  ],
-                  "days_to_show": 4,
-                  "show_empty_days": true,
-                  "first_day_of_week": "",
-                  "date_vertical_alignment": "",
-                  "weekday_font_size": "16px",
-                  "day_font_size": "28px",
-                  "month_font_size": "14px",
-                  "event_font_size": "18px",
-                  "time_24h": "",
-                  "time_font_size": "14px",
-                  "show_location": false,
-                  "location_font_size": "14px",
-                  "weather": {
-                    "position": "date",
-                    "date": {
-                      "show_conditions": true,
-                      "show_high_temp": true,
-                      "show_low_temp": false,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    },
-                    "event": {
-                      "show_conditions": true,
-                      "show_temp": true,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    }
-                  },
-                  "type": "custom:calendar-card-pro"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "sensor.thermostat_temperature",
-                      "name": "Temperature",
-                      "layout": "vertical",
-                      "fill_container": false
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "fill_container": false,
-                      "layout": "vertical",
-                      "entity": "sensor.thermostat_humidity",
-                      "name": "Humidity"
-                    },
-                    {
-                      "type": "custom:mushroom-entity-card",
-                      "entity": "binary_sensor.thermostat_occupancy",
-                      "layout": "vertical",
-                      "fill_container": false,
-                      "icon": "mdi:account",
-                      "name": "Occupancy"
-                    }
-                  ],
-                  "title": "Sensors",
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-light-card",
-                          "entity": "light.living_room_main_lights",
-                          "show_brightness_control": true,
-                          "collapsible_controls": true
-                        },
-                        {
-                          "type": "custom:mushroom-light-card",
-                          "entity": "light.living_room_ceiling_fan",
-                          "show_brightness_control": true,
-                          "collapsible_controls": true
-                        },
-                        {
-                          "type": "custom:mushroom-fan-card",
-                          "entity": "fan.living_room_ceiling_fan",
-                          "name": "Ceiling Fan",
-                          "icon_animation": true,
-                          "tap_action": {
-                            "action": "more-info"
-                          }
-                        }
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full",
-                    "rows": "auto"
-                  },
-                  "title": "Lights & Fan"
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-light-card",
-                          "entity": "light.kitchen_lights",
-                          "show_brightness_control": true,
-                          "collapsible_controls": true
-                        },
-                        {
-                          "type": "custom:mushroom-light-card",
-                          "entity": "light.dining_room_chandelier",
-                          "show_brightness_control": true,
-                          "collapsible_controls": true
-                        }
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full",
-                    "rows": "auto"
-                  }
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:mushroom-cover-card",
-                          "entity": "cover.living_room_blinds",
-                          "show_position_control": true,
-                          "show_buttons_control": true
-                        },
-                        {
-                          "type": "custom:mushroom-cover-card",
-                          "entity": "cover.kitchen_blinds",
-                          "icon": "mdi:blinds",
-                          "show_buttons_control": true,
-                          "show_position_control": true
-                        }
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full",
-                    "rows": "auto"
-                  },
-                  "title": "Blinds"
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "media-control",
-                          "entity": "media_player.living_room"
-                        },
-                        {
-                          "type": "media-control",
-                          "entity": "media_player.kitchen_speaker_2"
-                        }
-                      ]
-                    }
-                  ],
-                  "title": "Media",
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                }
-              ],
-              "column_span": 2
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:xiaomi-vacuum-map-card",
-                  "vacuum_platform": "DeebotUniverse/Deebot-4-Home-Assistant",
-                  "entity": "vacuum.second_floor_vacuum",
-                  "map_source": {
-                    "camera": "image.second_floor_vacuum_map"
-                  },
-                  "map_locked": true,
-                  "icons": [
-                    {
-                      "icon": "mdi:play",
-                      "conditions": [
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "cleaning"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "error"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "returning"
-                        }
-                      ],
-                      "tooltip": "Start",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.start",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum"
-                        }
-                      }
-                    },
-                    {
-                      "icon": "mdi:pause",
-                      "conditions": [
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "docked"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "idle"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "error"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "paused"
-                        }
-                      ],
-                      "tooltip": "Pause",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.pause",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum"
-                        }
-                      }
-                    },
-                    {
-                      "icon": "mdi:stop",
-                      "conditions": [
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "docked"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "idle"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "error"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "paused"
-                        }
-                      ],
-                      "tooltip": "Stop",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.stop",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum"
-                        }
-                      }
-                    },
-                    {
-                      "icon": "mdi:home-map-marker",
-                      "conditions": [
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "docked"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "value_not": "returning"
-                        }
-                      ],
-                      "tooltip": "Return to base",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.return_to_base",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum"
-                        }
-                      }
-                    },
-                    {
-                      "icon": "mdi:map-marker",
-                      "tooltip": "Locate",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.locate",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum"
-                        }
-                      }
-                    },
-                    {
-                      "menu_id": "fan_speed",
-                      "icon": "mdi:fan-alert",
-                      "label": "quiet",
-                      "conditions": [
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "attribute": "fan_speed",
-                          "value": "quiet"
-                        }
-                      ],
-                      "tooltip": "Change fan speed",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.set_fan_speed",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum",
-                          "fan_speed": "quiet"
-                        }
-                      }
-                    },
-                    {
-                      "menu_id": "fan_speed",
-                      "icon": "mdi:fan-alert",
-                      "label": "normal",
-                      "conditions": [
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "attribute": "fan_speed",
-                          "value": "normal"
-                        }
-                      ],
-                      "tooltip": "Change fan speed",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.set_fan_speed",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum",
-                          "fan_speed": "normal"
-                        }
-                      }
-                    },
-                    {
-                      "menu_id": "fan_speed",
-                      "icon": "mdi:fan-alert",
-                      "label": "max",
-                      "conditions": [
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "attribute": "fan_speed",
-                          "value": "max"
-                        }
-                      ],
-                      "tooltip": "Change fan speed",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.set_fan_speed",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum",
-                          "fan_speed": "max"
-                        }
-                      }
-                    },
-                    {
-                      "menu_id": "fan_speed",
-                      "icon": "mdi:fan-alert",
-                      "label": "max_plus",
-                      "conditions": [
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "attribute": "fan_speed",
-                          "value": "max_plus"
-                        }
-                      ],
-                      "tooltip": "Change fan speed",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.set_fan_speed",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum",
-                          "fan_speed": "max_plus"
-                        }
-                      }
-                    },
-                    {
-                      "icon": "mdi:fan-alert",
-                      "conditions": [
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "attribute": "fan_speed",
-                          "value_not": "quiet"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "attribute": "fan_speed",
-                          "value_not": "normal"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "attribute": "fan_speed",
-                          "value_not": "max"
-                        },
-                        {
-                          "entity": "vacuum.second_floor_vacuum",
-                          "attribute": "fan_speed",
-                          "value_not": "max_plus"
-                        }
-                      ],
-                      "tooltip": "Change fan speed",
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "vacuum.set_fan_speed",
-                        "service_data": {
-                          "entity_id": "vacuum.second_floor_vacuum",
-                          "fan_speed": "quiet"
-                        }
-                      }
-                    },
-                    {
-                      "type": "menu",
-                      "menu_id": "water_amount",
-                      "icon_id": "water_amount",
-                      "available_values_attribute": "options",
-                      "icon": "mdi:water",
-                      "icon_mapping": {
-                        "low": "mdi:water-minus",
-                        "medium": "mdi:water",
-                        "high": "mdi:water-plus",
-                        "ultrahigh": "mdi:water-alert"
-                      },
-                      "tap_action": {
-                        "action": "call-service",
-                        "service": "select.select_option",
-                        "service_data": {
-                          "option": "[[value]]",
-                          "entity_id": "[[entity_id]]"
-                        }
-                      },
-                      "entity": "select.second_floor_vacuum_water_flow_level"
-                    }
-                  ],
-                  "tiles": [
-                    {
-                      "tile_id": "fan_speed",
-                      "entity": "vacuum.second_floor_vacuum",
-                      "label": "Fan speed",
-                      "attribute": "fan_speed",
-                      "icon": "mdi:fan",
-                      "translations": {
-                        "silent": "Silent",
-                        "standard": "Standard",
-                        "medium": "Medium",
-                        "turbo": "Turbo",
-                        "auto": "Auto",
-                        "gentle": "Gentle"
-                      }
-                    },
-                    {
-                      "tile_id": "water_amount",
-                      "label": "tile.water_amount.label",
-                      "icon": "mdi:water",
-                      "entity": "select.second_floor_vacuum_water_flow_level",
-                      "precision": 0,
-                      "translations": {}
-                    },
-                    {
-                      "tile_id": "cleaning_time",
-                      "label": "Cleaning time",
-                      "icon": "mdi:timer-sand",
-                      "unit": "min",
-                      "entity": "sensor.second_floor_vacuum_cleaning_duration",
-                      "precision": 0,
-                      "translations": {}
-                    },
-                    {
-                      "tile_id": "cleaned_area",
-                      "label": "Cleaned area",
-                      "icon": "mdi:texture-box",
-                      "unit": "ft²",
-                      "entity": "sensor.second_floor_vacuum_area_cleaned",
-                      "precision": 0,
-                      "translations": {}
-                    },
-                    {
-                      "tile_id": "mop_attached",
-                      "label": "Mopping Mode",
-                      "icon": "mdi:water",
-                      "entity": "binary_sensor.second_floor_vacuum_mop_attached",
-                      "precision": 0,
-                      "translations": {}
-                    }
-                  ],
-                  "map_modes": [
-                    {
-                      "name": "Zone cleanup",
-                      "icon": "mdi:select-drag",
-                      "run_immediately": false,
-                      "coordinates_rounding": true,
-                      "coordinates_to_meters_divider": -1,
-                      "selection_type": "MANUAL_RECTANGLE",
-                      "max_selections": 1,
-                      "repeats_type": "NONE",
-                      "max_repeats": 1,
-                      "service_call_schema": {
-                        "service": "vacuum.send_command",
-                        "service_data": {
-                          "entity_id": "[[entity_id]]",
-                          "command": "custom_area",
-                          "params": {
-                            "coordinates": "[[selection_unwrapped]]"
-                          }
-                        }
-                      },
-                      "predefined_selections": [],
-                      "variables": {}
-                    }
-                  ],
-                  "additional_presets": []
-                }
-              ],
-              "column_span": 1
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "Third Floor",
-          "path": "third-floor",
-          "icon": "mdi:home-floor-3",
-          "type": "panel",
-          "badges": [],
-          "cards": [
-            {
-              "square": false,
-              "columns": 3,
-              "type": "grid",
-              "cards": [
-                {
-                  "square": false,
-                  "columns": 1,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-chips-card",
-                      "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "binary_sensor.nest_protect_office_smoke_status",
-                          "icon": "mdi:smoke-detector-variant"
-                        },
-                        {
-                          "type": "template",
-                          "icon": "mdi:molecule",
-                          "content": "Ryan's Room {{states ('sensor.air_quality_ryan')}} µg/m³",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "entity": "sensor.air_quality_ryan"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "alarm-panel",
-                      "states": [
-                        "arm_home",
-                        "arm_away"
-                      ],
-                      "entity": "alarm_control_panel.alarm_control_panel"
-                    },
-                    {
-                      "type": "thermostat",
-                      "entity": "climate.thermostat"
-                    }
-                  ]
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "square": false,
-                      "columns": 2,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "light",
-                          "name": "All Lights",
-                          "entity": "light.third_floor_lights"
-                        },
-                        {
-                          "type": "light",
-                          "entity": "light.office_ceiling_fan",
-                          "name": "Craft Room"
-                        },
-                        {
-                          "type": "light",
-                          "entity": "light.ryan_s_ceiling_fan_2",
-                          "name": "Ryan's Room"
-                        },
-                        {
-                          "type": "light",
-                          "name": "Master Bedroom",
-                          "entity": "light.master_bedroom"
-                        }
-                      ]
-                    },
-                    {
-                      "square": false,
-                      "columns": 1,
-                      "type": "grid",
-                      "cards": [
-                        {
-                          "type": "entities",
-                          "entities": [
-                            {
-                              "type": "custom:slider-entity-row",
-                              "entity": "cover.office_blinds",
-                              "icon": "mdi:blinds"
-                            },
-                            {
-                              "type": "custom:slider-entity-row",
-                              "entity": "cover.ryan_s_room_blinds",
-                              "icon": "mdi:blinds"
-                            },
-                            {
-                              "type": "custom:slider-entity-row",
-                              "entity": "cover.master_bedroom_blinds",
-                              "name": "Master Bedroom Blinds"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "square": false,
-                  "columns": 1,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "custom:mini-media-player",
-                      "entity": "media_player.third_floor",
-                      "name": "All Speakers",
-                      "toggle_power": true,
-                      "icon": "mdi:speaker-multiple"
-                    },
-                    {
-                      "type": "custom:mini-media-player",
-                      "entity": "media_player.office",
-                      "name": "Craft Room Display",
-                      "icon": "mdi:cast-variant"
-                    },
-                    {
-                      "type": "custom:mini-media-player",
-                      "entity": "media_player.ryan_s_room",
-                      "name": "Ryan's Room",
-                      "icon": "mdi:speaker"
-                    },
-                    {
-                      "type": "custom:mini-media-player",
-                      "entity": "media_player.master_bed_bath",
-                      "name": "Master Suite",
-                      "icon": "mdi:speaker-multiple"
-                    },
-                    {
-                      "type": "custom:mini-media-player",
-                      "entity": "media_player.master_bedroom",
-                      "name": "Master Bedroom",
-                      "icon": "mdi:speaker"
-                    },
-                    {
-                      "type": "custom:mini-media-player",
-                      "entity": "media_player.master_bathroom",
-                      "name": "Master Bathroom",
-                      "icon": "mdi:speaker"
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          "subview": true
-        },
-        {
-          "type": "sections",
-          "max_columns": 4,
-          "icon": "mdi:calendar",
-          "path": "cal",
-          "subview": true,
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:vertical-stack-in-card",
-                      "cards": [
-                        {
-                          "clock_style": "digital",
-                          "clock_size": "large",
-                          "time_format": "24",
-                          "show_seconds": false,
-                          "no_background": false,
-                          "type": "clock",
-                          "face_style": "markers",
-                          "card_mod": "style:| time-wrapper { padding }"
-                        },
-                        {
-                          "type": "markdown",
-                          "content": "{{ now().strftime('%A, %B %d') }}",
-                          "card_mod": {
-                            "style": "ha-card {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 30px;\n  font-weight: 200;\n}\nha-markdown {\n  padding: 0px !important;\n}\n"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "name": "Home",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/0"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/first-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "1st Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/second-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "2nd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/third-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "3rd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/cal"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Calendar"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/music"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Music"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/weather"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Weather"
-                },
-                {
-                  "entities": [
-                    "calendar.family_calendar"
-                  ],
-                  "days_to_show": 4,
-                  "show_empty_days": true,
-                  "first_day_of_week": "",
-                  "date_vertical_alignment": "",
-                  "weekday_font_size": "16px",
-                  "day_font_size": "28px",
-                  "month_font_size": "14px",
-                  "event_font_size": "18px",
-                  "time_24h": "",
-                  "time_font_size": "14px",
-                  "show_location": false,
-                  "location_font_size": "14px",
-                  "weather": {
-                    "position": "date",
-                    "date": {
-                      "show_conditions": true,
-                      "show_high_temp": true,
-                      "show_low_temp": false,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    },
-                    "event": {
-                      "show_conditions": true,
-                      "show_temp": true,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    }
-                  },
-                  "type": "custom:calendar-card-pro"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:week-planner-card",
-                  "calendars": [
-                    {
-                      "entity": "calendar.family_calendar",
-                      "hideInLegend": false
-                    },
-                    {
-                      "entity": "calendar.holidays_in_united_states"
-                    }
-                  ],
-                  "startingDay": "today",
-                  "hideWeekend": false,
-                  "noCardBackground": false,
-                  "compact": false,
-                  "weather": {
-                    "showCondition": false,
-                    "showTemperature": false,
-                    "showLowTemperature": false,
-                    "useTwiceDaily": false
-                  },
-                  "locale": "en",
-                  "showLocation": false,
-                  "hidePastEvents": false,
-                  "hideDaysWithoutEvents": false,
-                  "hideTodayWithoutEvents": false,
-                  "combineSimilarEvents": false,
-                  "showLegend": false,
-                  "grid_options": {
-                    "columns": "full",
-                    "rows": 8
-                  },
-                  "columns": {
-                    "extraLarge": "7",
-                    "large": "7",
-                    "medium": "7",
-                    "small": "7",
-                    "extraSmall": "7"
-                  },
-                  "showTitle": true,
-                  "days": "21",
-                  "maxDayEvents": "0",
-                  "card_mod": {
-                    "style": ".title{\nfont-size: 18px;\nline-height: 20px;\n}\n.none{\nfont-size: 18px !important;\nline-height: 20px !important;\n}\n"
-                  }
-                }
-              ],
-              "column_span": 3
-            }
-          ]
-        },
-        {
-          "type": "sections",
-          "max_columns": 4,
-          "title": "=",
-          "path": "music",
-          "icon": "mdi:music",
-          "subview": true,
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "custom:vertical-stack-in-card",
-                      "cards": [
-                        {
-                          "clock_style": "digital",
-                          "clock_size": "large",
-                          "time_format": "24",
-                          "show_seconds": false,
-                          "no_background": false,
-                          "type": "clock",
-                          "face_style": "markers",
-                          "card_mod": "style:| time-wrapper { padding }"
-                        },
-                        {
-                          "type": "markdown",
-                          "content": "{{ now().strftime('%A, %B %d') }}",
-                          "card_mod": {
-                            "style": "ha-card {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 30px;\n  font-weight: 200;\n}\nha-markdown {\n  padding: 0px !important;\n}\n"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "name": "Home",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/0"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/first-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "1st Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/second-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "2nd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/third-floor"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "3rd Floor"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/cal"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Calendar"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/music"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Music"
-                },
-                {
-                  "show_name": true,
-                  "show_icon": false,
-                  "type": "button",
-                  "tap_action": {
-                    "action": "navigate",
-                    "navigation_path": "/lovelace-dashboard/weather"
-                  },
-                  "hold_action": {
-                    "action": "none"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "name": "Weather"
-                },
-                {
-                  "entities": [
-                    "calendar.family_calendar"
-                  ],
-                  "days_to_show": 4,
-                  "show_empty_days": true,
-                  "first_day_of_week": "",
-                  "date_vertical_alignment": "",
-                  "weekday_font_size": "16px",
-                  "day_font_size": "28px",
-                  "month_font_size": "14px",
-                  "event_font_size": "18px",
-                  "time_24h": "",
-                  "time_font_size": "14px",
-                  "show_location": false,
-                  "location_font_size": "14px",
-                  "weather": {
-                    "position": "date",
-                    "date": {
-                      "show_conditions": true,
-                      "show_high_temp": true,
-                      "show_low_temp": false,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    },
-                    "event": {
-                      "show_conditions": true,
-                      "show_temp": true,
-                      "icon_size": "14px",
-                      "font_size": "12px",
-                      "color": "var(--primary-text-color)"
-                    }
-                  },
-                  "type": "custom:calendar-card-pro"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [],
-              "column_span": 3
-            }
-          ]
         }
-      ]
+      ],
+      "sidebar": {
+        "width": {
+          "mobile": 0,
+          "tablet": 22,
+          "desktop": 22
+        },
+        "digitalClock": true,
+        "digitalClockWithSeconds": false,
+        "twelveHourVersion": false,
+        "date": true,
+        "dateFormat": "dddd, MMMM D",
+        "period": false,
+        "hideTopMenu": false,
+        "showTopMenuOnMobile": true,
+        "sidebarMenu": [
+          {
+            "action": "navigate",
+            "navigation_path": "/lovelace-dashboard/0",
+            "name": "Home",
+            "active": true,
+            "icon": "mdi:home"
+          },
+          {
+            "action": "navigate",
+            "navigation_path": "/lovelace-dashboard/first-floor",
+            "name": "1st Floor",
+            "icon": "mdi:home-floor-1"
+          },
+          {
+            "action": "navigate",
+            "navigation_path": "/lovelace-dashboard/second-floor",
+            "name": "2nd Floor",
+            "icon": "mdi:home-floor-2"
+          },
+          {
+            "action": "navigate",
+            "navigation_path": "/lovelace-dashboard/third-floor",
+            "name": "3rd Floor",
+            "icon": "mdi:home-floor-3"
+          },
+          {
+            "action": "navigate",
+            "navigation_path": "/lovelace-dashboard/cal",
+            "name": "Calendar",
+            "icon": "mdi:calendar"
+          },
+          {
+            "action": "navigate",
+            "navigation_path": "/lovelace-dashboard/music",
+            "name": "Music",
+            "icon": "mdi:music"
+          },
+          {
+            "action": "navigate",
+            "navigation_path": "/lovelace-dashboard/weather",
+            "name": "Weather",
+            "icon": "mdi:weather-partly-cloudy"
+          }
+        ],
+        "bottomCard": {
+          "type": "custom:layout-card",
+          "cardOptions": {
+            "layout_type": "custom:grid-layout",
+            "layout": {
+              "margin": "0px 0px 0px 0px",
+              "grid-gap": "20px"
+            },
+            "cards": [
+              {
+                "type": "weather-forecast",
+                "entity": "weather.openweathermap",
+                "show_current": true,
+                "show_forecast": true,
+                "forecast_type": "daily"
+              },
+              {
+                "type": "custom:calendar-card-pro",
+                "entities": [
+                  {
+                    "entity": "calendar.family_calendar"
+                  }
+                ],
+                "days_to_show": 4,
+                "show_empty_days": true,
+                "first_day_of_week": "",
+                "date_vertical_alignment": "",
+                "weekday_font_size": "16px",
+                "day_font_size": "28px",
+                "month_font_size": "14px",
+                "event_font_size": "18px",
+                "time_24h": "",
+                "time_font_size": "14px",
+                "show_location": false,
+                "location_font_size": "16px",
+                "weather": {
+                  "position": "date",
+                  "date": {
+                    "show_conditions": true,
+                    "show_high_temp": true,
+                    "show_low_temp": false,
+                    "icon_size": "14px",
+                    "font_size": "12px",
+                    "color": "var(--primary-text-color)"
+                  },
+                  "event": {
+                    "show_conditions": true,
+                    "show_temp": true,
+                    "icon_size": "14px",
+                    "font_size": "12px",
+                    "color": "var(--primary-text-color)"
+                  }
+                },
+                "tap_action": {
+                  "action": "navigate",
+                  "navigation_path": "/lovelace-dashboard/cal"
+                },
+                "refresh_interval": 60,
+                "card_mod": {
+                  "style": "ha-card::before {\n  box-shadow: none;\n  background: none;\n}\nha-card {\n  padding: 0px !important;\n  box-shadow: none;\n  border: none;\n}\n:host {\n  --masonry-view-card-margin: 0px;\n}\n.separator {\n  margin-left: 0px !important;\n  border-top-color: rgba(255, 255, 255, 0.2) !important;\n}\n"
+                }
+              }
+            ]
+          }
+        },
+        "style": ":host {\n  --sidebar-background: var(--ha-card-background,var(--card-background-color,#fff));\n}\n\n:host .digitalClock {\n  font-family: sans-serif;\n  font-weight: 500;\n  text-align: center;\n  text-transform: uppercase;\n}\n\n:host .date {\n  text-align: center;\n}\n\n.sidebarMenu li {\n  padding: 13px 20px !important;\n}\n\n.sidebarMenu li ha-icon {\n  margin-top: -4px !important;\n}\n\n.sidebarMenu li.active ha-icon {\n  color: var(--accent-color) !important;\n}\n"
+      }
     }
   }
 }
