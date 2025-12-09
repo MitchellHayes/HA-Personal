@@ -79,15 +79,17 @@
   triggers:
   - at: '19:00:00'
     trigger: time
-  conditions:
-  - condition: state
-    entity_id: input_boolean.company_over_kill_switch
-    state: 'off'
+  conditions: []
   actions:
   - if:
-    - condition: zone
-      entity_id: person.mitchell
-      zone: zone.home
+    - condition: and
+      conditions:
+      - condition: zone
+        entity_id: person.mitchell
+        zone: zone.home
+      - condition: state
+        entity_id: input_boolean.company_over_kill_switch
+        state: 'off'
     then:
     - data_template:
         entity_id: media_player.kitchen_display
@@ -892,3 +894,218 @@
               message: '''You didn''t make it home in time, house has been set back
                 to away.'''
   mode: single
+- id: '1765216455087'
+  alias: 'Reminder: Grocery List'
+  description: When Michelle or Mitchell enters a grocery zone, send them the shopping
+    list link
+  triggers:
+  - trigger: zone
+    entity_id: person.michelle
+    zone: zone.wegmans
+    event: enter
+  - trigger: zone
+    entity_id: person.michelle
+    zone: zone.target
+    event: enter
+  - trigger: zone
+    entity_id: person.michelle
+    zone: zone.shoprite
+    event: enter
+  - trigger: zone
+    entity_id: person.mitchell
+    zone: zone.wegmans
+    event: enter
+  - trigger: zone
+    entity_id: person.mitchell
+    zone: zone.target
+    event: enter
+  - trigger: zone
+    entity_id: person.mitchell
+    zone: zone.shoprite
+    event: enter
+  actions:
+  - action: script.notification_grocery_list
+    metadata: {}
+    data: {}
+  mode: parallel
+  max: 2
+- id: '1765222658999'
+  alias: 'Reminder: Charge Home Batteries'
+  description: ''
+  triggers:
+  - trigger: time
+    at: '19:00:00'
+  conditions: []
+  actions:
+  - action: todo.get_items
+    target:
+      entity_id: todo.home
+    data:
+      status:
+      - needs_action
+    response_variable: todo_response
+  - variables:
+      low_battery_names: "{% set low = namespace(items=[]) %}\n{# Numeric battery
+        sensors #} {% for state in states.sensor\n     | selectattr('attributes.device_class',
+        '==', 'battery') %}\n  {% set level = state.state | int(-1) %}\n  {% if 0
+        <= level < threshold\n        and state.entity_id not in exclude.entity_id
+        %}\n    {% set low.items = low.items + [state.name] %}\n  {% endif %}\n{%
+        endfor %}\n{# Binary battery sensors #} {% for state in states.binary_sensor\n
+        \    | selectattr('attributes.device_class', '==', 'battery')\n     | selectattr('state',
+        '==', 'on') %}\n  {% if state.entity_id not in exclude.entity_id %}\n    {%
+        set low.items = low.items + [state.name] %}\n  {% endif %}\n{% endfor %}\n{{
+        low.items | to_json }}"
+      existing_items: '{% set items = todo_response[''todo.home''][''items''] | default([])
+        %} {{ items | map(attribute=''summary'') | list | to_json }}'
+      new_low_battery_names: "{% set low = low_battery_names | from_json(default=[])
+        %} {% set existing = existing_items | from_json(default=[]) %} {% set new_list
+        = [] %} {% for name in low %}\n  {% if name not in existing %}\n    {% set
+        new_list = new_list + [name] %}\n  {% endif %}\n{% endfor %} {{ new_list |
+        to_json }}"
+      battery_task_names: "{% set items = todo_response['todo.home']['items'] | default([])
+        %} {% set result = [] %} {% for item in items %}\n  {% if (item.description
+        | default('')) == 'Battery low - check or replace.' %}\n    {% set result
+        = result + [item.summary] %}\n  {% endif %}\n{% endfor %} {{ result | to_json
+        }}"
+      recovered_battery_names: "{% set tasks = battery_task_names | from_json(default=[])
+        %} {% set recovered = [] %}\n{% for task in tasks %}\n  {% set level = none
+        %}\n  {% set binary_state = none %}\n\n  {# Look for numeric battery sensor
+        #}\n  {% for state in states.sensor\n       | selectattr('attributes.device_class',
+        '==', 'battery') %}\n    {% if state.name == task %}\n      {% set level =
+        state.state | int(-1) %}\n    {% endif %}\n  {% endfor %}\n\n  {# Look for
+        binary battery sensor #}\n  {% for state in states.binary_sensor\n       |
+        selectattr('attributes.device_class', '==', 'battery') %}\n    {% if state.name
+        == task %}\n      {% set binary_state = state.state %}\n    {% endif %}\n
+        \ {% endfor %}\n\n  {# Mark recovered #}\n  {% if level is not none and level
+        >= recharge_threshold %}\n    {% set recovered = recovered + [task] %}\n  {%
+        elif binary_state is not none and binary_state == 'off' %}\n    {% set recovered
+        = recovered + [task] %}\n  {% endif %}\n{% endfor %}\n{{ recovered | to_json
+        }}"
+      sensors: "{% set new_list = new_low_battery_names | from_json(default=[]) %}
+        {% if not new_list %}\n  {{ '' }}\n{% else %}\n  {% set result = [] %}\n  {%
+        for state in states.sensor\n       | selectattr('attributes.device_class',
+        '==', 'battery') %}\n    {% if state.name in new_list %}\n      {% set result
+        = result + [state.name ~ ' (' ~ state.state ~ ' %)'] %}\n    {% endif %}\n
+        \ {% endfor %}\n  {% for state in states.binary_sensor\n       | selectattr('attributes.device_class',
+        '==', 'battery')\n       | selectattr('state', '==', 'on') %}\n    {% if state.name
+        in new_list %}\n      {% set result = result + [state.name] %}\n    {% endif
+        %}\n  {% endfor %}\n  {{ result | join(', ') }}\n{% endif %}"
+  - if:
+    - condition: template
+      value_template: '{{ (recovered_battery_names | from_json(default=[])) | length
+        > 0 }}'
+    then:
+    - repeat:
+        for_each: '{{ recovered_battery_names | from_json(default=[]) }}'
+        sequence:
+        - action: todo.remove_item
+          target:
+            entity_id: todo.home
+          data:
+            item: '{{ repeat.item }}'
+  - if:
+    - condition: template
+      value_template: '{{ sensors != '''' }}'
+    then:
+    - repeat:
+        for_each: '{{ new_low_battery_names | from_json(default=[]) }}'
+        sequence:
+        - action: todo.add_item
+          target:
+            entity_id: todo.home
+          data:
+            item: '{{ repeat.item }}'
+            description: Battery low - check or replace.
+    - if:
+      - condition: zone
+        entity_id: person.mitchell
+        zone: zone.home
+      - condition: state
+        entity_id: input_boolean.company_over_kill_switch
+        state: 'off'
+      then:
+      - action: media_player.volume_set
+        data:
+          entity_id: media_player.kitchen_display
+          volume_level: 0.7
+      - action: tts.google_translate_say
+        data:
+          cache: false
+          entity_id: media_player.kitchen_speaker
+          message: Check battery level on {{ sensors }}
+      - action: media_player.volume_set
+        data:
+          entity_id: media_player.kitchen_display
+          volume_level: 0.5
+      else:
+      - device_id: 6e4e58134b1f17ed9bbbc01d2c47ccbc
+        domain: mobile_app
+        type: notify
+        title: Low Battery
+        message: Check battery level on {{ sensors }}
+  mode: single
+  variables:
+    threshold: 20
+    recharge_threshold: 80
+    exclude:
+      entity_id:
+      - sensor.mitchell_s_iphone_battery_level
+      - sensor.ryans_iphone_battery_level
+      - sensor.michelle_s_iphone_battery_level
+      - sensor.scarlett_battery
+      - sensor.freya_battery
+      - sensor.ipad_battery_level
+      - sensor.ipad_battery
+      - sensor.ryans_apple_watch_battery
+      - sensor.michelles_apple_watch_battery
+      - sensor.mitchells_apple_watch_battery
+      - sensor.darcy_collar_battery_level
+- id: '1765291060307'
+  alias: Echo Show Screen Control
+  description: 'Controls Echo Show screen at scheduled times and enforces off during
+    night hours
+
+    '
+  triggers:
+  - id: night_off
+    at: '23:00:00'
+    trigger: time
+  - id: morning_on
+    at: 04:30:00
+    trigger: time
+  - id: watchdog_on
+    entity_id: switch.echo_show_screen
+    to: 'on'
+    trigger: state
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.id == ''night_off'' }}'
+      sequence:
+      - action: switch.turn_off
+        target:
+          entity_id: switch.echo_show_screen
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.id == ''morning_on'' }}'
+      sequence:
+      - action: switch.turn_on
+        target:
+          entity_id: switch.echo_show_screen
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.id == ''watchdog_on'' }}'
+      - condition: time
+        after: '23:00:00'
+        before: 04:15:00
+      sequence:
+      - delay: 00:00:03
+      - action: switch.turn_off
+        target:
+          entity_id: switch.echo_show_screen
+  mode: restart
+  variables:
+    night_start: '23:00:00'
+    night_end: 04:30:00

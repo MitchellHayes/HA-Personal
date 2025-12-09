@@ -138,14 +138,17 @@
                     {
                       "type": "custom:auto-entities",
                       "card": {
-                        "type": "custom:vertical-stack-in-card"
+                        "type": "grid",
+                        "square": false,
+                        "columns": 2
                       },
                       "card_param": "cards",
                       "filter": {
                         "include": [
                           {
                             "options": {
-                              "type": "custom:mushroom-light-card"
+                              "type": "custom:mushroom-light-card",
+                              "layout": "vertical"
                             },
                             "domain": "light",
                             "state": "on"
@@ -195,6 +198,14 @@
                           {
                             "options": {},
                             "entity_id": "light.master_bedroom_ceiling_fan_yellow"
+                          },
+                          {
+                            "options": {},
+                            "entity_id": "light.master_bedroom_ceiling_fan"
+                          },
+                          {
+                            "options": {},
+                            "entity_id": "light.master_bedroom_lamps"
                           }
                         ]
                       }
@@ -298,6 +309,9 @@
                       "live": {
                         "preload": true,
                         "lazy_load": false
+                      },
+                      "card_mod": {
+                        "style": ":host {\n  {% if is_state('binary_sensor.front_door_camera_person', 'on') -%}\n    border: 2px solid rgba(255, 165, 0) !important;\n    transition: border 0.4s ease;\n    padding-bottom: 12px;\n  {%- else -%}\n  {%- endif %}\n}\n"
                       }
                     }
                   ],
@@ -417,7 +431,7 @@
                   ],
                   "grid_options": {
                     "columns": "full",
-                    "rows": 8
+                    "rows": 7
                   }
                 }
               ],
@@ -1439,14 +1453,16 @@
                   "type": "custom:week-planner-card",
                   "calendars": [
                     {
-                      "entity": "calendar.family_calendar",
-                      "hideInLegend": false
+                      "entity": "calendar.family_calendar"
                     },
                     {
-                      "entity": "calendar.holidays_in_united_states"
+                      "entity": "calendar.holidays_in_united_states",
+                      "color": "#9942f5"
                     }
                   ],
-                  "startingDay": "today",
+                  "days": "month",
+                  "startingDay": "month",
+                  "startingDayOffset": 0,
                   "hideWeekend": false,
                   "noCardBackground": false,
                   "compact": false,
@@ -1464,21 +1480,11 @@
                   "combineSimilarEvents": false,
                   "showLegend": false,
                   "grid_options": {
-                    "columns": "full",
-                    "rows": 8
+                    "columns": "full"
                   },
-                  "columns": {
-                    "extraLarge": "7",
-                    "large": "7",
-                    "medium": "7",
-                    "small": "7",
-                    "extraSmall": "7"
-                  },
-                  "showTitle": true,
-                  "days": "21",
-                  "maxDayEvents": "0",
+                  "showNavigation": false,
                   "card_mod": {
-                    "style": ".title{\nfont-size: 18px;\nline-height: 20px;\n}\n.none{\nfont-size: 18px !important;\nline-height: 20px !important;\n}\n"
+                    "style": ".title {\n  font-size: 18px;\n  line-height: 18px;\n}\n.number {\n  font-size: 40px !important;\n}\n.none {\n  font-size: 18px !important;\n  line-height: 18px !important;\n}\n.today {\n  font-color: #A8C7FA !important;\n}\n"
                   }
                 }
               ],
@@ -2202,6 +2208,46 @@
             }
           ],
           "subview": true
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "test",
+          "path": "test",
+          "subview": true,
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entity-filter",
+                  "entities": [
+                    "light.entry_way_step_lights",
+                    "light.family_room_main_lights",
+                    "light.kitchen_lights",
+                    "light.dining_room_chandelier",
+                    "light.living_room_main_lights",
+                    "light.second_floor_bathroom",
+                    "light.stairs_step_lights",
+                    "light.upstairs_hallway_main_lights",
+                    "light.master_bedroom",
+                    "light.master_bathroom_main_lights",
+                    "light.ryan_s_ceiling_fan_2",
+                    "light.office_ceiling_fan"
+                  ],
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "custom:mushroom-light-card"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ],
       "sidebar": {
@@ -2246,21 +2292,9 @@
           },
           {
             "action": "navigate",
-            "navigation_path": "/lovelace-dashboard/cal",
-            "name": "Calendar",
-            "icon": "mdi:calendar"
-          },
-          {
-            "action": "navigate",
             "navigation_path": "/lovelace-dashboard/music",
             "name": "Music",
             "icon": "mdi:music"
-          },
-          {
-            "action": "navigate",
-            "navigation_path": "/lovelace-dashboard/weather",
-            "name": "Weather",
-            "icon": "mdi:weather-partly-cloudy"
           }
         ],
         "bottomCard": {
@@ -2277,7 +2311,11 @@
                 "entity": "weather.openweathermap",
                 "show_current": true,
                 "show_forecast": true,
-                "forecast_type": "daily"
+                "forecast_type": "daily",
+                "tap_action": {
+                  "action": "navigate",
+                  "navigation_path": "/lovelace-dashboard/weather"
+                }
               },
               {
                 "type": "custom:calendar-card-pro",
@@ -2301,8 +2339,8 @@
                 "weather": {
                   "position": "date",
                   "date": {
-                    "show_conditions": true,
-                    "show_high_temp": true,
+                    "show_conditions": false,
+                    "show_high_temp": false,
                     "show_low_temp": false,
                     "icon_size": "14px",
                     "font_size": "12px",
